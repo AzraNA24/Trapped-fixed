@@ -1,0 +1,68 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1045 &1
+EditorBuildSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/StartRoom.unity
+    guid: 8c9cfa26abfee488c85f1582747f6a02
+  - enabled: 1
+    path: Assets/Scenes/TurnBased.unity
+    guid: 3d6309f30080a114bbdfc352120e99f3
+  - enabled: 1
+    path: Assets/Scenes/Room1.unity
+    guid: 809ebd7a553458a4ca738911234c86dc
+  - enabled: 1
+    path: Assets/Scenes/Room2.unity
+    guid: 86b1778ebadb6974a9c134e9319ad34f
+  - enabled: 1
+    path: Assets/Scenes/Room3.unity
+    guid: 14f8f1961712e6b4cbaf2dd5e863df24
+  - enabled: 1
+    path: Assets/Scenes/Room4.unity
+    guid: 29aaa520ffcac21409cc19e1dd2ea1ed
+  - enabled: 1
+    path: Assets/Scenes/Room5.unity
+    guid: d27888571e5455d42b054cfd3469eb65
+  - enabled: 1
+    path: Assets/Scenes/Room6.unity
+    guid: 69a2e8a6798338545be5c78f6243c0e1
+  - enabled: 1
+    path: Assets/Scenes/Room7.unity
+    guid: ccc16151b6451934a937063508573021
+  - enabled: 1
+    path: Assets/Scenes/Room8.unity
+    guid: f63ca8af11a758340b2e2b809b9f89fa
+  - enabled: 1
+    path: Assets/Scenes/Room9.unity
+    guid: 45e9ec4b194384847a2e6f8f2588e99a
+  - enabled: 1
+    path: Assets/Scenes/Room10.unity
+    guid: a7253e55e7b95854d8b80ce33088abf8
+  - enabled: 1
+    path: Assets/Scenes/MiniBoss1.unity
+    guid: 646e6ca1d7785204fb83ecd4ce22cfb8
+  - enabled: 1
+    path: Assets/Scenes/MiniBoss2.unity
+    guid: fe6992a934ae19148acdc2614249d33d
+  - enabled: 1
+    path: Assets/Scenes/BossRoom.unity
+    guid: d7a8d907ec8580f419fe204928e2398d
+  - enabled: 1
+    path: Assets/Scenes/Heal.unity
+    guid: b91580bfc4ba733488980eec3dabe7f5
+  - enabled: 1
+    path: Assets/Scenes/Storyline.unity
+    guid: a8021f98c4da918408aaf2e14d4e0bb8
+  - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+    guid: c0983af5dfcdb1a488c07f230d4d3dae
+  - enabled: 1
+    path: Assets/Scenes/WinningScene.unity
+    guid: 2f2febc77d7cae84db37c0f95637c171
+  - enabled: 1
+    path: Assets/Scenes/GameOver.unity
+    guid: 7911b2312e1c3614a8096acd1467b440
+  m_configObjects: {}
