@@ -18,9 +18,9 @@ public class Door : MonoBehaviour
     private static bool isBossRoomTriggered = false; 
     private static bool isGameInitialized = false;
 
-    [Header("Audio Settings")]
-    [SerializeField] private AudioSource audioSource;
-    [SerializeField] private AudioClip enterRoomSound;
+    // [Header("Audio Settings")]
+    // [SerializeField] private AudioSource audioSource;
+    // [SerializeField] private AudioClip enterRoomSound;
 
     private void Awake()
     {
@@ -90,22 +90,22 @@ public class Door : MonoBehaviour
 
     private void SwitchToRoom(string roomName)
     {
-        if (audioSource != null && enterRoomSound != null)
-        {
-            StartCoroutine(WaitForSoundAndSwitch(roomName, enterRoomSound.length));
-        }
-
+        // if (audioSource != null && enterRoomSound != null)
+        // {
+        //     StartCoroutine(WaitForSoundAndSwitch(roomName, enterRoomSound.length));
+        // }
+        SceneManager.LoadScene(roomName);
         visitedScenes.Add(roomName);
         SaveVisitedScenes();
     }
 
     private IEnumerator WaitForSoundAndSwitch(string roomName, float delay)
     {
-        if (audioSource != null && enterRoomSound != null)
-        {
-            audioSource.PlayOneShot(enterRoomSound);
+        // if (audioSource != null && enterRoomSound != null)
+        // {
+        //     audioSource.PlayOneShot(enterRoomSound);
             yield return new WaitForSeconds(0.5f); 
-        }
+        // }
 
         SceneManagerController.Instance.SwitchScene(roomName, SceneManagerController.GameMode.Exploration);
     }
