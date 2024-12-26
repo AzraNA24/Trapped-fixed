@@ -4,11 +4,15 @@ using TMPro;
 
 public class ItemUI : MonoBehaviour
 {
-    public TMP_Text Quantity;
-    public LootBox.LootType LootType;
+    public TMP_Text QuantityBullet;
+    public TMP_Text QuantityHealth;
+    public Player player;
 
-    public void SetItem(){
-        Quantity.text = Player.Instance.Inventory.GetItemCount(LootType).ToString();
+public void Update()
+    {
+        player = Player.Instance;
+        QuantityBullet.text = "" + player.Inventory.GetItemCount(LootBox.LootType.Bullet).ToString();
+        QuantityHealth.text = "" + player.Inventory.GetItemCount(LootBox.LootType.HealthPotion).ToString();
     }
 
 }
