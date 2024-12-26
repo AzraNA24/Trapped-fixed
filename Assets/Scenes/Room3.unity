@@ -219,6 +219,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3025353931900224834, guid: 7a5f8bc35369268439bfe48d7eb37206, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3025353931900224834, guid: 7a5f8bc35369268439bfe48d7eb37206, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3025353931900224834, guid: 7a5f8bc35369268439bfe48d7eb37206, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -2.899
+      objectReference: {fileID: 0}
+    - target: {fileID: 3025353931900224834, guid: 7a5f8bc35369268439bfe48d7eb37206, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.885
+      objectReference: {fileID: 0}
     - target: {fileID: 3354754614719401001, guid: 7a5f8bc35369268439bfe48d7eb37206, type: 3}
       propertyPath: m_Name
       value: Door
@@ -230,6 +246,22 @@ PrefabInstance:
     - target: {fileID: 5516096959015752649, guid: 7a5f8bc35369268439bfe48d7eb37206, type: 3}
       propertyPath: m_Offset.x
       value: -2.2220232
+      objectReference: {fileID: 0}
+    - target: {fileID: 5728766007668844001, guid: 7a5f8bc35369268439bfe48d7eb37206, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5728766007668844001, guid: 7a5f8bc35369268439bfe48d7eb37206, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5728766007668844001, guid: 7a5f8bc35369268439bfe48d7eb37206, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.622
+      objectReference: {fileID: 0}
+    - target: {fileID: 5728766007668844001, guid: 7a5f8bc35369268439bfe48d7eb37206, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.89
       objectReference: {fileID: 0}
     - target: {fileID: 9126357942923319106, guid: 7a5f8bc35369268439bfe48d7eb37206, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6163,6 +6195,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3025353931900224834, guid: 7a5f8bc35369268439bfe48d7eb37206, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3025353931900224834, guid: 7a5f8bc35369268439bfe48d7eb37206, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3025353931900224834, guid: 7a5f8bc35369268439bfe48d7eb37206, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -2.722
+      objectReference: {fileID: 0}
+    - target: {fileID: 3025353931900224834, guid: 7a5f8bc35369268439bfe48d7eb37206, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.013
+      objectReference: {fileID: 0}
     - target: {fileID: 3354754614719401001, guid: 7a5f8bc35369268439bfe48d7eb37206, type: 3}
       propertyPath: m_Name
       value: Door (1)
@@ -6174,6 +6222,22 @@ PrefabInstance:
     - target: {fileID: 5516096959015752649, guid: 7a5f8bc35369268439bfe48d7eb37206, type: 3}
       propertyPath: m_Offset.x
       value: -2.062256
+      objectReference: {fileID: 0}
+    - target: {fileID: 5728766007668844001, guid: 7a5f8bc35369268439bfe48d7eb37206, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5728766007668844001, guid: 7a5f8bc35369268439bfe48d7eb37206, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5728766007668844001, guid: 7a5f8bc35369268439bfe48d7eb37206, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.454
+      objectReference: {fileID: 0}
+    - target: {fileID: 5728766007668844001, guid: 7a5f8bc35369268439bfe48d7eb37206, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.014
       objectReference: {fileID: 0}
     - target: {fileID: 9126357942923319106, guid: 7a5f8bc35369268439bfe48d7eb37206, type: 3}
       propertyPath: m_LocalPosition.x
