@@ -3,14 +3,17 @@ using System.Collections.Generic;
 using System.Data.SqlTypes;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Canvas : MonoBehaviour
 {
     public static Canvas Instance { get; private set; }
     public TextMeshProUGUI money;
-    public TextMeshProUGUI Bullet;
-    public TextMeshProUGUI Potion;
+    public TextMeshProUGUI health;
+    public TextMeshProUGUI name;
+
     public Player player;
+    public Slider hpSlider;
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -26,7 +29,10 @@ public class Canvas : MonoBehaviour
     {
         player = Player.Instance;
         money.text = "Money: " + player.Money.ToString();
-        Bullet.text = "Bullet: " + player.Inventory.GetItemCount(LootBox.LootType.Bullet).ToString();
-        Potion.text = "Potion: " + player.Inventory.GetItemCount(LootBox.LootType.HealthPotion).ToString();
+        health.text = player.currentHealth.ToString();
+        name.text = player.Name;
+        hpSlider.maxValue = player.Health;
+        hpSlider.value = player.currentHealth;
+        
     }
 }

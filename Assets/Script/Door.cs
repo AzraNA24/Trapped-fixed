@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections.Generic;
 using System.Collections;
+using TMPro;
 
 public class Door : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class Door : MonoBehaviour
 
     [Header("Room Counters")]
     private static int roomCount = 0; 
+    public TextMeshProUGUI roomCountText;
     private static HashSet<string> visitedScenes = new HashSet<string>();
     private static bool isBossRoomTriggered = false; 
     private static bool isGameInitialized = false;
@@ -24,6 +26,8 @@ public class Door : MonoBehaviour
 
     private void Awake()
     {
+        DontDestroyOnLoad(gameObject);
+        
         if (!isGameInitialized)
         {
             ResetGameProgress();
@@ -97,6 +101,8 @@ public class Door : MonoBehaviour
         SceneManager.LoadScene(roomName);
         visitedScenes.Add(roomName);
         SaveVisitedScenes();
+        RoomText.Instance.UpdateRoomCount(roomCount);
+        
     }
 
     private IEnumerator WaitForSoundAndSwitch(string roomName, float delay)
