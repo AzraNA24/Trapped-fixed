@@ -14,6 +14,9 @@ public class SceneManagerController : MonoBehaviour
 
     private Vector2 playerPosition; // Menyimpan posisi Player terakhir
 
+    public AudioClip explorationMusic;
+    public AudioClip turnBasedMusic;
+
     void Awake()
     {
         if (Instance == null)
@@ -30,6 +33,11 @@ public class SceneManagerController : MonoBehaviour
         // Instantiate Player Controller di awal permainan
         playerControllerInstance = Instantiate(playerController);
         currentMode = GameMode.Exploration;
+
+        if (AudioManager.instance != null)
+        {
+            AudioManager.instance.PlayMusic(explorationMusic);
+        }
     }
 
     public void SwitchScene(string sceneName, GameMode mode)
@@ -38,6 +46,20 @@ public class SceneManagerController : MonoBehaviour
         {
             // Simpan posisi eksplorasi sebelum masuk Turn-Based
             FindObjectOfType<PlayerManager>()?.SaveExplorationStartPosition();
+        
+            // Ganti musik ke turn-based
+            if (AudioManager.instance != null)
+            {
+                AudioManager.instance.PlayMusic(turnBasedMusic);
+            }
+        }
+        else if (mode == GameMode.Exploration)
+        {
+            // Ganti musik kembali ke eksplorasi
+            if (AudioManager.instance != null)
+            {
+                AudioManager.instance.PlayMusic(explorationMusic);
+            }
         }
 
         currentMode = mode;
