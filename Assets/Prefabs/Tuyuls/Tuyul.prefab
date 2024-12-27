@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4432810312742388300}
   - component: {fileID: 543716926525303897}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Tuyul
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -50,3 +50,4 @@ MonoBehaviour:
   currentHealth: 50
   AttackPower: 15
   Money: 30
+  isOfferingMoney: 0

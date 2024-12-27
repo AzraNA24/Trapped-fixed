@@ -17,8 +17,7 @@ public class RoomText : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
-        roomCountText.text = "Room: Start Room";
+        roomCountText.text = "Room: 1";
     }
 
     public void UpdateRoomCount(int count)

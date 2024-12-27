@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: -6148692676596524943}
   - component: {fileID: -6011250256220811822}
   - component: {fileID: 6749024620450864284}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: JaekYul
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3432669930022053542}
   - component: {fileID: 678608100568114932}
   - component: {fileID: 2427512652495134685}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: RollyPolly
   m_TagString: Untagged
   m_Icon: {fileID: 0}

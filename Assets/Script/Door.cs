@@ -14,7 +14,7 @@ public class Door : MonoBehaviour
     [SerializeField] private string healRoom;
 
     [Header("Room Counters")]
-    private static int roomCount = 0; 
+    private static int roomCount = 1; 
     public TextMeshProUGUI roomCountText;
     private static HashSet<string> visitedScenes = new HashSet<string>();
     private static bool isBossRoomTriggered = false; 
@@ -26,8 +26,6 @@ public class Door : MonoBehaviour
 
     private void Awake()
     {
-        DontDestroyOnLoad(gameObject);
-        
         if (!isGameInitialized)
         {
             ResetGameProgress();
@@ -48,13 +46,13 @@ public class Door : MonoBehaviour
             roomCount++;
             Debug.Log("Player entered trigger. Room count incremented to: " + roomCount);
 
-            if (isBossRoomTriggered || roomCount >= 10)
+            if (isBossRoomTriggered || roomCount >= 11)
             {
                 isBossRoomTriggered = true;
                 Debug.Log("Switching to Boss Room by default");
                 SwitchToRoom(bossRoom);
             }
-            else if (roomCount >= 5 && Random.value <= 0.4f)
+            else if (roomCount >= 6 && Random.value <= 0.4f)
             {
                 isBossRoomTriggered = true;
                 Debug.Log("Switching to Boss Room by probability.");
@@ -83,13 +81,13 @@ public class Door : MonoBehaviour
     private bool ShouldEnterMiniBossRoom()
     {
         // 30% chance after 3 rooms
-        return roomCount >= 3 && Random.value <= 0.3f;
+        return roomCount >= 4 && Random.value <= 0.3f;
     }
 
     private bool ShouldEnterHealRoom()
     {
         // 30% chance after 4 rooms
-        return roomCount >= 4 && Random.value <= 0.3f;
+        return roomCount >= 5 && Random.value <= 0.3f;
     }
 
     private void SwitchToRoom(string roomName)
@@ -154,7 +152,7 @@ public class Door : MonoBehaviour
     private void LoadVisitedScenes()
     {
         string savedData = PlayerPrefs.GetString("VisitedScenes", "");
-        roomCount = PlayerPrefs.GetInt("RoomCount", 0);
+        roomCount = PlayerPrefs.GetInt("RoomCount", 1);
 
         if (!string.IsNullOrEmpty(savedData))
         {
@@ -164,7 +162,7 @@ public class Door : MonoBehaviour
 
     private void ResetGameProgress()
     {
-        roomCount = 0;
+        roomCount = 1;
         visitedScenes.Clear();
         PlayerPrefs.DeleteKey("RoomCount");
         PlayerPrefs.DeleteKey("VisitedScenes");
