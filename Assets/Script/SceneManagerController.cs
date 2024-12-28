@@ -46,7 +46,25 @@ public class SceneManagerController : MonoBehaviour
         {
             // Simpan posisi eksplorasi sebelum masuk Turn-Based
             FindObjectOfType<PlayerManager>()?.SaveExplorationStartPosition();
-        
+
+            // Set posisi spesifik pemain di mode Turn-Based
+            GameObject player = GameObject.FindWithTag("Player");
+            if (player != null)
+            {
+                player.transform.position = new Vector2(-2, 2);
+                PlayerMovement movement = player.GetComponent<PlayerMovement>();
+                PlayerAttack attack = player.GetComponent<PlayerAttack>();
+
+                if (movement != null) movement.enabled = false; // Matikan PlayerMovement
+                if (attack != null) attack.enabled = false;     // Matikan PlayerAttack
+
+                Animator animator = player.GetComponent<Animator>();
+                if (animator != null)
+                {
+                    animator.SetBool("TurnBased", true); // Aktifkan animasi Turn-Based
+                }
+            }
+
             // Ganti musik ke turn-based
             if (AudioManager.instance != null)
             {
@@ -56,6 +74,9 @@ public class SceneManagerController : MonoBehaviour
         else if (mode == GameMode.Exploration)
         {
             // Ganti musik kembali ke eksplorasi
+            GameObject player = GameObject.FindWithTag("Player");
+            Animator animator = player.GetComponent<Animator>();
+            animator.SetBool("TurnBased", false);
             if (AudioManager.instance != null)
             {
                 AudioManager.instance.PlayMusic(explorationMusic);
@@ -63,12 +84,18 @@ public class SceneManagerController : MonoBehaviour
         }
 
         currentMode = mode;
+
         if (mode == GameMode.TurnBased)
         {
             lastSceneName = SceneManager.GetActiveScene().name;
         }
         SceneManager.LoadScene(sceneName);
     }
+    public GameMode GetCurrentGameMode()
+    {
+        return currentMode;
+    }
+
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {

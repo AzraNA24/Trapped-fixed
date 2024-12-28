@@ -153,6 +153,10 @@ PrefabInstance:
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 4539214258480898173, guid: 0e73ea6757575b14b86fbf571650966b, type: 3}
+      propertyPath: codexUI
+      value: 
+      objectReference: {fileID: 2535881654416399962}
+    - target: {fileID: 4539214258480898173, guid: 0e73ea6757575b14b86fbf571650966b, type: 3}
       propertyPath: newIntro
       value: 
       objectReference: {fileID: 1991079933}
@@ -7212,81 +7216,67 @@ MonoBehaviour:
       not like our usual heist. I\u2019ll walk you through it as best as I can. "
     dialogueSprite: {fileID: 2044068360, guid: d2c2e94e56f869641aec041d36610282, type: 3}
     dialoguePosition: {x: 100, y: 400}
-    fontStyle: 0
   - dialogueText: "First thing you gotta note, is that there\u2019s no guarantee
       when you\u2019ll find a way out. Our informant notes that <b><color=#00008B>There
       is atleast 5 Rooms</color></b>. Hmm\u2026 No one reports more than <b><color=#00008B>10
       Rooms</color></b>, though.."
     dialogueSprite: {fileID: 1885215584, guid: d2c2e94e56f869641aec041d36610282, type: 3}
     dialoguePosition: {x: 100, y: 400}
-    fontStyle: 0
   - dialogueText: "Exciting, isn\u2019t it? I\u2019m so glad I\u2019m not with you
       right now."
     dialogueSprite: {fileID: 613213814, guid: d2c2e94e56f869641aec041d36610282, type: 3}
     dialoguePosition: {x: 100, y: 400}
-    fontStyle: 0
   - dialogueText: "Joking, joking. Anyway, you gotta keep your guards up. Heard that
       place swarmed by the most dangerous kind of creature\u2026. <b><color=#00008B>Tuyul</color></b>"
     dialogueSprite: {fileID: 2044068360, guid: d2c2e94e56f869641aec041d36610282, type: 3}
     dialoguePosition: {x: 100, y: 400}
-    fontStyle: 0
   - dialogueText: "Yeah, but that\u2019s for later. Let\u2019s start with the basics
       first. Here in the top left, it\u2019s your stat. Look, <b><color=#00008B>they</color></b>
       even put your name on it. How generous.."
     dialogueSprite: {fileID: 613213814, guid: d2c2e94e56f869641aec041d36610282, type: 3}
     dialoguePosition: {x: 0, y: 400}
-    fontStyle: 0
   - dialogueText: "Across it, there\u2019s information about your money. Remember
       : <b><color=#00008B>Your Short Range power is 9% of your money, while your
       Long Range is 18%</color></b>. Keep that in mind, yeah?"
     dialogueSprite: {fileID: 2044068360, guid: d2c2e94e56f869641aec041d36610282, type: 3}
     dialoguePosition: {x: 200, y: 400}
-    fontStyle: 0
   - dialogueText: "Who will you fight in this abandoned castle? You\u2019ll figure
       soon enough. I\u2019m not telling~"
     dialogueSprite: {fileID: 613213814, guid: d2c2e94e56f869641aec041d36610282, type: 3}
     dialoguePosition: {x: 100, y: 400}
-    fontStyle: 0
   - dialogueText: "Humm\u2026 Next\u2026 You can move by using WASD or the arrow
       button\u2026 you can interact with an object by hitting it with your left mouse\u2026
       boring, boring.. Is there something more important to tell you..? Who made
       this procedure anyway?"
     dialogueSprite: {fileID: 1885215584, guid: d2c2e94e56f869641aec041d36610282, type: 3}
     dialoguePosition: {x: 100, y: 400}
-    fontStyle: 0
   - dialogueText: Ah, right! Try press your <b><color=#00008B>Tab Key</color></b>!.
     dialogueSprite: {fileID: 2044068360, guid: d2c2e94e56f869641aec041d36610282, type: 3}
     dialoguePosition: {x: 100, y: 400}
-    fontStyle: 0
   - dialogueText: "Right here, it\u2019s your Inventory. As you can see, I already
       went out of my way and gave you some bullets and Health potions. Man, I\u2019m
       such a good partner."
     dialogueSprite: {fileID: 2044068360, guid: d2c2e94e56f869641aec041d36610282, type: 3}
     dialoguePosition: {x: -200, y: 0}
-    fontStyle: 0
   - dialogueText: "Ahahaha.. I think I know what face you\u2019re making right now.
       Anyway, you can close it for now. Supposedly, you can find more of them when
       you explore. But remember; you can only use those in battle. Won\u2019t want
       you to run out too soon. Yeah?  "
     dialogueSprite: {fileID: 613213814, guid: d2c2e94e56f869641aec041d36610282, type: 3}
     dialoguePosition: {x: -200, y: 0}
-    fontStyle: 0
   - dialogueText: Now, You can try press <b><color=#00008B>C Key</color></b>!
     dialogueSprite: {fileID: 2044068360, guid: d2c2e94e56f869641aec041d36610282, type: 3}
     dialoguePosition: {x: -100, y: 400}
-    fontStyle: 0
   - dialogueText: "Here, I\u2019ll record every enemy that you encountered. As you
       can see, it\u2019s pretty much useless now. But when you meet the enemy, I\u2019ll
       try my best to update it as soon as possible. You should be able to hear a
       \u2018dingg~\u2019 sound when it\u2019s updated."
     dialogueSprite: {fileID: 1885215584, guid: d2c2e94e56f869641aec041d36610282, type: 3}
     dialoguePosition: {x: 200, y: -100}
-    fontStyle: 0
   - dialogueText: "I\u2019d love to accompany you further. But the signal isn't too
       good. Be Careful out there, partner. I wish you all the best. "
     dialogueSprite: {fileID: 2044068360, guid: d2c2e94e56f869641aec041d36610282, type: 3}
     dialoguePosition: {x: 100, y: 400}
-    fontStyle: 0
 --- !u!114 &1696115351
 MonoBehaviour:
   m_ObjectHideFlags: 0

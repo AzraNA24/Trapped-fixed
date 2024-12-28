@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7502029825535283684}
   - component: {fileID: 6536134273059864711}
+  - component: {fileID: 4674414864155097451}
   - component: {fileID: 4539214258480898173}
   - component: {fileID: 4750830077818833568}
   - component: {fileID: 1030086234346907035}
@@ -17,7 +18,6 @@ GameObject:
   - component: {fileID: -4478610846497257245}
   - component: {fileID: 404703977199771299}
   - component: {fileID: 8871927289165666784}
-  - component: {fileID: 4674414864155097451}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -92,6 +92,24 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &4674414864155097451
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1195421759263100731}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8166f9d22e9a1df49bc687e0190fd035, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: x
+  Health: 100
+  Money: 100
+  Inventory: {fileID: 6093000528304797563, guid: 5aa72866700f7504caffa24709b9b848, type: 3}
+  criticalChance: 0.3
+  healthPotionEffectiveness: 1
 --- !u!114 &4539214258480898173
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -111,6 +129,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 12288
   hitSound: {fileID: 8871927289165666784}
+  codexUI: {fileID: 0}
+  codexIndex: 0
   newIntro: {fileID: 0}
 --- !u!114 &4750830077818833568
 MonoBehaviour:
@@ -403,22 +423,3 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &4674414864155097451
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1195421759263100731}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8166f9d22e9a1df49bc687e0190fd035, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Name: x
-  Health: 100
-  currentHealth: 100
-  Money: 100
-  Inventory: {fileID: 6093000528304797563, guid: 5aa72866700f7504caffa24709b9b848, type: 3}
-  criticalChance: 0.3
-  healthPotionEffectiveness: 1

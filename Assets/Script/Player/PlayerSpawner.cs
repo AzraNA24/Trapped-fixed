@@ -29,12 +29,20 @@ public class PlayerSpawner : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        // Cari GameObject bernama "SpawnPoint" di scene baru
-        GameObject spawnPoint = GameObject.Find("SpawnPoint"); //Nggak jalan, deng. Tapi masih oke hasilnya. Kalau ada waktu, atau kalau mau, benerin aja
+        // Dapatkan mode saat ini dari SceneManagerController
+        SceneManagerController.GameMode currentMode = SceneManagerController.Instance != null 
+            ? SceneManagerController.Instance.GetCurrentGameMode() 
+            : SceneManagerController.GameMode.Exploration; // Default ke Exploration jika null
+
+        // Pilih SpawnPoint berdasarkan mode
+        string spawnPointName = currentMode == SceneManagerController.GameMode.Exploration ? "SpawnPoint" : "PlayerSpawnPoint";
+
+        // Cari GameObject SpawnPoint di scene baru
+        GameObject spawnPoint = GameObject.Find(spawnPointName);
 
         if (spawnPoint != null)
         {
-            Debug.Log("SpawnPoint found at position: " + spawnPoint.transform.position);
+            Debug.Log($"{spawnPointName} found at position: " + spawnPoint.transform.position);
 
             // Pindahkan pemain ke posisi SpawnPoint
             Transform playerTransform = GetPlayerTransform();
@@ -45,7 +53,7 @@ public class PlayerSpawner : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("No SpawnPoint found in scene: " + scene.name);
+            Debug.LogWarning($"No {spawnPointName} found in scene: " + scene.name);
         }
     }
 

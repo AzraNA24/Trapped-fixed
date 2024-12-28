@@ -37,28 +37,36 @@ public class PlayerManager : MonoBehaviour
         SwitchMode(PlayerMode.Exploration);
     }
 
-    public void SwitchMode(PlayerMode mode)
+public void SwitchMode(PlayerMode mode)
+{
+    if (mode == PlayerMode.TurnBased)
     {
-        if (activePlayer != null)
-        {
-            Destroy(activePlayer);
-        }
-        if (mode == PlayerMode.Exploration)
-        {
-            if (explorationPlayerPrefab != null && activePlayer == null)
-            {
-                activePlayer = GameObject.FindWithTag("Player");
-            }
-            if (activePlayer == null)
-            {
-                activePlayer = Instantiate(explorationPlayerPrefab, transform.position, Quaternion.identity);
-            }
-        }
-        else if (mode == PlayerMode.TurnBased)
-        {
-            activePlayer = Instantiate(turnBasedPlayerPrefab, transform.position, Quaternion.identity);
-        }
+        PlayerMovement movement = GetComponent<PlayerMovement>();
+        PlayerAttack attack = GetComponent<PlayerAttack>();
 
+        if (movement != null) movement.enabled = false;
+        if (attack != null) attack.enabled = false;
+
+        Animator animator = GetComponent<Animator>();
+        if (animator != null)
+        {
+            animator.SetBool("TurnBased", true);
+        }
+    }
+    else if (mode == PlayerMode.Exploration)
+    {
+        PlayerMovement movement = GetComponent<PlayerMovement>();
+        PlayerAttack attack = GetComponent<PlayerAttack>();
+
+        if (movement != null) movement.enabled = true;
+        if (attack != null) attack.enabled = true;
+
+        Animator animator = GetComponent<Animator>();
+        if (animator != null)
+        {
+            animator.ResetTrigger("TurnBased");
+        }
+    }
         currentMode = mode;
 
         if (Camera != null)

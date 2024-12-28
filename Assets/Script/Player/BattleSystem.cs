@@ -24,7 +24,6 @@ public class BattleSystem : MonoBehaviour
     private System.Random random = new System.Random();
     public int maxPotionsPerBattle = 5;
     private int potionCounter;
-    public BattleHUD playerHUD;
     public BattleHUD tuyulHUD;
     public TextMeshProUGUI dialogueText;
     public AudioClip PotionSound;
@@ -81,7 +80,6 @@ public class BattleSystem : MonoBehaviour
         GameObject enemyGO = Instantiate(selectedTuyulPrefab, tuyulStation);
         enemyCharacter = enemyGO.GetComponent<Tuyul>();
 
-        playerHUD.SetHUDPlayer(playerCharacter);
         tuyulHUD.SetHUDTuyul(enemyCharacter);
 
 
