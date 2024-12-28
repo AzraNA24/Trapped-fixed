@@ -413,6 +413,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2913211766401279138, guid: 7a5f8bc35369268439bfe48d7eb37206, type: 3}
+      propertyPath: doorAnimator
+      value: 
+      objectReference: {fileID: 822981946}
+    - target: {fileID: 2913211766401279138, guid: 7a5f8bc35369268439bfe48d7eb37206, type: 3}
+      propertyPath: transitionDoor
+      value: 
+      objectReference: {fileID: 822981945}
     - target: {fileID: 3354754614719401001, guid: 7a5f8bc35369268439bfe48d7eb37206, type: 3}
       propertyPath: m_Name
       value: Door
@@ -4139,6 +4147,113 @@ TilemapCollider2D:
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0
   m_UseDelaunayMesh: 0
+--- !u!1001 &822981944
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 7814665083139582967, guid: 9c269f1d83b1da74da90e44ea1f9a035, type: 3}
+      propertyPath: m_Name
+      value: TransitionDoor
+      objectReference: {fileID: 0}
+    - target: {fileID: 8484720867236425759, guid: 9c269f1d83b1da74da90e44ea1f9a035, type: 3}
+      propertyPath: m_Pivot.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8484720867236425759, guid: 9c269f1d83b1da74da90e44ea1f9a035, type: 3}
+      propertyPath: m_Pivot.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8484720867236425759, guid: 9c269f1d83b1da74da90e44ea1f9a035, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8484720867236425759, guid: 9c269f1d83b1da74da90e44ea1f9a035, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8484720867236425759, guid: 9c269f1d83b1da74da90e44ea1f9a035, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8484720867236425759, guid: 9c269f1d83b1da74da90e44ea1f9a035, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8484720867236425759, guid: 9c269f1d83b1da74da90e44ea1f9a035, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8484720867236425759, guid: 9c269f1d83b1da74da90e44ea1f9a035, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8484720867236425759, guid: 9c269f1d83b1da74da90e44ea1f9a035, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8484720867236425759, guid: 9c269f1d83b1da74da90e44ea1f9a035, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8484720867236425759, guid: 9c269f1d83b1da74da90e44ea1f9a035, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8484720867236425759, guid: 9c269f1d83b1da74da90e44ea1f9a035, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8484720867236425759, guid: 9c269f1d83b1da74da90e44ea1f9a035, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8484720867236425759, guid: 9c269f1d83b1da74da90e44ea1f9a035, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8484720867236425759, guid: 9c269f1d83b1da74da90e44ea1f9a035, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8484720867236425759, guid: 9c269f1d83b1da74da90e44ea1f9a035, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8484720867236425759, guid: 9c269f1d83b1da74da90e44ea1f9a035, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8484720867236425759, guid: 9c269f1d83b1da74da90e44ea1f9a035, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8484720867236425759, guid: 9c269f1d83b1da74da90e44ea1f9a035, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8484720867236425759, guid: 9c269f1d83b1da74da90e44ea1f9a035, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9c269f1d83b1da74da90e44ea1f9a035, type: 3}
+--- !u!1 &822981945 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7814665083139582967, guid: 9c269f1d83b1da74da90e44ea1f9a035, type: 3}
+  m_PrefabInstance: {fileID: 822981944}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &822981946 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5244930232846361795, guid: 9c269f1d83b1da74da90e44ea1f9a035, type: 3}
+  m_PrefabInstance: {fileID: 822981944}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &830711447
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6611,6 +6726,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2913211766401279138, guid: 7a5f8bc35369268439bfe48d7eb37206, type: 3}
+      propertyPath: doorAnimator
+      value: 
+      objectReference: {fileID: 822981946}
+    - target: {fileID: 2913211766401279138, guid: 7a5f8bc35369268439bfe48d7eb37206, type: 3}
+      propertyPath: transitionDoor
+      value: 
+      objectReference: {fileID: 822981945}
     - target: {fileID: 3354754614719401001, guid: 7a5f8bc35369268439bfe48d7eb37206, type: 3}
       propertyPath: m_Name
       value: Door (1)
@@ -7221,3 +7344,4 @@ SceneRoots:
   - {fileID: 244085780}
   - {fileID: 164615215}
   - {fileID: 1629460946}
+  - {fileID: 822981944}

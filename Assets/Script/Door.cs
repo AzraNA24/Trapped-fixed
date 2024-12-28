@@ -14,7 +14,7 @@ public class Door : MonoBehaviour
     [SerializeField] private string healRoom;
 
     [Header("Room Counters")]
-    private static int roomCount = 0; 
+    private static int roomCount = 1; 
     public TextMeshProUGUI roomCountText;
     private static HashSet<string> visitedScenes = new HashSet<string>();
     private static bool isBossRoomTriggered = false; 
@@ -24,16 +24,25 @@ public class Door : MonoBehaviour
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private AudioClip enterRoomSound;
 
+    [Header("Animation Settings")]
+    [SerializeField] private Animator doorAnimator;
+
+    [Header("Transition Settings")]
+    [SerializeField] private GameObject transitionDoor;
+
     private void Awake()
-    {
-        DontDestroyOnLoad(gameObject);
-        
+    {      
         if (!isGameInitialized)
         {
             ResetGameProgress();
             isGameInitialized = true;
         }
         LoadVisitedScenes();
+
+        if (transitionDoor != null)
+        {
+            transitionDoor.SetActive(false);
+        }
     }
 
     private void OnApplicationQuit()
@@ -48,13 +57,13 @@ public class Door : MonoBehaviour
             roomCount++;
             Debug.Log("Player entered trigger. Room count incremented to: " + roomCount);
 
-            if (isBossRoomTriggered || roomCount >= 10)
+            if (isBossRoomTriggered || roomCount >= 11)
             {
                 isBossRoomTriggered = true;
                 Debug.Log("Switching to Boss Room by default");
                 SwitchToRoom(bossRoom);
             }
-            else if (roomCount >= 5 && Random.value <= 0.4f)
+            else if (roomCount >= 6 && Random.value <= 0.4f)
             {
                 isBossRoomTriggered = true;
                 Debug.Log("Switching to Boss Room by probability.");
@@ -83,26 +92,41 @@ public class Door : MonoBehaviour
     private bool ShouldEnterMiniBossRoom()
     {
         // 30% chance after 3 rooms
-        return roomCount >= 3 && Random.value <= 0.3f;
+        return roomCount >= 4 && Random.value <= 0.3f;
     }
 
     private bool ShouldEnterHealRoom()
     {
         // 30% chance after 4 rooms
-        return roomCount >= 4 && Random.value <= 0.3f;
+        return roomCount >= 5 && Random.value <= 0.3f;
     }
 
     private void SwitchToRoom(string roomName)
     {
+        if (transitionDoor != null)
+        {
+            transitionDoor.SetActive(true);
+        }
+
+        if (doorAnimator != null)
+        {
+            Debug.Log("Triggering Close animation");
+            doorAnimator.SetTrigger("Close");
+        }
+
         if (audioSource != null && enterRoomSound != null)
         {
             StartCoroutine(WaitForSoundAndSwitch(roomName, enterRoomSound.length));
         }
+        else
+        {
+            StartCoroutine(WaitForAnimationAndSwitch(roomName));
+        }
 
-        SceneManager.LoadScene(roomName);
-        visitedScenes.Add(roomName);
-        SaveVisitedScenes();
-        RoomText.Instance.UpdateRoomCount(roomCount);
+        // SceneManager.LoadScene(roomName);
+        // visitedScenes.Add(roomName);
+        // SaveVisitedScenes();
+        // RoomText.Instance.UpdateRoomCount(roomCount);
         
     }
 
@@ -114,7 +138,23 @@ public class Door : MonoBehaviour
             yield return new WaitForSeconds(1f); 
         }
 
-        SceneManagerController.Instance.SwitchScene(roomName, SceneManagerController.GameMode.Exploration);
+        if (doorAnimator != null)
+        {
+            AnimatorStateInfo stateInfo = doorAnimator.GetCurrentAnimatorStateInfo(0);
+            
+            while (!stateInfo.IsName("Transition_Close") || stateInfo.normalizedTime < 1f)
+            {
+                stateInfo = doorAnimator.GetCurrentAnimatorStateInfo(0);
+                yield return null;
+            }
+        }
+
+        // SceneManagerController.Instance.SwitchScene(roomName, SceneManagerController.GameMode.Exploration);
+        
+        Debug.Log($"[DEBUG] Loading scene: {roomName}");
+        SceneManager.LoadScene(roomName);
+        StartCoroutine(PlayOpenAnimation());
+        transitionDoor?.SetActive(false);
     }
 
     private string GetRandomRoom(List<string> roomList)
@@ -154,7 +194,7 @@ public class Door : MonoBehaviour
     private void LoadVisitedScenes()
     {
         string savedData = PlayerPrefs.GetString("VisitedScenes", "");
-        roomCount = PlayerPrefs.GetInt("RoomCount", 0);
+        roomCount = PlayerPrefs.GetInt("RoomCount", 1);
 
         if (!string.IsNullOrEmpty(savedData))
         {
@@ -170,4 +210,60 @@ public class Door : MonoBehaviour
         PlayerPrefs.DeleteKey("VisitedScenes");
         PlayerPrefs.Save();
     }
+
+    private IEnumerator PlayOpenAnimation()
+    {
+        yield return null;      
+        //yield return new WaitForSeconds(0.5f);
+        if (doorAnimator != null)
+        {
+            AnimatorStateInfo stateInfo = doorAnimator.GetCurrentAnimatorStateInfo(0);
+            Debug.Log($"Triggering Open animation. Current State: {stateInfo.fullPathHash}");
+            doorAnimator.SetTrigger("Open");
+        }
+        else
+        {
+            Debug.LogError("Door Animator is null!");
+        }
+
+        yield return new WaitForSeconds(1f); 
+
+        if (transitionDoor != null)
+        {
+            transitionDoor.SetActive(false);
+        }
+    }
+
+    private IEnumerator WaitForAnimationAndSwitch(string roomName)
+    {
+        // Tunggu animasi close selesai
+        if (doorAnimator != null)
+        {
+            AnimatorStateInfo stateInfo = doorAnimator.GetCurrentAnimatorStateInfo(0);
+            Debug.Log($"[DEBUG] Current Animator State: {stateInfo.fullPathHash}, Normalized Time: {stateInfo.normalizedTime}");
+            
+            while (!stateInfo.IsName("Transition_Close"))
+            {
+                stateInfo = doorAnimator.GetCurrentAnimatorStateInfo(0);
+                yield return null;
+            }
+        }
+ 
+        // Pindah ke scene baru
+        SceneManager.LoadScene(roomName);
+
+        // Tunggu scene selesai dimuat
+        yield return null;
+
+        // Trigger animasi open
+        if (doorAnimator != null)
+        {
+            doorAnimator.SetTrigger("Open");
+        }
+        else
+        {
+            Debug.LogError("Door Animator is null!");
+        }
+    }
+    
 }
