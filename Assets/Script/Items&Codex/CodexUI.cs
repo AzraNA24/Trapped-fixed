@@ -146,8 +146,8 @@ public class CodexUI : MonoBehaviour
     {
         SetImageByIndex(index);
         TuyulCharacter character = tuyulCodex[index];
-        // if (character.isUnlocked)
-        // {
+        if (character.isUnlocked)
+        {
             titleText.text = character.Title;
             descriptionText.text = character.Description;
             hpText.text = "HP: " + character.HP;
@@ -156,18 +156,18 @@ public class CodexUI : MonoBehaviour
             abilitiesText.text = string.Join("\n", character.Abilities);
             specialSkillText.text = string.Join("\n", "Special Skill: " + character.SpecialSkill);
             passiveSkillText.text = "Passive Skill: " + character.PassiveTalent;
-        // }
-        // else
-        // {
-        //     titleText.text = "???";
-        //     descriptionText.text = "You have not encountered this enemy yet.";
-        //     hpText.text = "";
-        //     moneyText.text = "";
-        //     baseAttackText.text = "";
-        //     abilitiesText.text = "";
-        //     specialSkillText.text = "";
-        //     passiveSkillText.text = "";
-        // }
+        }
+        else
+        {
+            titleText.text = "???";
+            descriptionText.text = "You have not encountered this enemy yet.";
+            hpText.text = "";
+            moneyText.text = "";
+            baseAttackText.text = "";
+            abilitiesText.text = "";
+            specialSkillText.text = "";
+            passiveSkillText.text = "";
+        }
     }
 
     public void SetImageByIndex(int index)

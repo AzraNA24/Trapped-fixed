@@ -14,8 +14,8 @@ public class PlayerAttack : MonoBehaviour
     public AudioSource hitSound;
     public static string currentTuyulName;
     // Buat Codex
-    // public CodexUI codexUI;
-    // public int codexIndex;
+    public CodexUI codexUI;
+    public int codexIndex;
     public AudioSource newIntro;
 
     private bool isTriggered = false;
@@ -75,23 +75,23 @@ public class PlayerAttack : MonoBehaviour
 
     IEnumerator PlayAudioAndSwitchScene()
     {
-        // if (newIntro != null && !codexUI.tuyulCodex[codexIndex].isUnlocked)
-        // {
-        //     int index = codexUI.GetTuyulIndexByName(currentTuyulName);
-        //     if (index != -1)
-        //     {
-        //         codexIndex = index;
+        if (newIntro != null && !codexUI.tuyulCodex[codexIndex].isUnlocked)
+        {
+            int index = codexUI.GetTuyulIndexByName(currentTuyulName);
+            if (index != -1)
+            {
+                codexIndex = index;
                 newIntro.Play();
-        //         codexUI.tuyulCodex[codexIndex].isUnlocked = true;
-        //         Debug.Log(codexUI.tuyulCodex[codexIndex].Name + " has been unlocked!");            
-        //     }
-        //     else
-        //     {
-        //         Debug.Log("Tuyul tidak ditemukan dalam codex!");
-        //     }
+                codexUI.tuyulCodex[codexIndex].isUnlocked = true;
+                Debug.Log(codexUI.tuyulCodex[codexIndex].Name + " has been unlocked!");            
+            }
+            else
+            {
+                Debug.Log("Tuyul tidak ditemukan dalam codex!");
+            }
             
             yield return new WaitForSeconds(newIntro.clip.length);
-        // }
+        }
 
         // Pindah ke scene setelah audio selesai
         SceneManagerController.Instance.SwitchScene("TurnBased", SceneManagerController.GameMode.TurnBased);
