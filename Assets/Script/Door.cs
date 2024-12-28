@@ -204,7 +204,7 @@ public class Door : MonoBehaviour
 
     private void ResetGameProgress()
     {
-        roomCount = 0;
+        roomCount = 1;
         visitedScenes.Clear();
         PlayerPrefs.DeleteKey("RoomCount");
         PlayerPrefs.DeleteKey("VisitedScenes");

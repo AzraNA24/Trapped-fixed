@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 575108832824356297}
   - component: {fileID: 4893312756015670168}
   - component: {fileID: 7916545060702532754}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: CheokYul
   m_TagString: Untagged
   m_Icon: {fileID: 0}
