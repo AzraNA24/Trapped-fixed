@@ -124,9 +124,9 @@ public class Door : MonoBehaviour
         }
 
         // SceneManager.LoadScene(roomName);
-        // visitedScenes.Add(roomName);
-        // SaveVisitedScenes();
-        // RoomText.Instance.UpdateRoomCount(roomCount);
+        visitedScenes.Add(roomName);
+        SaveVisitedScenes();
+        RoomText.Instance.UpdateRoomCount(roomCount);
         
     }
 

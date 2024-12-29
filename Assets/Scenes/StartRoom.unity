@@ -161,6 +161,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1991079933}
     - target: {fileID: 4674414864155097451, guid: 0e73ea6757575b14b86fbf571650966b, type: 3}
+      propertyPath: Name
+      value: Tekkom Gurl
+      objectReference: {fileID: 0}
+    - target: {fileID: 4674414864155097451, guid: 0e73ea6757575b14b86fbf571650966b, type: 3}
       propertyPath: Money
       value: 100
       objectReference: {fileID: 0}
