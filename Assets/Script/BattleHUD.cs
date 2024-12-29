@@ -20,15 +20,6 @@ public class BattleHUD : MonoBehaviour
 
     }
 
-    public void SetHUDPlayer(Player playerCharacter)
-    {
-        nameText.text = "You";
-        hpSlider.maxValue = playerCharacter.Health; 
-        hpSlider.value = playerCharacter.currentHealth;
-        hpText.text = $"{playerCharacter.currentHealth}";
-
-    }
-
     public void SetHP(int hp)
     {
         hpSlider.value = hp;
