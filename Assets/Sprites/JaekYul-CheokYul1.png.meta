@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 92a29d5be43922449b0457fe8bdd73d9
+guid: e959a3b97ccd277458b14cb313de0ff9
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -97,13 +97,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: JaekYulThrow_1
+      name: JaekYul-CheokYul1_0
       rect:
         serializedVersion: 2
-        x: 201
-        y: 608
-        width: 196
-        height: 192
+        x: 0
+        y: 200
+        width: 200
+        height: 200
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -111,20 +111,41 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f9b5bb56d4344a54fb54c7eb2260c216
-      internalID: -266772729
+      spriteID: 1f8247e321afb9142aeed8c2788f3b7f
+      internalID: 1467688906
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: JaekYulThrow_2
+      name: JaekYul-CheokYul1_1
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 200
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 24f0b5df6cf68f14ebe4e81af89e840b
+      internalID: -1077602907
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: JaekYul-CheokYul1_2
       rect:
         serializedVersion: 2
         x: 400
-        y: 608
-        width: 196
-        height: 192
+        y: 200
+        width: 200
+        height: 200
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -132,20 +153,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8af16d459f973e74eb9e29cca9c23ac5
-      internalID: -1197495363
+      spriteID: dd53a6a2d8e52f94f81fb2edd961599f
+      internalID: -1494417358
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: JaekYulThrow_3
+      name: JaekYul-CheokYul1_3
       rect:
         serializedVersion: 2
         x: 600
-        y: 609
-        width: 197
-        height: 191
+        y: 200
+        width: 200
+        height: 200
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -153,20 +174,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 36518a99ba28d714bbe29469ae057f42
-      internalID: 1620777905
+      spriteID: b7abf495aeecae741b0ab04a2d37a9aa
+      internalID: -10667470
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: JaekYulThrow_4
+      name: JaekYul-CheokYul1_4
       rect:
         serializedVersion: 2
-        x: 805
-        y: 610
-        width: 192
-        height: 190
+        x: 800
+        y: 200
+        width: 200
+        height: 200
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -174,20 +195,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2dc62d67892269444bc5382c2eab1eae
-      internalID: -829001020
+      spriteID: 56b5b6e9ebb7756419d5e338bf3c52aa
+      internalID: 2040451425
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: JaekYulThrow_7
+      name: JaekYul-CheokYul1_5
       rect:
         serializedVersion: 2
-        x: 203
-        y: 406
-        width: 194
-        height: 197
+        x: 0
+        y: 0
+        width: 200
+        height: 200
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -195,20 +216,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b3ad5c9f442991841ace963b62010bab
-      internalID: 1580860000
+      spriteID: b0b988cee0b35fb4cb10ed448f90f29b
+      internalID: -1079254779
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: JaekYulThrow_8
+      name: JaekYul-CheokYul1_6
       rect:
         serializedVersion: 2
-        x: 402
-        y: 405
-        width: 194
-        height: 198
+        x: 200
+        y: 0
+        width: 200
+        height: 200
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -216,20 +237,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 37b132963f3c1ca459bffa490d236907
-      internalID: 1837977757
+      spriteID: e4914f5fbd2ecc54496b5056a13b6c41
+      internalID: -629615325
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: JaekYulThrow_9
+      name: JaekYul-CheokYul1_7
       rect:
         serializedVersion: 2
-        x: 602
-        y: 405
-        width: 194
-        height: 199
+        x: 400
+        y: 0
+        width: 200
+        height: 200
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -237,8 +258,50 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2c3cc8731f1eb684192c728be54833f6
-      internalID: -1341238664
+      spriteID: 7b5d1972b4a7bb14ab7f05eb400e387f
+      internalID: 1892757750
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: JaekYul-CheokYul1_8
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 0
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 60526c4a640ba384f8c7c5b05c725416
+      internalID: -1017034754
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: JaekYul-CheokYul1_9
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 0
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1fe6b32926a390445b204f27f9c8be9c
+      internalID: 1538420401
       vertices: []
       indices: 
       edges: []
@@ -254,30 +317,16 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      JaekYulThrow_0: 1677794870
-      JaekYulThrow_1: -266772729
-      JaekYulThrow_10: -595253178
-      JaekYulThrow_11: -2068006138
-      JaekYulThrow_12: -1134173197
-      JaekYulThrow_13: -1448224358
-      JaekYulThrow_14: 381067347
-      JaekYulThrow_15: 148089353
-      JaekYulThrow_16: -1508255977
-      JaekYulThrow_17: -1431502887
-      JaekYulThrow_18: 1020206545
-      JaekYulThrow_19: -343467932
-      JaekYulThrow_2: -1197495363
-      JaekYulThrow_20: 1094792
-      JaekYulThrow_21: -536687796
-      JaekYulThrow_22: 356671980
-      JaekYulThrow_23: -347061648
-      JaekYulThrow_3: 1620777905
-      JaekYulThrow_4: -829001020
-      JaekYulThrow_5: 1342647505
-      JaekYulThrow_6: -1235729929
-      JaekYulThrow_7: 1580860000
-      JaekYulThrow_8: 1837977757
-      JaekYulThrow_9: -1341238664
+      JaekYul-CheokYul1_0: 1467688906
+      JaekYul-CheokYul1_1: -1077602907
+      JaekYul-CheokYul1_2: -1494417358
+      JaekYul-CheokYul1_3: -10667470
+      JaekYul-CheokYul1_4: 2040451425
+      JaekYul-CheokYul1_5: -1079254779
+      JaekYul-CheokYul1_6: -629615325
+      JaekYul-CheokYul1_7: 1892757750
+      JaekYul-CheokYul1_8: -1017034754
+      JaekYul-CheokYul1_9: 1538420401
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

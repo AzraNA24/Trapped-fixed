@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 92a29d5be43922449b0457fe8bdd73d9
+guid: bd3169032b8513f40b662676b876c2a3
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -97,13 +97,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: JaekYulThrow_1
+      name: JaekYul-Mr.Rizzler_0
       rect:
         serializedVersion: 2
-        x: 201
-        y: 608
-        width: 196
-        height: 192
+        x: 108
+        y: 98
+        width: 89
+        height: 194
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -111,20 +111,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f9b5bb56d4344a54fb54c7eb2260c216
-      internalID: -266772729
+      spriteID: 64293079cc4a22443b882b504fea18c4
+      internalID: 80310177
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: JaekYulThrow_2
+      name: JaekYul-Mr.Rizzler_1
       rect:
         serializedVersion: 2
-        x: 400
-        y: 608
-        width: 196
-        height: 192
+        x: 305
+        y: 91
+        width: 91
+        height: 200
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -132,20 +132,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8af16d459f973e74eb9e29cca9c23ac5
-      internalID: -1197495363
+      spriteID: fe7e01e0b17b76d4883420eecb70a2ae
+      internalID: -789677780
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: JaekYulThrow_3
+      name: JaekYul-Mr.Rizzler_2
       rect:
         serializedVersion: 2
-        x: 600
-        y: 609
-        width: 197
-        height: 191
+        x: 499
+        y: 91
+        width: 95
+        height: 201
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -153,20 +153,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 36518a99ba28d714bbe29469ae057f42
-      internalID: 1620777905
+      spriteID: 5229d865792ab9f459f873461576648d
+      internalID: -198849986
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: JaekYulThrow_4
+      name: JaekYul-Mr.Rizzler_3
       rect:
         serializedVersion: 2
-        x: 805
-        y: 610
-        width: 192
-        height: 190
+        x: 700
+        y: 98
+        width: 103
+        height: 193
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -174,20 +174,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2dc62d67892269444bc5382c2eab1eae
-      internalID: -829001020
+      spriteID: fe722aaf90cbdb447b58fcb29f57d9c9
+      internalID: 1693137000
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: JaekYulThrow_7
+      name: JaekYul-Mr.Rizzler_4
       rect:
         serializedVersion: 2
-        x: 203
-        y: 406
-        width: 194
-        height: 197
+        x: 897
+        y: 99
+        width: 102
+        height: 193
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -195,20 +195,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b3ad5c9f442991841ace963b62010bab
-      internalID: 1580860000
+      spriteID: 6f910b4c6eba568408115f62312b34fa
+      internalID: 871907787
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: JaekYulThrow_8
+      name: JaekYul-Mr.Rizzler_5
       rect:
         serializedVersion: 2
-        x: 402
-        y: 405
-        width: 194
-        height: 198
+        x: 1068
+        y: 99
+        width: 103
+        height: 193
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -216,29 +216,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 37b132963f3c1ca459bffa490d236907
-      internalID: 1837977757
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: JaekYulThrow_9
-      rect:
-        serializedVersion: 2
-        x: 602
-        y: 405
-        width: 194
-        height: 199
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2c3cc8731f1eb684192c728be54833f6
-      internalID: -1341238664
+      spriteID: 0e370afa8d9c20d4b8f5ae0bad98b4bf
+      internalID: 96593901
       vertices: []
       indices: 
       edges: []
@@ -254,30 +233,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      JaekYulThrow_0: 1677794870
-      JaekYulThrow_1: -266772729
-      JaekYulThrow_10: -595253178
-      JaekYulThrow_11: -2068006138
-      JaekYulThrow_12: -1134173197
-      JaekYulThrow_13: -1448224358
-      JaekYulThrow_14: 381067347
-      JaekYulThrow_15: 148089353
-      JaekYulThrow_16: -1508255977
-      JaekYulThrow_17: -1431502887
-      JaekYulThrow_18: 1020206545
-      JaekYulThrow_19: -343467932
-      JaekYulThrow_2: -1197495363
-      JaekYulThrow_20: 1094792
-      JaekYulThrow_21: -536687796
-      JaekYulThrow_22: 356671980
-      JaekYulThrow_23: -347061648
-      JaekYulThrow_3: 1620777905
-      JaekYulThrow_4: -829001020
-      JaekYulThrow_5: 1342647505
-      JaekYulThrow_6: -1235729929
-      JaekYulThrow_7: 1580860000
-      JaekYulThrow_8: 1837977757
-      JaekYulThrow_9: -1341238664
+      JaekYul-Mr.Rizzler_0: 80310177
+      JaekYul-Mr.Rizzler_1: -789677780
+      JaekYul-Mr.Rizzler_2: -198849986
+      JaekYul-Mr.Rizzler_3: 1693137000
+      JaekYul-Mr.Rizzler_4: 871907787
+      JaekYul-Mr.Rizzler_5: 96593901
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
