@@ -97,6 +97,13 @@ public class Tuyul : MonoBehaviour
     private void EndBattleEarly()
     {
         Debug.Log("Pertarungan diakhiri karena pemain menerima tawaran Tuyul.");
+        
+        PlayerManager playerManager = FindObjectOfType<PlayerManager>();
+        if (playerManager != null)
+        {
+            playerManager.SwitchMode(PlayerManager.PlayerMode.Exploration);
+        }
+        
         SceneManagerController.Instance.ReturnToLastScene();
     }
 

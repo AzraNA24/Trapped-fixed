@@ -46,7 +46,6 @@ public class BattleSystem : MonoBehaviour
     {
         potionCounter = 0;
 
-        // ----------------- batas tambah
         // Cari instance Player yang sudah ada
         playerCharacter = FindObjectOfType<Player>();
         if (playerCharacter == null)
@@ -58,8 +57,6 @@ public class BattleSystem : MonoBehaviour
         // Reset health player
         playerCharacter.currentHealth = playerCharacter.Health;
         Debug.Log($"Health player di-reset ke {playerCharacter.currentHealth}");
-        
-        //--------------------
 
         GameObject selectedTuyulPrefab = null;
 
@@ -299,15 +296,23 @@ public class BattleSystem : MonoBehaviour
                 Debug.Log($"{enemyCharacter.Name} telah dihancurkan.");
             }
             
-            SceneManagerController.Instance.ReturnToLastScene();
-            FindObjectOfType<PlayerManager>()?.RestoreExplorationStartPosition();
-            // Ambil pesan random dari WinningMessage
-            string randomWinningMessage = WinningMessage.GetRandomWinningMessage();
-            PlayerPrefs.SetString("WinningMessage", randomWinningMessage);
-            PlayerPrefs.Save();
-            
-            Debug.Log(randomWinningMessage); // Debug pesan yang disimpan
-            SceneManager.LoadScene("WinningScene"); // Pindah ke WinningScene
+            // Cek apakah musuh adalah JaekYul
+            if (enemyCharacter.Name == "JaekYul") 
+            {
+                string randomWinningMessage = WinningMessage.GetRandomWinningMessage();
+                PlayerPrefs.SetString("WinningMessage", randomWinningMessage);
+                PlayerPrefs.Save();
+        
+                Debug.Log(randomWinningMessage);
+                SceneManager.LoadScene("WinningScene");
+            }
+            else
+            {
+                Debug.Log("Kembali ke mode eksplorasi setelah memenangkan pertarungan.");
+                SceneManagerController.Instance.ReturnToLastScene();
+                FindObjectOfType<PlayerManager>()?.RestoreExplorationStartPosition();
+            }
+        
         }
         else if (state == BattleState.LOST)
         {
@@ -318,7 +323,6 @@ public class BattleSystem : MonoBehaviour
             SceneManager.LoadScene("GameOver");
         }
     }
-
 
     public void OnPotionButton()
     {
