@@ -8,6 +8,12 @@ public class RoomManager : MonoBehaviour
 
     void Start()
     {
+        AudioSource audio = GetComponent<AudioSource>();
+        if (audio != null && audio.isPlaying)
+        {
+            Debug.Log($"RoomManager AudioSource aktif dengan clip: {audio.clip.name}");
+        }
+
         for (int i = 0; i < tuyulsInRoom.Count; i++)
         {
             GameObject tuyul = tuyulsInRoom[i];

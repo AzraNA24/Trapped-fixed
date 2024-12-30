@@ -17,6 +17,9 @@ public class MrRizzler : Tuyul
     public override bool TakeDamage(int damage, Player playerCharacter)
     {
         currentHealth -= damage;
+
+        FindObjectOfType<BattleHUD>().SetHP(currentHealth);
+
         Debug.Log($"{Name} menerima {damage} damage! Sisa HP: {currentHealth}");
 
         // Offer to surrender if health is low

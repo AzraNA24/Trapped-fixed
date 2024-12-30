@@ -49,7 +49,7 @@ MonoBehaviour:
   TuyulAnim: {fileID: -3078768879222045738}
   Name: Rolly
   maxHealth: 25
-  currentHealth: 0
+  currentHealth: 25
   AttackPower: 10
   Money: 15
   isOfferingMoney: 0

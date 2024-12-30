@@ -21,18 +21,32 @@ public class AudioManager : MonoBehaviour
 
     public void PlayMusic(AudioClip clip)
     {
-        Debug.Log("Playing music: " + clip.name);
-
-        if (musicSource.clip != clip)
+        if (musicSource.isPlaying)
         {
-            musicSource.clip = clip;
-            musicSource.Play();
+            Debug.Log($"Music is already playing: {musicSource.clip.name}. Stopping it first.");
+            StopMusic();
         }
+
+        musicSource.clip = clip;
+        musicSource.Play();
+        Debug.Log("Playing music: " + clip.name);
     }
 
     public void StopMusic()
     {
-        musicSource.Stop();
+        // musicSource.Stop();
+
+        if (musicSource.isPlaying)
+        {
+            Debug.Log("Stopping current music: " + musicSource.clip.name);
+            musicSource.Stop();
+        }
+        else
+        {
+            Debug.Log("No music is playing to stop.");
+        }
+
+        
     }
 
     private void HandleAudioListeners()
@@ -52,6 +66,18 @@ public class AudioManager : MonoBehaviour
         else if (listeners.Length == 0)
         {
             Debug.LogError("No Audio Listener found! Please ensure there is at least one active Audio Listener in the scene.");
+        }
+    }
+
+    public void DebugActiveAudioSources()
+    {
+        AudioSource[] allAudioSources = FindObjectsOfType<AudioSource>();
+        foreach (AudioSource audio in allAudioSources)
+        {
+            if (audio.isPlaying)
+            {
+                Debug.Log($"Active AudioSource: {audio.clip.name} on GameObject: {audio.gameObject.name}");
+            }
         }
     }
     

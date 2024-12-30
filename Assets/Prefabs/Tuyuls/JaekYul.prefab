@@ -50,7 +50,7 @@ MonoBehaviour:
   TuyulAnim: {fileID: -6011250256220811822}
   Name: Jaek Yul
   maxHealth: 350
-  currentHealth: 0
+  currentHealth: 350
   AttackPower: 20
   Money: 200
   isOfferingMoney: 0

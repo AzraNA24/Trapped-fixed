@@ -49,7 +49,7 @@ MonoBehaviour:
   TuyulAnim: {fileID: 8158632198646799974}
   Name: Polly
   maxHealth: 25
-  currentHealth: 0
+  currentHealth: 25
   AttackPower: 5
   Money: 15
   isOfferingMoney: 0

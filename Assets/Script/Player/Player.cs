@@ -6,7 +6,7 @@ public class Player : MonoBehaviour
     public static Player Instance { get; private set; }
     public string Name;
     public int Health = 100;
-    public int currentHealth { get; private set; }
+    public int currentHealth { get; set; } //{ get; private set; }
     public int Money;
     public InventoryItem Inventory;
     public float criticalChance = 0.3f; // Default 30%
@@ -44,7 +44,9 @@ public class Player : MonoBehaviour
 
     public bool TakeDamage(int damage)
     {
+        Debug.Log($"Health sebelum: {currentHealth}, damage diterima: {damage}");
         currentHealth -= damage;
+        Debug.Log($"Health sesudah: {currentHealth}");
         if (currentHealth <= 0)
         {
             currentHealth = 0;

@@ -46,6 +46,18 @@ public class BattleSystem : MonoBehaviour
     {
         potionCounter = 0;
 
+        // Cari instance Player yang sudah ada
+        playerCharacter = FindObjectOfType<Player>();
+        if (playerCharacter == null)
+        {
+            Debug.LogError("Player tidak ditemukan! Pastikan Player sudah ada di scene.");
+            yield break;
+        }
+
+        // Reset health player
+        playerCharacter.currentHealth = playerCharacter.Health;
+        Debug.Log($"Health player di-reset ke {playerCharacter.currentHealth}");
+
         GameObject selectedTuyulPrefab = null;
 
         if (PlayerAttack.currentTuyulName == "Aventurine")
@@ -73,9 +85,9 @@ public class BattleSystem : MonoBehaviour
             selectedTuyulPrefab = JaekYul;
         }
 
-        GameObject playerGO = Instantiate(Player, playerStation);
-        playerCharacter = playerGO.GetComponent<Player>();
-        buttonAnimator.animator = playerGO.GetComponent<Animator>();
+        // (harusnya) GameObject playerGO = Instantiate(Player, playerStation);
+        // (harusnya) playerCharacter = playerGO.GetComponent<Player>();
+        // (harusnya) buttonAnimator.animator = playerGO.GetComponent<Animator>();
 
         GameObject enemyGO = Instantiate(selectedTuyulPrefab, tuyulStation);
         enemyCharacter = enemyGO.GetComponent<Tuyul>();
@@ -284,15 +296,23 @@ public class BattleSystem : MonoBehaviour
                 Debug.Log($"{enemyCharacter.Name} telah dihancurkan.");
             }
             
-            SceneManagerController.Instance.ReturnToLastScene();
-            FindObjectOfType<PlayerManager>()?.RestoreExplorationStartPosition();
-            // Ambil pesan random dari WinningMessage
-            string randomWinningMessage = WinningMessage.GetRandomWinningMessage();
-            PlayerPrefs.SetString("WinningMessage", randomWinningMessage);
-            PlayerPrefs.Save();
-            
-            Debug.Log(randomWinningMessage); // Debug pesan yang disimpan
-            SceneManager.LoadScene("WinningScene"); // Pindah ke WinningScene
+            // Cek apakah musuh adalah JaekYul
+            if (enemyCharacter.Name == "JaekYul") 
+            {
+                string randomWinningMessage = WinningMessage.GetRandomWinningMessage();
+                PlayerPrefs.SetString("WinningMessage", randomWinningMessage);
+                PlayerPrefs.Save();
+        
+                Debug.Log(randomWinningMessage);
+                SceneManager.LoadScene("WinningScene");
+            }
+            else
+            {
+                Debug.Log("Kembali ke mode eksplorasi setelah memenangkan pertarungan.");
+                SceneManagerController.Instance.ReturnToLastScene();
+                FindObjectOfType<PlayerManager>()?.RestoreExplorationStartPosition();
+            }
+        
         }
         else if (state == BattleState.LOST)
         {
@@ -303,7 +323,6 @@ public class BattleSystem : MonoBehaviour
             SceneManager.LoadScene("GameOver");
         }
     }
-
 
     public void OnPotionButton()
     {

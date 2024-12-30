@@ -49,7 +49,7 @@ MonoBehaviour:
   TuyulAnim: {fileID: 0}
   Name: Rolly Polly
   maxHealth: 50
-  currentHealth: 0
+  currentHealth: 50
   AttackPower: 15
   Money: 30
   isOfferingMoney: 0

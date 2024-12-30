@@ -33,6 +33,9 @@ public class Tuyul : MonoBehaviour
     public virtual bool TakeDamage(int damage, Player playerCharacter)
     {
         currentHealth -= damage;
+
+        FindObjectOfType<BattleHUD>().SetHP(currentHealth);
+        
         Debug.Log($"{Name} menerima {damage} damage! Sisa HP: {currentHealth}");
 
         // Offer to surrender if health is low
@@ -94,6 +97,13 @@ public class Tuyul : MonoBehaviour
     private void EndBattleEarly()
     {
         Debug.Log("Pertarungan diakhiri karena pemain menerima tawaran Tuyul.");
+        
+        PlayerManager playerManager = FindObjectOfType<PlayerManager>();
+        if (playerManager != null)
+        {
+            playerManager.SwitchMode(PlayerManager.PlayerMode.Exploration);
+        }
+        
         SceneManagerController.Instance.ReturnToLastScene();
     }
 
