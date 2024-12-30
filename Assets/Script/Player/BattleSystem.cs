@@ -46,6 +46,21 @@ public class BattleSystem : MonoBehaviour
     {
         potionCounter = 0;
 
+        // ----------------- batas tambah
+        // Cari instance Player yang sudah ada
+        playerCharacter = FindObjectOfType<Player>();
+        if (playerCharacter == null)
+        {
+            Debug.LogError("Player tidak ditemukan! Pastikan Player sudah ada di scene.");
+            yield break;
+        }
+
+        // Reset health player
+        playerCharacter.currentHealth = playerCharacter.Health;
+        Debug.Log($"Health player di-reset ke {playerCharacter.currentHealth}");
+        
+        //--------------------
+
         GameObject selectedTuyulPrefab = null;
 
         if (PlayerAttack.currentTuyulName == "Aventurine")
@@ -73,9 +88,9 @@ public class BattleSystem : MonoBehaviour
             selectedTuyulPrefab = JaekYul;
         }
 
-        GameObject playerGO = Instantiate(Player, playerStation);
-        playerCharacter = playerGO.GetComponent<Player>();
-        buttonAnimator.animator = playerGO.GetComponent<Animator>();
+        // (harusnya) GameObject playerGO = Instantiate(Player, playerStation);
+        // (harusnya) playerCharacter = playerGO.GetComponent<Player>();
+        // (harusnya) buttonAnimator.animator = playerGO.GetComponent<Animator>();
 
         GameObject enemyGO = Instantiate(selectedTuyulPrefab, tuyulStation);
         enemyCharacter = enemyGO.GetComponent<Tuyul>();

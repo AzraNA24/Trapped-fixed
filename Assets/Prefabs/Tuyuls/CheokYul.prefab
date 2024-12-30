@@ -50,7 +50,7 @@ MonoBehaviour:
   TuyulAnim: {fileID: 0}
   Name: CheokYul
   maxHealth: 200
-  currentHealth: 0
+  currentHealth: 200
   AttackPower: 15
   Money: 100
   isOfferingMoney: 0

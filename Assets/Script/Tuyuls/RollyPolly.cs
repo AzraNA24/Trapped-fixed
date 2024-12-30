@@ -11,6 +11,9 @@ public class RollyPolly : Tuyul    //jujur masih blm terlalu ngerti yang sepasan
     public override bool TakeDamage(int damage, Player playerCharacter)
     {
         currentHealth -= damage;
+
+        FindObjectOfType<BattleHUD>().SetHP(currentHealth);
+
         Debug.Log($"{Name} menerima {damage} damage! Sisa HP: {currentHealth}");
 
         // Offer to surrender if health is low

@@ -50,7 +50,7 @@ MonoBehaviour:
   TuyulAnim: {fileID: -6327863598716802768}
   Name: Mr. Rizzler
   maxHealth: 50
-  currentHealth: 0
+  currentHealth: 50
   AttackPower: 10
   Money: 30
   isOfferingMoney: 0

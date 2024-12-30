@@ -65,11 +65,14 @@ public class SceneManagerController : MonoBehaviour
                 }
             }
 
-            // Ganti musik ke turn-based
+            // Play Turn-Based music
             if (AudioManager.instance != null)
             {
+                AudioManager.instance.StopMusic();
+                AudioManager.instance.DebugActiveAudioSources(); 
                 AudioManager.instance.PlayMusic(turnBasedMusic);
             }
+
         }
         else if (mode == GameMode.Exploration)
         {
@@ -146,6 +149,12 @@ public class SceneManagerController : MonoBehaviour
             {
                 // Pulihkan posisi Player
                 FindObjectOfType<PlayerManager>()?.RestoreExplorationStartPosition();
+
+                if (AudioManager.instance != null)
+                {
+                    AudioManager.instance.StopMusic();
+                    AudioManager.instance.PlayMusic(explorationMusic);
+                }
 
                 // Hapus Tuyul yang sudah dikalahkan
                 GameObject[] tuyuls = GameObject.FindGameObjectsWithTag("Tuyul");
