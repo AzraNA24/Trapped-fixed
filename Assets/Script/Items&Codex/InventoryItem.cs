@@ -64,6 +64,13 @@ public class InventoryItem : MonoBehaviour
             if (slots.Type == lootBox.Type && slots.Count >= amount)
             {
                 slots.Count -= amount;
+
+                if (slots.Count == 0)
+                {
+                    Debug.Log($"Item {lootBox.Type} habis, slot kosong kembali.");
+                    slots.Type = LootBox.LootType.None; // Reset slot jika kosong
+                }
+
                 Debug.Log($"Item {lootBox.Type} used: {amount}. Remaining: {slots.Count}");
                 return true;
             }
@@ -81,6 +88,7 @@ public class InventoryItem : MonoBehaviour
                 return slots.Count;
             }
         }
+        Debug.Log($"Item {itemType} tidak ditemukan di inventory.");
         return 0;
     }
 }

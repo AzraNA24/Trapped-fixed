@@ -86,7 +86,7 @@ public class JaekYul : Tuyul
 
         if (random.NextDouble() < 0.4)
         {
-            int stolenAmount = random.Next(1, 101);
+            int stolenAmount = random.Next(1, 20);
             if (playerCharacter.DeductMoney(stolenAmount))
             {
                 TuyulAnim.SetTrigger("TPBP");

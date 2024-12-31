@@ -163,24 +163,6 @@ public class SceneManagerController : MonoBehaviour
                     string tuyulName = tuyul.name;
                     FindObjectOfType<PlayerManager>()?.CheckAndRemoveDefeatedTuyuls(tuyul, tuyulName);
                 }
-
-                // batas tambah ---------------
-                
-                GameObject player = GameObject.FindWithTag("Player");
-                if (player != null)
-                {
-                    Animator animator = player.GetComponent<Animator>();
-                    if (animator != null)
-                    {
-                        animator.SetBool("TurnBased", false);
-                        animator.SetBool("isMoving", false);
-                        animator.SetBool("isIdle", true);
-                        Debug.Log("Animator reset after battle.");
-                    }
-                }
-
-                // ------------------------
-
             };
         }
         else

@@ -202,16 +202,19 @@ public class BattleSystem : MonoBehaviour
 
     IEnumerator LongRangeAttack()
     {
-        int AttackPower = Mathf.CeilToInt(playerCharacter.Money * 0.15f);
-        bool isCritical = random.NextDouble() < playerCharacter.criticalChance + 0.1f;
-        int finalAttackPower = isCritical ? AttackPower * 2 : AttackPower;
-
         if (!playerCharacter.HasBullets())
         {
             ShowMessage("Peluru tidak cukup untuk serangan jarak jauh!");
             Debug.Log("Peluru tidak cukup untuk serangan jarak jauh!");
             yield break;
         }
+
+        playerCharacter.Inventory.UseItem(new LootBox { Type = LootBox.LootType.Bullet }, 1); // Kurangi peluru
+        Debug.Log($"Peluru digunakan. Sisa peluru: {playerCharacter.Inventory.GetItemCount(LootBox.LootType.Bullet)}");
+
+        int AttackPower = Mathf.CeilToInt(playerCharacter.Money * 0.15f);
+        bool isCritical = random.NextDouble() < playerCharacter.criticalChance + 0.1f;
+        int finalAttackPower = isCritical ? AttackPower * 2 : AttackPower;
 
         if (random.NextDouble() < 0.3)
         {
@@ -337,18 +340,22 @@ public class BattleSystem : MonoBehaviour
             return;
         }
 
-        // if (playerCharacter.HasPotion())
-        // {
-        //     StartCoroutine(UsePotion());
-        //     dialogueText.text = "Kamu meminum potion!";
-        //     Debug.Log("Kamu meminum potion!");
-        // }
+        if (playerCharacter.Inventory.GetItemCount(LootBox.LootType.HealthPotion) > 0)
+        {
+            potionCounter++;
+            playerCharacter.UsePotion(); // Menggunakan potion dan mengurangi dari inventory
+            ShowMessage($"Potion digunakan. Health sekarang: {playerCharacter.currentHealth}");
+            Debug.Log($"Potion digunakan. Health sekarang: {playerCharacter.currentHealth}");
+        }
         else
         {
             //matiin animasinya
             ShowMessage("Tidak ada potion yang tersedia!");
             Debug.Log("Tidak ada potion yang tersedia!");
         }
+
+        state = BattleState.TUYUL_TURN;
+        StartCoroutine(EnemyTurn());    
     }
 
     IEnumerator UsePotion()

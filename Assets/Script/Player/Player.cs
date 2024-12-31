@@ -98,4 +98,16 @@ public class Player : MonoBehaviour
         Debug.Log("No potion available!");
         return false;
     }
+
+    public bool UseBullet()
+    {
+        LootBox bulletBox = new LootBox { Type = LootBox.LootType.Bullet };
+        if (Inventory.UseItem(bulletBox, 1))
+        {
+            Debug.Log("Bullet used.");
+            return true;
+        }
+        Debug.Log("No bullet available!");
+        return false;
+    }
 }
