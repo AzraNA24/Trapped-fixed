@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8095965837813740233}
   - component: {fileID: 5472107890358915921}
   - component: {fileID: 8348637103107435130}
+  - component: {fileID: 4760114539472516285}
   m_Layer: 12
   m_Name: Aventurine
   m_TagString: Untagged
@@ -173,3 +174,22 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.525, y: 1.9444675}
   m_EdgeRadius: 0
+--- !u!114 &4760114539472516285
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6742167402650695385}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 551a5d16e0a66e041ae418e539210e48, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TuyulAnim: {fileID: 0}
+  Name: Tuyul; Scurry Impish Little Trickster
+  maxHealth: 0
+  currentHealth: 0
+  AttackPower: 0
+  Money: 0
+  isOfferingMoney: 0

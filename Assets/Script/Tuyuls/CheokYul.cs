@@ -16,17 +16,23 @@ public class CheokYul : Tuyul
         Type = TuyulType.CheokYul;
     }
 
+    void ShowMessage(string message)
+    {
+        DialogueBattle.Instance.UpdateDialog(message);
+    }
     public override bool TakeDamage(int damage, Player playerCharacter)
     {
         currentHealth -= damage;
 
         FindObjectOfType<BattleHUD>().SetHP(currentHealth);
         
+        ShowMessage($"{Name} menerima {damage} damage! Sisa HP: {currentHealth}");
         Debug.Log($"{Name} menerima {damage} damage! Sisa HP: {currentHealth}");
         
         // Offer to surrender if health is low
         if (currentHealth > 0 && currentHealth <= maxHealth * 0.3f && !isOfferingMoney)
         {
+            ShowMessage($"{Name} menyerang pemain terlebih dahulu sebelum menawarkan deal.");
             Debug.Log($"{Name} menyerang pemain terlebih dahulu sebelum menawarkan deal.");
             StartCoroutine(ExecuteNormalAttack(playerCharacter));
             
@@ -48,6 +54,7 @@ public class CheokYul : Tuyul
     {
         yield return new WaitForSeconds(1f); // Jeda untuk memastikan serangan selesai
         isOfferingMoney = true;
+        ShowMessage($"{Name} menawarkan uang sebesar {Money} untuk ganti nyawanya. Terima? (1 = Iya, 2 = Tidak)");
         Debug.Log($"{Name} menawarkan uang sebesar {Money} untuk ganti nyawanya. Terima? (1 = Iya, 2 = Tidak)");
         yield return StartCoroutine(WaitForPlayerChoice(playerCharacter)); // Tunggu input pemain
     }
@@ -68,6 +75,7 @@ public class CheokYul : Tuyul
         if (DebuffRoundsLeft > 0)
         {
             DebuffRoundsLeft--;
+            ShowMessage($"{Name} terus memengaruhi critical chance pemain! Ronde tersisa: {DebuffRoundsLeft}");
             Debug.Log($"{Name} terus memengaruhi critical chance pemain! Ronde tersisa: {DebuffRoundsLeft}");
         }
 
@@ -77,6 +85,7 @@ public class CheokYul : Tuyul
             if (playerCharacter.DeductMoney(stolenAmount))
             {
                 TuyulAnim.SetTrigger("TPBP");
+                ShowMessage($"{Name} menggunakan jurus rahasia: 'Tangan Panjang, Badan Pendek'. Kamu kehilangan uang sebesar {stolenAmount}!");
                 Debug.Log($"{Name} menggunakan jurus rahasia: 'Tangan Panjang, Badan Pendek'. Kamu kehilangan uang sebesar {stolenAmount}!");
                 yield return new WaitForSeconds(1f);
             }
@@ -89,6 +98,7 @@ public class CheokYul : Tuyul
             // tambahin kode buat animasi dia terbang
 
             TuyulAnim.SetTrigger("Passive");
+            ShowMessage($"{Name} masuk ke mode 'The Flying Horror'!");
             Debug.Log($"{Name} masuk ke mode 'The Flying Horror'!");
         }
 
@@ -113,12 +123,14 @@ public class CheokYul : Tuyul
 
         int roachesCount = Random.Range(2, 9); // Memanggil 2-8 kecoak kecil
         TuyulAnim.SetTrigger("Democracy");
+        ShowMessage($"{Name} memanggil {roachesCount} kecoak kecil untuk menyerang!");
         Debug.Log($"{Name} memanggil {roachesCount} kecoak kecil untuk menyerang!");
 
         for (int i = 0; i < roachesCount; i++)
         {
             int roachDamage = Random.Range(5, 10); // Damage tiap kecoak
             playerCharacter.TakeDamage(roachDamage);
+            ShowMessage($"Seekor kecoak menyerang dan memberikan {roachDamage} damage! Sisa HP pemain: {playerCharacter.currentHealth}");
             Debug.Log($"Seekor kecoak menyerang dan memberikan {roachDamage} damage! Sisa HP pemain: {playerCharacter.currentHealth}");
         }
     }
@@ -127,6 +139,7 @@ public class CheokYul : Tuyul
     {
         yield return new WaitForSeconds(1f);
         TuyulAnim.SetTrigger("Monster");
+        ShowMessage($"{Name} menggunakan jurus 'Monster Lurks Beneath The Shadow of The Dawn'! Pemain terkena efek poison selama {poisonDuration} giliran.");
         Debug.Log($"{Name} menggunakan jurus 'Monster Lurks Beneath The Shadow of The Dawn'! Pemain terkena efek poison selama {poisonDuration} giliran.");
         playerCharacter.StartCoroutine(ApplyPoison(playerCharacter));
     }
@@ -138,6 +151,7 @@ public class CheokYul : Tuyul
             yield return new WaitForSeconds(1f); // jeda per giliran
             int poisonDamage = 10; // damage per giliran
             playerCharacter.TakeDamage(poisonDamage);
+            ShowMessage($"Poison effect: Pemain menerima {poisonDamage} damage. Sisa HP: {playerCharacter.currentHealth}");
             Debug.Log($"Poison effect: Pemain menerima {poisonDamage} damage. Sisa HP: {playerCharacter.currentHealth}");
         }
     }
@@ -152,6 +166,7 @@ public class CheokYul : Tuyul
         TuyulAnim.SetTrigger("Throw");
         yield return new WaitForSeconds(1f);
         playerCharacter.TakeDamage(AttackPower);
+        ShowMessage($"{Name} mengeluarkan jurus 'Ketimpuk Batu' dan memberikan {AttackPower} damage! Sisa HP: {playerCharacter.currentHealth}");
         Debug.Log($"{Name} mengeluarkan jurus 'Ketimpuk Batu' dan memberikan {AttackPower} damage! Sisa HP: {playerCharacter.currentHealth}");
     }
 }

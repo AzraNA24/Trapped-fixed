@@ -14,17 +14,24 @@ public class MrRizzler : Tuyul
         Type = TuyulType.MrRizzler;
     }
 
+    void ShowMessage(string message)
+    {
+        DialogueBattle.Instance.UpdateDialog(message);
+    }
+
     public override bool TakeDamage(int damage, Player playerCharacter)
     {
         currentHealth -= damage;
 
         FindObjectOfType<BattleHUD>().SetHP(currentHealth);
 
+        ShowMessage($"{Name} menerima {damage} damage! Sisa HP: {currentHealth}");
         Debug.Log($"{Name} menerima {damage} damage! Sisa HP: {currentHealth}");
 
         // Offer to surrender if health is low
         if (currentHealth > 0 && currentHealth <= maxHealth * 0.3f && !isOfferingMoney)
         {
+            ShowMessage($"{Name} menyerang pemain terlebih dahulu sebelum menawarkan deal.");
             Debug.Log($"{Name} menyerang pemain terlebih dahulu sebelum menawarkan deal.");
             StartCoroutine(ExecuteNormalAttack(playerCharacter));
 
@@ -46,6 +53,7 @@ public class MrRizzler : Tuyul
     {
         yield return new WaitForSeconds(1f); // Jeda untuk memastikan serangan selesai
         isOfferingMoney = true;
+        ShowMessage($"{Name} menawarkan uang sebesar {Money} untuk ganti nyawanya. Terima? (1 = Iya, 2 = Tidak)");
         Debug.Log($"{Name} menawarkan uang sebesar {Money} untuk ganti nyawanya. Terima? (1 = Iya, 2 = Tidak)");
         yield return StartCoroutine(WaitForPlayerChoice(playerCharacter)); // Tunggu input pemain
     }
@@ -66,6 +74,7 @@ public class MrRizzler : Tuyul
         if (DebuffRoundsLeft > 0)
         {
             DebuffRoundsLeft--;
+            ShowMessage($"{Name} terus memengaruhi critical chance pemain! Ronde tersisa: {DebuffRoundsLeft}");
             Debug.Log($"{Name} terus memengaruhi critical chance pemain! Ronde tersisa: {DebuffRoundsLeft}");
         }
 
@@ -75,6 +84,7 @@ public class MrRizzler : Tuyul
             if (playerCharacter.DeductMoney(stolenAmount))
             {
                 TuyulAnim.SetTrigger("TPBP");
+                ShowMessage($"{Name} menggunakan jurus rahasia: 'Tangan Panjang, Badan Pendek'. Kamu kehilangan uang sebesar {stolenAmount}!");
                 Debug.Log($"{Name} menggunakan jurus rahasia: 'Tangan Panjang, Badan Pendek'. Kamu kehilangan uang sebesar {stolenAmount}!");
                 yield return new WaitForSeconds(1f);
             }
@@ -106,6 +116,7 @@ public class MrRizzler : Tuyul
         playerCharacter.healthPotionEffectiveness -= 0.5f;
         if (playerCharacter.healthPotionEffectiveness < 0.1f) playerCharacter.healthPotionEffectiveness = 0.1f;
 
+        ShowMessage($"{Name} menggunakan jurus spesial 'Seduce You To Death'! Efek health potion pemain berkurang dan critical chance turun menjadi {playerCharacter.criticalChance * 100}%.");
         Debug.Log($"{Name} menggunakan jurus spesial 'Seduce You To Death'! Efek health potion pemain berkurang dan critical chance turun menjadi {playerCharacter.criticalChance * 100}%.");
     }
 
@@ -125,6 +136,7 @@ public class MrRizzler : Tuyul
         TuyulAnim.SetTrigger("Throw");
         yield return new WaitForSeconds(1f);
         playerCharacter.TakeDamage(AttackPower);
+        ShowMessage($"{Name} mengeluarkan jurus 'Ketimpuk Batu' dan memberikan {AttackPower} damage! Sisa HP: {playerCharacter.currentHealth}");
         Debug.Log($"{Name} mengeluarkan jurus 'Ketimpuk Batu' dan memberikan {AttackPower} damage! Sisa HP: {playerCharacter.currentHealth}");
     }
 }

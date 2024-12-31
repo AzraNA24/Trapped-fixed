@@ -36,6 +36,7 @@ public class Tuyul : MonoBehaviour
 
         FindObjectOfType<BattleHUD>().SetHP(currentHealth);
         
+        ShowMessage($"{Name} menerima {damage} damage! Sisa HP: {currentHealth}");
         Debug.Log($"{Name} menerima {damage} damage! Sisa HP: {currentHealth}");
 
         // Offer to surrender if health is low
@@ -61,12 +62,14 @@ public class Tuyul : MonoBehaviour
     {
         yield return new WaitForSeconds(1f); // Jeda untuk memastikan serangan selesai
         isOfferingMoney = true;
-        Debug.Log($"{Name} menawarkan uang sebesar {Money} untuk ganti nyawanya. Terima? (1 = Iya, 2 = Tidak)");
+        // ShowMessage($"{Name} menawarkan uang sebesar {Money} untuk ganti nyawanya. Terima? (1 = Iya, 2 = Tidak)");
+        // Debug.Log($"{Name} menawarkan uang sebesar {Money} untuk ganti nyawanya. Terima? (1 = Iya, 2 = Tidak)");
         yield return StartCoroutine(WaitForPlayerChoice(playerCharacter)); // Tunggu input pemain
     }
 
     public IEnumerator WaitForPlayerChoice(Player playerCharacter)
     {
+        ShowMessage($"{Name} menawarkan uang sebesar {Money} untuk ganti nyawanya. Terima? (1 = Iya, 2 = Tidak)");
         Debug.Log("Menunggu input pemain...");
 
         bool decisionMade = false;
@@ -74,6 +77,7 @@ public class Tuyul : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Alpha1)) // Pemain memilih "Terima"
             {
+                ShowMessage($"{Name} melarikan diri setelah memberikan uang sebesar {Money}!");
                 Debug.Log($"{Name} melarikan diri setelah memberikan uang sebesar {Money}!");
                 playerCharacter.AddMoney(Money);
                 currentHealth = 0; // Tuyul mati
@@ -84,6 +88,7 @@ public class Tuyul : MonoBehaviour
             }
             else if (Input.GetKeyDown(KeyCode.Alpha2)) // Pemain memilih "Tolak"
             {
+                ShowMessage($"{Name} terus melawan!");
                 Debug.Log($"{Name} terus melawan!");
                 decisionMade = true;
             }
@@ -96,6 +101,7 @@ public class Tuyul : MonoBehaviour
 
     private void EndBattleEarly()
     {
+        ShowMessage("Pertarungan diakhiri karena pemain menerima tawaran Tuyul.");
         Debug.Log("Pertarungan diakhiri karena pemain menerima tawaran Tuyul.");
         
         PlayerManager playerManager = FindObjectOfType<PlayerManager>();
@@ -116,6 +122,7 @@ public class Tuyul : MonoBehaviour
     {
         playerCharacter.TakeDamage(AttackPower);
         TuyulAnim.SetTrigger("Throws");
+        ShowMessage("$" + Name + " mengeluarkan jurus 'Ketimpuk Batu' dan memberikan " + AttackPower + " damage! Sisa HP: " + playerCharacter.currentHealth);
         Debug.Log($"{Name} mengeluarkan jurus 'Ketimpuk Batu' dan memberikan {AttackPower} damage! Sisa HP: {playerCharacter.currentHealth}");
     }
 
@@ -127,5 +134,10 @@ public class Tuyul : MonoBehaviour
         ChaengYul,
         CheokYul,
         JaekYul
+    }
+
+    void ShowMessage(string message)
+    {
+        DialogueBattle.Instance.UpdateDialog(message);
     }
 }

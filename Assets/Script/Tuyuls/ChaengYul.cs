@@ -24,17 +24,24 @@ public class ChaengYul : Tuyul
         Type = TuyulType.ChaengYul;
     }
 
+    void ShowMessage(string message)
+    {
+        DialogueBattle.Instance.UpdateDialog(message);
+    }
+
     public override bool TakeDamage(int damage, Player playerCharacter)
     {
         currentHealth -= damage;
 
         FindObjectOfType<BattleHUD>().SetHP(currentHealth);
         
+        ShowMessage($"{Name} menerima {damage} damage! Sisa HP: {currentHealth}");
         Debug.Log($"{Name} menerima {damage} damage! Sisa HP: {currentHealth}");
 
         // Offer to surrender if health is low
         if (currentHealth > 0 && currentHealth <= maxHealth * 0.3f && !isOfferingMoney)
         {
+            ShowMessage($"{Name} menyerang pemain terlebih dahulu sebelum menawarkan deal.");
             Debug.Log($"{Name} menyerang pemain terlebih dahulu sebelum menawarkan deal.");
             StartCoroutine(ExecuteNormalAttack(playerCharacter));
             
@@ -56,6 +63,7 @@ public class ChaengYul : Tuyul
     {
         yield return new WaitForSeconds(1f); // Jeda untuk memastikan serangan selesai
         isOfferingMoney = true;
+        ShowMessage($"{Name} menawarkan uang sebesar {Money} untuk ganti nyawanya. Terima? (1 = Iya, 2 = Tidak)");
         Debug.Log($"{Name} menawarkan uang sebesar {Money} untuk ganti nyawanya. Terima? (1 = Iya, 2 = Tidak)");
         yield return StartCoroutine(WaitForPlayerChoice(playerCharacter)); // Tunggu input pemain
     }
@@ -76,6 +84,7 @@ public class ChaengYul : Tuyul
         if (DebuffRoundsLeft > 0)
         {
             DebuffRoundsLeft--;
+            ShowMessage($"{Name} terus memengaruhi critical chance pemain! Ronde tersisa: {DebuffRoundsLeft}");
             Debug.Log($"{Name} terus memengaruhi critical chance pemain! Ronde tersisa: {DebuffRoundsLeft}");
         }
 
@@ -85,6 +94,7 @@ public class ChaengYul : Tuyul
             if (playerCharacter.DeductMoney(stolenAmount))
             {
                 TuyulAnim.SetTrigger("TPBP");
+                ShowMessage($"{Name} menggunakan jurus rahasia: 'Tangan Panjang, Badan Pendek'. Kamu kehilangan uang sebesar {stolenAmount}!");
                 Debug.Log($"{Name} menggunakan jurus rahasia: 'Tangan Panjang, Badan Pendek'. Kamu kehilangan uang sebesar {stolenAmount}!");
                 yield return new WaitForSeconds(1f);
             }
@@ -114,6 +124,7 @@ public class ChaengYul : Tuyul
         TuyulAnim.SetTrigger("CursedHop");
         healAttribute.enabled = true; // Munculkan efek heal
 
+        ShowMessage($"{Name} menggunakan 'Cursed Hop' dan memulihkan {healAmount} HP! Sisa HP: {currentHealth}");
         Debug.Log($"{Name} menggunakan 'Cursed Hop' dan memulihkan {healAmount} HP! Sisa HP: {currentHealth}");
 
         yield return StartCoroutine(HideEffectAfterAnimation(Heal, healAttribute, "Heal"));
@@ -128,11 +139,13 @@ public class ChaengYul : Tuyul
         if (random.NextDouble() < 0.2)
         {
             playerCharacter.TakeDamage(100);
+            ShowMessage("ChaengYul menyerang dengan jurus 'Scare You To Death' dan memberikan 100 damage!");
             Debug.Log("Scare You To Death");
         }
         else
         {
             playerCharacter.TakeDamage(Ultimate);
+            ShowMessage($"{Name} menggunakan jurus spesial 'Beyond the Grave'! {playerCharacter.Name} menerima {Ultimate} damage! Sisa HP: {playerCharacter.currentHealth}");
             Debug.Log($"{Name} menggunakan jurus spesial 'Beyond the Grave'! {playerCharacter.Name} menerima {Ultimate} damage! Sisa HP: {playerCharacter.currentHealth}");
         }
     }
@@ -148,6 +161,7 @@ public class ChaengYul : Tuyul
         Stone.enabled = true;
         TuyulAnim.SetTrigger("OnThrow");
 
+        ShowMessage($"{Name} mengeluarkan jurus 'Ketimpuk Batu' dan memberikan {AttackPower} damage! Sisa HP: {playerCharacter.currentHealth}");
         Debug.Log($"{Name} mengeluarkan jurus 'Ketimpuk Batu' dan memberikan {AttackPower} damage! Sisa HP: {playerCharacter.currentHealth}");
 
         yield return StartCoroutine(HideEffectAfterAnimation(StoneThrow, Stone, "Bounce"));
@@ -156,6 +170,7 @@ public class ChaengYul : Tuyul
     private IEnumerator HideEffectAfterAnimation(Animator animator, Renderer effect, string animationName)
     {
         effect.enabled = true;
+        ShowMessage($"{Name} menggunakan efek {effect.name} untuk animasi {animationName}.");
         Debug.Log($"Efek {effect.name} diaktifkan untuk animasi {animationName}.");
         while (!IsAnimationFinished(animator, animationName))
         {
@@ -164,6 +179,7 @@ public class ChaengYul : Tuyul
 
         // Sembunyikan efek setelah animasi selesai
         effect.enabled = false;
+        ShowMessage($"{Name} menyembunyikan efek {effect.name} setelah animasi {animationName} selesai.");
         Debug.Log($"Efek {effect.name} disembunyikan setelah animasi {animationName} selesai.");
     }
 

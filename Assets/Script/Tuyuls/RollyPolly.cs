@@ -8,12 +8,17 @@ public class RollyPolly : Tuyul    //jujur masih blm terlalu ngerti yang sepasan
 
     public bool HasPartnerAlive => partner != null && partner.currentHealth > 0;
 
+    void ShowMessage(string message)
+    {
+        DialogueBattle.Instance.UpdateDialog(message);
+    }
     public override bool TakeDamage(int damage, Player playerCharacter)
     {
         currentHealth -= damage;
 
         FindObjectOfType<BattleHUD>().SetHP(currentHealth);
 
+        ShowMessage($"{Name} menerima {damage} damage! Sisa HP: {currentHealth}");
         Debug.Log($"{Name} menerima {damage} damage! Sisa HP: {currentHealth}");
 
         // Offer to surrender if health is low

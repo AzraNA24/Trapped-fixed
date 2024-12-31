@@ -11,11 +11,17 @@ public class Polly : RollyPolly
         Type = TuyulType.RollyPolly;
     }
 
+    void ShowMessage(string message)
+    {
+        DialogueBattle.Instance.UpdateDialog(message);
+    }
+
     public override bool TakeDamage(int damage, Player playerCharacter)
     {
         // Polly tidak bisa menerima damage jika Rolly masih hidup
         if (HasPartnerAlive)
         {
+            ShowMessage($"{Name} tidak bisa diserang karena Rolly masih hidup!");
             Debug.Log($"{Name} tidak bisa diserang karena Rolly masih hidup!");
             return false;
         }

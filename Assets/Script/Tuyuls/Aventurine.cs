@@ -14,18 +14,23 @@ public class Aventurine : Tuyul
         Money = 30;
         Type = TuyulType.Aventurine;
     }
-
+    void ShowMessage(string message)
+    {
+        DialogueBattle.Instance.UpdateDialog(message);
+    }
     public override bool TakeDamage(int damage, Player playerCharacter)
     {
         currentHealth -= damage;
 
         FindObjectOfType<BattleHUD>().SetHP(currentHealth);
 
+        ShowMessage($"{Name} menerima {damage} damage! Sisa HP: {currentHealth}");
         Debug.Log($"{Name} menerima {damage} damage! Sisa HP: {currentHealth}");
 
         // Offer to surrender if health is low
         if (currentHealth > 0 && currentHealth <= maxHealth * 0.3f && !isOfferingMoney)
         {
+            ShowMessage($"{Name} menyerang pemain terlebih dahulu sebelum menawarkan deal.");
             Debug.Log($"{Name} menyerang pemain terlebih dahulu sebelum menawarkan deal.");
             StartCoroutine(ExecuteNormalAttack(playerCharacter));
             
@@ -59,6 +64,7 @@ public class Aventurine : Tuyul
         if (DebuffRoundsLeft > 0)
         {
             DebuffRoundsLeft--;
+            ShowMessage($"{Name} terus memengaruhi critical chance pemain! Ronde tersisa: {DebuffRoundsLeft}");
             Debug.Log($"{Name} terus memengaruhi critical chance pemain! Ronde tersisa: {DebuffRoundsLeft}");
         }
 
@@ -68,6 +74,7 @@ public class Aventurine : Tuyul
             if (playerCharacter.DeductMoney(stolenAmount))
             {
                 TuyulAnim.SetTrigger("TPBP");
+                ShowMessage($"{Name} menggunakan jurus rahasia: 'Tangan Panjang, Badan Pendek'. Kamu kehilangan uang sebesar {stolenAmount}!");
                 Debug.Log($"{Name} menggunakan jurus rahasia: 'Tangan Panjang, Badan Pendek'. Kamu kehilangan uang sebesar {stolenAmount}!");
                 yield return new WaitForSeconds(1f);
             }
@@ -90,6 +97,7 @@ public class Aventurine : Tuyul
         yield return new WaitForSeconds(1f);
 
         playerCharacter.TakeDamage(Ultimate);
+        ShowMessage($"{Name} memberikan {Ultimate} damage tambahan dengan jurus 'The Great Gatsby'! Sisa HP: {playerCharacter.currentHealth}");
         Debug.Log($"{Name} memberikan {AttackPower * 1.5} damage tambahan dengan jurus 'The Great Gatsby'! Sisa HP: {playerCharacter.currentHealth}");
         canFUA = true;
     }
@@ -103,6 +111,7 @@ public class Aventurine : Tuyul
     {
         playerCharacter.TakeDamage(AttackPower);
         TuyulAnim.SetTrigger("Throws");
+        ShowMessage($"{Name} mengeluarkan jurus 'Ketimpuk Batu' dan memberikan {AttackPower} damage! Sisa HP: {playerCharacter.currentHealth}");
         Debug.Log($"{Name} mengeluarkan jurus 'Ketimpuk Batu' dan memberikan {AttackPower} damage! Sisa HP: {playerCharacter.currentHealth}");
 
         yield return new WaitForSeconds(1f); // Jeda untuk animasi
@@ -115,6 +124,7 @@ public class Aventurine : Tuyul
             TuyulAnim.SetTrigger("FUA");
             int FUA = AttackPower / 2;
             playerCharacter.TakeDamage(FUA);
+            ShowMessage($"{Name} melakukan Follow-Up Attack dan memberikan {FUA} damage tambahan! Sisa HP: {playerCharacter.currentHealth}");
             Debug.Log($"{Name} melakukan Follow-Up Attack dan memberikan {FUA} damage tambahan! Sisa HP: {playerCharacter.currentHealth}");
             canFUA = false; // Reset setelah melakukan FUA
         }
