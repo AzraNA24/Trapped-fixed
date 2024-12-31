@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -95,7 +96,18 @@ public class BattleSystem : MonoBehaviour
 
         if (enemyCharacter.TuyulAnim != null)
         {
+            if (enemyCharacter.TuyulAnim == null)
+            {
+                Debug.LogError("Animator for the enemy character is missing!");
+            }
+
+            if (!enemyCharacter.TuyulAnim.parameters.Any(p => p.name == "TurnBased"))
+            {
+                Debug.LogError("TurnBased parameter is missing in Animator Controller!");
+            }
+
             enemyCharacter.TuyulAnim.SetBool("TurnBased", true);
+            Debug.Log("Done. Animasi Tuyul");
         }
         else
         {
@@ -262,6 +274,7 @@ public class BattleSystem : MonoBehaviour
     {
         // ShowMessage($"{enemyCharacter.Name} sedang menyerang!");
         Debug.Log($"{enemyCharacter.Name} sedang menyerang!");
+        enemyCharacter.TuyulAnim.SetBool("TurnBased", true);
 
         yield return new WaitForSeconds(1f);
 

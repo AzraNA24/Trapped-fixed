@@ -11,6 +11,7 @@ public class Button: MonoBehaviour
         {
             battle = FindObjectOfType<BattleSystem>(); // Menemukan BattleSystem jika belum diassign di Inspector
         }
+        animator = FindObjectOfType<Player>()?.GetComponent<Animator>();
     }
     public void OnDrinkPotionButtonPressed()
     {
@@ -34,14 +35,14 @@ public class Button: MonoBehaviour
     {   
         if (animator == null)
         {
-            Debug.LogError("Animator not assigned!");
+            Debug.Log("Animator not assigned!");
             return;
         } else{
             Debug.Log("Animator assigned");
         }
         if (animator.runtimeAnimatorController == null)
         {
-            Debug.LogError("AnimatorController is not assigned to the Animator!");
+            Debug.Log("AnimatorController is not assigned to the Animator!");
             return;
         }
 

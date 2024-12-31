@@ -157,7 +157,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -381.99997, y: -1.2799988}
+  m_AnchoredPosition: {x: -381.99994, y: -1.2799988}
   m_SizeDelta: {x: 61805.83, y: 19705.38}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &94201543
@@ -3055,7 +3055,6 @@ GameObject:
   - component: {fileID: 1355302181}
   - component: {fileID: 1355302180}
   - component: {fileID: 1355302182}
-  - component: {fileID: 1355302183}
   m_Layer: 0
   m_Name: BattleSystem
   m_TagString: Untagged
@@ -3206,25 +3205,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &1355302183
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1355302179}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 551a5d16e0a66e041ae418e539210e48, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  TuyulAnim: {fileID: 0}
-  Name: Tuyul; Scurry Impish Little Trickster
-  maxHealth: 0
-  currentHealth: 0
-  AttackPower: 0
-  Money: 0
-  isOfferingMoney: 0
 --- !u!1 &1467558557
 GameObject:
   m_ObjectHideFlags: 0
