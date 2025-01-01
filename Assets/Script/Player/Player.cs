@@ -110,4 +110,16 @@ public class Player : MonoBehaviour
         Debug.Log("No bullet available!");
         return false;
     }
+
+    public void ResetInventory()
+    {
+        Inventory.slot = new List<InventoryItem.Slots>
+        {
+            new InventoryItem.Slots(LootBox.LootType.None, 99),
+            new InventoryItem.Slots(LootBox.LootType.Bullet, 5), // Peluru awal
+            new InventoryItem.Slots(LootBox.LootType.HealthPotion, 1) // Potion awal
+        };
+
+        Debug.Log("Inventory di-reset ke default.");
+    }
 }
