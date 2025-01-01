@@ -170,4 +170,12 @@ public class SceneManagerController : MonoBehaviour
             Debug.LogWarning("Last scene name is empty!");
         }
     }
+
+    public void StartNewGame()
+    {
+        Player.Instance.ResetInventory();
+        Player.Instance.currentHealth = Player.Instance.Health; 
+        Player.Instance.Money = 100; 
+        SceneManager.LoadScene("MainMenu"); 
+    }
 }

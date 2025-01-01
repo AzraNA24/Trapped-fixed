@@ -209,6 +209,14 @@ public class BattleSystem : MonoBehaviour
     {
         if (state != BattleState.PLAYER_TURN)
             return;
+
+        if (!playerCharacter.HasBullets())
+        {
+            ShowMessage("Peluru tidak cukup untuk serangan jarak jauh!");
+            Debug.Log("Peluru tidak cukup. Tetap di giliran PLAYER_TURN.");
+            return; // Tetap di PLAYER_TURN
+        }
+
         StartCoroutine(LongRangeAttack());
     }
 
@@ -248,6 +256,7 @@ public class BattleSystem : MonoBehaviour
                 ShowMessage("Kamu menyerang musuh dengan serangan jarak dekat sebesar " + finalAttackPower);
                 Debug.Log($"Kamu menyerang musuh dengan serangan jarak dekat sebesar {finalAttackPower}!");
             }
+            
             bool isDead = enemyCharacter.TakeDamage(finalAttackPower, playerCharacter);
 
             if (enemyCharacter is Aventurine aventurine)
@@ -359,16 +368,16 @@ public class BattleSystem : MonoBehaviour
             playerCharacter.UsePotion(); // Menggunakan potion dan mengurangi dari inventory
             ShowMessage($"Potion digunakan. Health sekarang: {playerCharacter.currentHealth}");
             Debug.Log($"Potion digunakan. Health sekarang: {playerCharacter.currentHealth}");
+        
+            state = BattleState.TUYUL_TURN;
+            StartCoroutine(EnemyTurn());    
         }
         else
         {
             //matiin animasinya
             ShowMessage("Tidak ada potion yang tersedia!");
             Debug.Log("Tidak ada potion yang tersedia!");
-        }
-
-        state = BattleState.TUYUL_TURN;
-        StartCoroutine(EnemyTurn());    
+        }  
     }
 
     IEnumerator UsePotion()
