@@ -1,13 +1,29 @@
 using System.Collections;
 using UnityEngine;
 
-public class RollyPolly : Tuyul    //jujur masih blm terlalu ngerti yang sepasang tuyul ini
+public class RollyPolly : Tuyul
 {
     public int DebuffRoundsLeft = 0;
-    public RollyPolly partner; // Referensi ke pasangan
+    public GameObject Rolly;
+    private Animator rollyAnimator;
 
-    public bool HasPartnerAlive => partner != null && partner.currentHealth > 0;
+    void Awake()
+    {
+        if (Rolly != null)
+        {
+            Rolly.SetActive(false); // Sembunyikan Rolly di awal
+            rollyAnimator = Rolly.GetComponent<Animator>(); // Ambil Animator Rolly
+        }
+    }
 
+    public RollyPolly()
+    {
+        Name = "RollyPolly";
+        maxHealth = 50;
+        AttackPower = 10;
+        Money = 30;
+        Type = TuyulType.RollyPolly;
+    }
     void ShowMessage(string message)
     {
         DialogueBattle.Instance.UpdateDialog(message);
@@ -24,29 +40,22 @@ public class RollyPolly : Tuyul    //jujur masih blm terlalu ngerti yang sepasan
         // Offer to surrender if health is low
         if (currentHealth > 0 && currentHealth <= maxHealth * 0.3f && !isOfferingMoney)
         {
+            ShowMessage($"{Name} menyerang pemain terlebih dahulu sebelum menawarkan deal.");
             Debug.Log($"{Name} menyerang pemain terlebih dahulu sebelum menawarkan deal.");
             StartCoroutine(ExecuteNormalAttack(playerCharacter));
-
+            
             // Setelah serangan selesai, mulai tawaran
             StartCoroutine(OfferDeal(playerCharacter));
-            return false; 
+            return false;
         }
 
         if (currentHealth <= 0)
         {
             currentHealth = 0;
-            return true;
+            return true; // Tuyul is dead
         }
 
         return false;
-    }
-
-    public override IEnumerator OfferDeal(Player playerCharacter)
-    {
-        yield return new WaitForSeconds(1f); // Jeda untuk memastikan serangan selesai
-        isOfferingMoney = true;
-        Debug.Log($"{Name} menawarkan uang sebesar {Money} untuk ganti nyawanya. Terima? (1 = Iya, 2 = Tidak)");
-        yield return StartCoroutine(WaitForPlayerChoice(playerCharacter)); // Tunggu input pemain
     }
 
     public override void EnemyAction(Player playerCharacter)
@@ -65,6 +74,7 @@ public class RollyPolly : Tuyul    //jujur masih blm terlalu ngerti yang sepasan
         if (DebuffRoundsLeft > 0)
         {
             DebuffRoundsLeft--;
+            ShowMessage($"{Name} terus memengaruhi critical chance pemain! Ronde tersisa: {DebuffRoundsLeft}");
             Debug.Log($"{Name} terus memengaruhi critical chance pemain! Ronde tersisa: {DebuffRoundsLeft}");
         }
 
@@ -74,22 +84,45 @@ public class RollyPolly : Tuyul    //jujur masih blm terlalu ngerti yang sepasan
             if (playerCharacter.DeductMoney(stolenAmount))
             {
                 TuyulAnim.SetTrigger("TPBP");
+                ShowMessage($"{Name} menggunakan jurus rahasia: 'Tangan Panjang, Badan Pendek'. Kamu kehilangan uang sebesar {stolenAmount}!");
                 Debug.Log($"{Name} menggunakan jurus rahasia: 'Tangan Panjang, Badan Pendek'. Kamu kehilangan uang sebesar {stolenAmount}!");
                 yield return new WaitForSeconds(1f);
             }
         }
 
-        // Special Skill: Teamwork is Dreamwork (20%)
-        if (random.NextDouble() < 0.2)
+        if (random.NextDouble() < 0.4)
         {
-            yield return StartCoroutine(UseTeamworkSkill(playerCharacter)); 
+            yield return StartCoroutine(UseTeamworkisDreamwork(playerCharacter));
         }
         else
         {
-            // basic attack
-            NormalAttack(playerCharacter);
+            yield return StartCoroutine(ExecuteNormalAttack(playerCharacter));
         }
     }
+
+    public IEnumerator UseTeamworkisDreamwork(Player playerCharacter)
+    {
+        if (Rolly == null || rollyAnimator == null)
+        {
+            Debug.LogWarning("Rolly atau Animator tidak ditemukan!");
+            yield break;
+        }
+
+        // Tampilkan Rolly dan jalankan animasi "Go RollyPolly"
+        Rolly.SetActive(true);
+        TuyulAnim.SetTrigger("Yippie");
+        ShowMessage($"{Name} memanggil Rolly untuk menyerang!");
+
+        yield return new WaitForSeconds(rollyAnimator.GetCurrentAnimatorStateInfo(0).length); // Tunggu animasi selesai
+
+        // Jalankan animasi "Ulti"
+        rollyAnimator.SetTrigger("Ulti");
+        ShowMessage("Rolly mengeluarkan jurus : The Power of Imagination!");
+        yield return new WaitForSeconds(rollyAnimator.GetCurrentAnimatorStateInfo(0).length); // Tunggu animasi selesai
+        playerCharacter.TakeDamage(2*AttackPower);
+        Rolly.SetActive(false);
+    }
+    
 
     public override void NormalAttack(Player playerCharacter)
     {
@@ -98,32 +131,11 @@ public class RollyPolly : Tuyul    //jujur masih blm terlalu ngerti yang sepasan
 
     private IEnumerator ExecuteNormalAttack(Player playerCharacter)
     {
-        TuyulAnim.SetTrigger("Throw");
-        yield return new WaitForSeconds(1f);
         playerCharacter.TakeDamage(AttackPower);
+        TuyulAnim.SetTrigger("Throws");
+        ShowMessage($"{Name} mengeluarkan jurus 'Ketimpuk Batu' dan memberikan {AttackPower} damage! Sisa HP: {playerCharacter.currentHealth}");
         Debug.Log($"{Name} mengeluarkan jurus 'Ketimpuk Batu' dan memberikan {AttackPower} damage! Sisa HP: {playerCharacter.currentHealth}");
-    }
 
-    public virtual IEnumerator UseTeamworkSkill(Player playerCharacter)
-    {
-        yield return new WaitForSeconds(1f);
-        
-        if (HasPartnerAlive)   
-        {
-            int teamworkDamage = Mathf.RoundToInt(AttackPower) + Mathf.RoundToInt(partner.AttackPower);
-            playerCharacter.TakeDamage(teamworkDamage);
-            Debug.Log($"{Name} dan {partner.Name} menggunakan 'Teamwork is Dreamwork'! Pemain menerima {teamworkDamage} damage!");
-
-            // animasi rolly polly nyerang berdua (?)
-        }
-        else
-        {
-            Debug.Log($"{Name} tidak dapat menggunakan 'Teamwork is Dreamwork' karena partner telah mati!");
-        }
-    }
-    
-    public virtual int GetAttackPower()
-    {
-        return AttackPower; // Default attack power
+        yield return new WaitForSeconds(1f); // Jeda untuk animasi
     }
 }

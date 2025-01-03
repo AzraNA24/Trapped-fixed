@@ -53,7 +53,7 @@ public class CodexUI : MonoBehaviour
         PassiveTalent = "" 
         },
         new TuyulCharacter {
-        Name = "Rolly Polly",
+        Name = "RollyPolly",
         Title = "The Stalwart Defender & Reckless Attacker",
         HP = 50,
         BaseAttack = 10,

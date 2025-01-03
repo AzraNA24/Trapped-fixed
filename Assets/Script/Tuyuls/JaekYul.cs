@@ -222,7 +222,7 @@ public class JaekYul : Tuyul
         yield return new WaitForSeconds(1f);
 
         int roachesCount = Random.Range(2, 9); // Memanggil 2-8 kecoak kecil
-        TuyulAnim.SetTrigger("CkyLD");
+        TuyulAnim.SetTrigger("CkyLDemo");
         ShowMessage($"{Name} memanggil {roachesCount} kecoak kecil untuk menyerang!");
         Debug.Log($"{Name} memanggil {roachesCount} kecoak kecil untuk menyerang!");
 
@@ -237,7 +237,7 @@ public class JaekYul : Tuyul
     public IEnumerator UsePoison(Player playerCharacter)
     {
         yield return new WaitForSeconds(1f);
-        TuyulAnim.SetTrigger("CkyLS");
+        TuyulAnim.SetTrigger("CkyLShadow");
         ShowMessage($"{Name} menggunakan jurus 'Monster Lurks Beneath The Shadow of The Dawn'! Pemain terkena efek poison selama {poisonDuration} giliran.");
         Debug.Log($"{Name} menggunakan jurus 'Monster Lurks Beneath The Shadow of The Dawn'! Pemain terkena efek poison selama {poisonDuration} giliran.");
         playerCharacter.StartCoroutine(ApplyPoison(playerCharacter));

@@ -3079,7 +3079,7 @@ MonoBehaviour:
   Tuyul: {fileID: 34059582421728341, guid: ef0910cfcaa6b5d439904a90e726cac6, type: 3}
   Aventurine: {fileID: 6742167402650695385, guid: 834adbe544109a949ac87024c07e062a, type: 3}
   mrRizzler: {fileID: 655817370685930220, guid: f1ee890598ab9104d92f044ce45cf9d7, type: 3}
-  RollyPolly: {fileID: 0}
+  RollyPolly: {fileID: 2230084780681459113, guid: b646cc674ed713c4bad8532357d36cd5, type: 3}
   ChaengYul: {fileID: 2180718504317818291, guid: b12edbdd9d45ba94a8aec92a944afe90, type: 3}
   CheokYul: {fileID: 499742745184139305, guid: a91ceda698c8f0942902d8e29dd63b97, type: 3}
   JaekYul: {fileID: 1250544236808459304, guid: 1dc15051b4637664f8813696dc516f93, type: 3}
