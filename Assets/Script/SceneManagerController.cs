@@ -112,7 +112,6 @@ public class SceneManagerController : MonoBehaviour
             lastSceneName = SceneManager.GetActiveScene().name;
         }
         SceneManager.LoadScene(sceneName);
-        Debug.Log($"Scene sekarang: {sceneName}");
     }
 
     public GameMode GetCurrentGameMode()

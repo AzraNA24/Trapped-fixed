@@ -5,6 +5,7 @@ public class JaekYul : Tuyul
 {
     public int DebuffRoundsLeft = 0;
     private GameObject currentFormObject;
+    private int poisonDuration = 3;
 
     public JaekYul()
     {
@@ -166,24 +167,91 @@ public class JaekYul : Tuyul
 
         if (currentForm is Aventurine aventurine)
         {
-            aventurine.UseTheGreatGatsby(playerCharacter);
+            yield return StartCoroutine(UseTheGreatGatsby(playerCharacter));
         }
         else if (currentForm is MrRizzler rizzler)
         {
-            rizzler.UseSeduceYouToDeath(playerCharacter);
+            yield return StartCoroutine(UseSeduceYouToDeath(playerCharacter));
         }
         else if (currentForm is CheokYul cheokYul)
         {
-            cheokYul.UsePoison(playerCharacter);
-        }
-        else if (currentForm is ChaengYul chaengYul)
-        {
-            chaengYul.UseBeyondTheGrave(playerCharacter);
+            if (Random.value < 0.2f) // Special Skill: The Democracy
+            {
+                yield return StartCoroutine(UseTheDemocracy(playerCharacter));
+            }
+            else // Special Skill: Monster Lurks Beneath The Shadow of The Dawn
+            {
+                yield return StartCoroutine(UsePoison(playerCharacter));
+            }
         }
         else
         {
             ShowMessage($"{Name} dalam bentuk {currentForm.Name} tidak memiliki special skill untuk digunakan!");
             Debug.Log($"{Name} dalam bentuk {currentForm.Name} tidak memiliki special skill untuk digunakan!");
+        }
+    }
+    public IEnumerator UseTheGreatGatsby(Player playerCharacter)
+    {
+        TuyulAnim.SetTrigger("Aven");
+        int Ultimate = AttackPower + AttackPower / 2;
+        yield return new WaitForSeconds(1f);
+
+        playerCharacter.TakeDamage(Ultimate);
+        ShowMessage($"{Name} memberikan {Ultimate} damage tambahan dengan jurus 'The Great Gatsby'! Sisa HP: {playerCharacter.currentHealth}");
+        Debug.Log($"{Name} memberikan {AttackPower * 1.5} damage tambahan dengan jurus 'The Great Gatsby'! Sisa HP: {playerCharacter.currentHealth}");
+    }
+    public IEnumerator UseSeduceYouToDeath(Player playerCharacter)
+    {
+        TuyulAnim.SetTrigger("Rizz");
+        yield return new WaitForSeconds(1f);
+
+        DebuffRoundsLeft = 3;
+        // Mengurangi critical chance pemain (10%)
+        playerCharacter.criticalChance -= 0.1f;
+        if (playerCharacter.criticalChance < 0) playerCharacter.criticalChance = 0;
+
+        // Mengurangi efektivitas health potion (50%)
+        playerCharacter.healthPotionEffectiveness -= 0.5f;
+        if (playerCharacter.healthPotionEffectiveness < 0.1f) playerCharacter.healthPotionEffectiveness = 0.1f;
+
+        ShowMessage($"{Name} menggunakan jurus spesial 'Seduce You To Death'! Efek health potion pemain berkurang dan critical chance turun menjadi {playerCharacter.criticalChance * 100}%.");
+        Debug.Log($"{Name} menggunakan jurus spesial 'Seduce You To Death'! Efek health potion pemain berkurang dan critical chance turun menjadi {playerCharacter.criticalChance * 100}%.");
+    }
+    public IEnumerator UseTheDemocracy(Player playerCharacter)
+    {
+        yield return new WaitForSeconds(1f);
+
+        int roachesCount = Random.Range(2, 9); // Memanggil 2-8 kecoak kecil
+        TuyulAnim.SetTrigger("CkyLD");
+        ShowMessage($"{Name} memanggil {roachesCount} kecoak kecil untuk menyerang!");
+        Debug.Log($"{Name} memanggil {roachesCount} kecoak kecil untuk menyerang!");
+
+        for (int i = 0; i < roachesCount; i++)
+        {
+            int roachDamage = Random.Range(5, 10); // Damage tiap kecoak
+            playerCharacter.TakeDamage(roachDamage);
+            ShowMessage($"Seekor kecoak menyerang dan memberikan {roachDamage} damage! Sisa HP pemain: {playerCharacter.currentHealth}");
+            Debug.Log($"Seekor kecoak menyerang dan memberikan {roachDamage} damage! Sisa HP pemain: {playerCharacter.currentHealth}");
+        }
+    }
+    public IEnumerator UsePoison(Player playerCharacter)
+    {
+        yield return new WaitForSeconds(1f);
+        TuyulAnim.SetTrigger("CkyLS");
+        ShowMessage($"{Name} menggunakan jurus 'Monster Lurks Beneath The Shadow of The Dawn'! Pemain terkena efek poison selama {poisonDuration} giliran.");
+        Debug.Log($"{Name} menggunakan jurus 'Monster Lurks Beneath The Shadow of The Dawn'! Pemain terkena efek poison selama {poisonDuration} giliran.");
+        playerCharacter.StartCoroutine(ApplyPoison(playerCharacter));
+    }
+
+    private IEnumerator ApplyPoison(Player playerCharacter)
+    {
+        for (int i = 0; i < poisonDuration; i++)
+        {
+            yield return new WaitForSeconds(1f); // jeda per giliran
+            int poisonDamage = 10; // damage per giliran
+            playerCharacter.TakeDamage(poisonDamage);
+            ShowMessage($"Poison effect: Pemain menerima {poisonDamage} damage. Sisa HP: {playerCharacter.currentHealth}");
+            Debug.Log($"Poison effect: Pemain menerima {poisonDamage} damage. Sisa HP: {playerCharacter.currentHealth}");
         }
     }
 }

@@ -17,6 +17,7 @@ public class Player : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
+            currentHealth = Health;
             DontDestroyOnLoad(gameObject);
         }
         else
@@ -26,7 +27,6 @@ public class Player : MonoBehaviour
         }
 
         InitializeInventory();
-        currentHealth = Health;
     }
 
     private void InitializeInventory()
