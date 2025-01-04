@@ -62,6 +62,7 @@ public class SceneManagerController : MonoBehaviour
                 if (animator != null)
                 {
                     animator.SetBool("TurnBased", true); // Aktifkan animasi Turn-Based
+                    Debug.Log($"Scene sekarang: {sceneName}");
                 }
             }
 
@@ -80,6 +81,9 @@ public class SceneManagerController : MonoBehaviour
             GameObject player = GameObject.FindWithTag("Player");
             Animator animator = player.GetComponent<Animator>();
             animator.SetBool("TurnBased", false);
+            Debug.Log("keluar turnbased");
+            Debug.Log($"Scene sekarang: {sceneName}");
+
             if (AudioManager.instance != null)
             {
                 AudioManager.instance.PlayMusic(explorationMusic);
@@ -144,9 +148,12 @@ public class SceneManagerController : MonoBehaviour
     {
         if (!string.IsNullOrEmpty(lastSceneName))
         {
-            SceneManager.LoadScene(lastSceneName);
+            
+            SwitchScene(lastSceneName, GameMode.Exploration);
+            // SceneManager.LoadScene(lastSceneName);
             SceneManager.sceneLoaded += (scene, mode) =>
             {
+                
                 // Pulihkan posisi Player
                 FindObjectOfType<PlayerManager>()?.RestoreExplorationStartPosition();
 
@@ -155,6 +162,8 @@ public class SceneManagerController : MonoBehaviour
                     AudioManager.instance.StopMusic();
                     AudioManager.instance.PlayMusic(explorationMusic);
                 }
+
+             
 
                 // Hapus Tuyul yang sudah dikalahkan
                 GameObject[] tuyuls = GameObject.FindGameObjectsWithTag("Tuyul");

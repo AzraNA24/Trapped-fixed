@@ -51,6 +51,7 @@ public void SwitchMode(PlayerMode mode)
         if (animator != null)
         {
             animator.SetBool("TurnBased", true);
+            Debug.Log("Player berada dalam mode Turn-Based.");
         }
     }
     else if (mode == PlayerMode.Exploration)
@@ -62,9 +63,12 @@ public void SwitchMode(PlayerMode mode)
         if (attack != null) attack.enabled = true;
 
         Animator animator = GetComponent<Animator>();
+        
         if (animator != null)
         {
-            animator.ResetTrigger("TurnBased");
+            animator.SetBool("TurnBased", false);
+            Debug.Log("Player berada dalam mode Eksplorasi.");
+
         }
     }
         currentMode = mode;
@@ -128,6 +132,12 @@ public void SwitchMode(PlayerMode mode)
     {
         if (PlayerPrefs.HasKey($"{tuyulName}_Defeated") && PlayerPrefs.GetInt($"{tuyulName}_Defeated") == 1)
         {
+            Animator animator = tuyulObject.GetComponent<Animator>();
+            if (animator != null)
+            {
+                animator.enabled = false;
+                Debug.Log($"Animator pada {tuyulName} dinonaktifkan sebelum dihapus.");
+            }
             Destroy(tuyulObject);
             Debug.Log($"{tuyulName} sudah dikalahkan dan dihapus dari scene eksplorasi.");
         }

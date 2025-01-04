@@ -334,8 +334,15 @@ public class BattleSystem : MonoBehaviour
             else
             {
                 Debug.Log("Kembali ke mode eksplorasi setelah memenangkan pertarungan.");
+                PlayerManager playerManager = FindObjectOfType<PlayerManager>();
+
+                if (playerManager != null)
+                {
+                    playerManager.SwitchMode(PlayerManager.PlayerMode.Exploration);
+                }
+
                 SceneManagerController.Instance.ReturnToLastScene();
-                FindObjectOfType<PlayerManager>()?.RestoreExplorationStartPosition();
+                // FindObjectOfType<PlayerManager>()?.RestoreExplorationStartPosition();
             }
         
         }
