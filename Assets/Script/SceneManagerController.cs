@@ -42,6 +42,8 @@ public class SceneManagerController : MonoBehaviour
 
     public void SwitchScene(string sceneName, GameMode mode)
     {
+        currentMode = mode;
+
         if (mode == GameMode.TurnBased)
         {
             // Simpan posisi eksplorasi sebelum masuk Turn-Based
@@ -79,18 +81,32 @@ public class SceneManagerController : MonoBehaviour
         {
             // Ganti musik kembali ke eksplorasi
             GameObject player = GameObject.FindWithTag("Player");
-            Animator animator = player.GetComponent<Animator>();
-            animator.SetBool("TurnBased", false);
-            Debug.Log("keluar turnbased");
-            Debug.Log($"Scene sekarang: {sceneName}");
+            //Animator animator = player.GetComponent<Animator>();
+            //animator.SetBool("TurnBased", false);
+
+            if (player != null)
+            {
+                PlayerMovement movement = player.GetComponent<PlayerMovement>();
+                PlayerAttack attack = player.GetComponent<PlayerAttack>();
+
+                if (movement != null) movement.enabled = true; 
+                if (attack != null) attack.enabled = true;     
+
+                Animator animator = player.GetComponent<Animator>();
+                if (animator != null)
+                {
+                    animator.SetBool("TurnBased", false); 
+                }
+            }
 
             if (AudioManager.instance != null)
             {
                 AudioManager.instance.PlayMusic(explorationMusic);
             }
+
         }
 
-        currentMode = mode;
+        // currentMode = mode;
 
         if (mode == GameMode.TurnBased)
         {
@@ -98,6 +114,7 @@ public class SceneManagerController : MonoBehaviour
         }
         SceneManager.LoadScene(sceneName);
     }
+
     public GameMode GetCurrentGameMode()
     {
         return currentMode;
@@ -148,9 +165,8 @@ public class SceneManagerController : MonoBehaviour
     {
         if (!string.IsNullOrEmpty(lastSceneName))
         {
-            
             SwitchScene(lastSceneName, GameMode.Exploration);
-            // SceneManager.LoadScene(lastSceneName);
+            //SceneManager.LoadScene(lastSceneName);
             SceneManager.sceneLoaded += (scene, mode) =>
             {
                 

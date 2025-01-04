@@ -104,12 +104,14 @@ MonoBehaviour:
   - Room9
   - Room10
   miniBossRooms:
-  - MiniBoss1
   - MiniBoss2
   bossRoom: BossRoom
   healRoom: Heal
+  roomCountText: {fileID: 0}
   audioSource: {fileID: -7076928370432220304}
   enterRoomSound: {fileID: 8300000, guid: 3d734a6984a5c6d43b756bb061b49564, type: 3}
+  doorAnimator: {fileID: 0}
+  transitionDoor: {fileID: 0}
 --- !u!82 &-7076928370432220304
 AudioSource:
   m_ObjectHideFlags: 0

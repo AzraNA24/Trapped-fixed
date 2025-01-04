@@ -352,6 +352,14 @@ PrefabInstance:
       propertyPath: TuyulAnim
       value: 
       objectReference: {fileID: 586234141}
+    - target: {fileID: 7916545060702532754, guid: a91ceda698c8f0942902d8e29dd63b97, type: 3}
+      propertyPath: m_Radius
+      value: 1.6346573
+      objectReference: {fileID: 0}
+    - target: {fileID: 7916545060702532754, guid: a91ceda698c8f0942902d8e29dd63b97, type: 3}
+      propertyPath: m_Center.x
+      value: 0.09195407
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

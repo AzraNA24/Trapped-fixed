@@ -20,7 +20,7 @@ public class PlayerMovement : MonoBehaviour
     {
     movement.x = Input.GetAxisRaw("Horizontal");
     movement.y = Input.GetAxisRaw("Vertical");
-
+    
     if (movement.sqrMagnitude > 0)
     {
         lastMovement = movement; // Dia harus nyimpen arah terakhir, kalau enggak, default ke kiri

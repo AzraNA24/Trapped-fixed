@@ -32,7 +32,6 @@ public class BattleSystem : MonoBehaviour
     public AudioClip LongRangeShootSound;
     public AudioSource SFXSource;
     public AudioSource backgroundMusic;
- 
 
 
     void Start()
@@ -48,18 +47,13 @@ public class BattleSystem : MonoBehaviour
 
         // Cari instance Player yang sudah ada
         playerCharacter = FindObjectOfType<Player>();
+        GameObject selectedTuyulPrefab = null;
+
         if (playerCharacter == null)
         {
             Debug.LogError("Player tidak ditemukan! Pastikan Player sudah ada di scene.");
             yield break;
         }
-
-        // Reset health player
-        playerCharacter.currentHealth = playerCharacter.Health;
-        Debug.Log($"Health player di-reset ke {playerCharacter.currentHealth}");
-
-        GameObject selectedTuyulPrefab = null;
-
         if (PlayerAttack.currentTuyulName == "Aventurine")
         {
             selectedTuyulPrefab = Aventurine;
@@ -91,6 +85,7 @@ public class BattleSystem : MonoBehaviour
 
         GameObject enemyGO = Instantiate(selectedTuyulPrefab, tuyulStation);
         enemyCharacter = enemyGO.GetComponent<Tuyul>();
+        Debug.Log($"Enemy: {enemyCharacter}");
 
         tuyulHUD.SetHUDTuyul(enemyCharacter);
 
@@ -306,53 +301,52 @@ public class BattleSystem : MonoBehaviour
 
     public void EndBattle()
     {
-        if (state == BattleState.WON)
+        if (state == BattleState.WON || state == BattleState.LOST)
         {
-            
-            playerCharacter.AddMoney(enemyCharacter.Money);
-
-            PlayerPrefs.SetInt($"{enemyCharacter.Name}_Defeated", 1);
-            PlayerPrefs.Save();
-
-            if (enemyCharacter != null)
+            // Reset variables
+            PlayerAttack.currentTuyulName = null; 
+            potionCounter = 0;
+            if (state == BattleState.WON)
             {
-                Destroy(enemyCharacter.gameObject);
-                ShowMessage($"{enemyCharacter.Name} telah dihancurkan.");
-                Debug.Log($"{enemyCharacter.Name} telah dihancurkan.");
-            }
             
-            // Cek apakah musuh adalah JaekYul
-            if (enemyCharacter.Name == "JaekYul") 
-            {
-                string randomWinningMessage = WinningMessage.GetRandomWinningMessage();
-                PlayerPrefs.SetString("WinningMessage", randomWinningMessage);
+                playerCharacter.AddMoney(enemyCharacter.Money);
+
+                PlayerPrefs.SetInt($"{enemyCharacter.Name}_Defeated", 1);
                 PlayerPrefs.Save();
-        
-                Debug.Log(randomWinningMessage);
-                SceneManager.LoadScene("WinningScene");
-            }
-            else
-            {
-                Debug.Log("Kembali ke mode eksplorasi setelah memenangkan pertarungan.");
-                PlayerManager playerManager = FindObjectOfType<PlayerManager>();
 
-                if (playerManager != null)
+                if (enemyCharacter != null)
                 {
-                    playerManager.SwitchMode(PlayerManager.PlayerMode.Exploration);
+                    Destroy(enemyCharacter.gameObject);
+                    ShowMessage($"{enemyCharacter.Name} telah dihancurkan.");
+                    Debug.Log($"{enemyCharacter.Name} telah dihancurkan.");
                 }
-
-                SceneManagerController.Instance.ReturnToLastScene();
-                // FindObjectOfType<PlayerManager>()?.RestoreExplorationStartPosition();
+                
+                // Cek apakah musuh adalah JaekYul
+                if (enemyCharacter.Name == "JaekYul") 
+                {
+                    string randomWinningMessage = WinningMessage.GetRandomWinningMessage();
+                    PlayerPrefs.SetString("WinningMessage", randomWinningMessage);
+                    PlayerPrefs.Save();
+            
+                    Debug.Log(randomWinningMessage);
+                    SceneManager.LoadScene("WinningScene");
+                }
+                else
+                {
+                    Debug.Log("Kembali ke mode eksplorasi setelah memenangkan pertarungan.");
+                    SceneManagerController.Instance.ReturnToLastScene();
+                    FindObjectOfType<PlayerManager>()?.RestoreExplorationStartPosition();
+                }
+            
             }
-        
-        }
-        else if (state == BattleState.LOST)
-        {
-            string gameOverMessage = GameOverMessage.GetRandomGameOverMessage(enemyCharacter.Name);
-            PlayerPrefs.SetString("GameOverMessage", gameOverMessage);
-            PlayerPrefs.Save();
+            else if (state == BattleState.LOST)
+            {
+                string gameOverMessage = GameOverMessage.GetRandomGameOverMessage(enemyCharacter.Name);
+                PlayerPrefs.SetString("GameOverMessage", gameOverMessage);
+                PlayerPrefs.Save();
 
-            SceneManager.LoadScene("GameOver");
+                SceneManager.LoadScene("GameOver");
+            }
         }
     }
 
@@ -375,6 +369,8 @@ public class BattleSystem : MonoBehaviour
             playerCharacter.UsePotion(); // Menggunakan potion dan mengurangi dari inventory
             ShowMessage($"Potion digunakan. Health sekarang: {playerCharacter.currentHealth}");
             Debug.Log($"Potion digunakan. Health sekarang: {playerCharacter.currentHealth}");
+            ShowMessage($"Potion digunakan {potionCounter}/{maxPotionsPerBattle} kali dalam pertempuran ini.");
+            Debug.Log($"Potion digunakan {potionCounter}/{maxPotionsPerBattle} kali dalam pertempuran ini.");
         
             state = BattleState.TUYUL_TURN;
             StartCoroutine(EnemyTurn());    
@@ -392,8 +388,6 @@ public class BattleSystem : MonoBehaviour
         potionCounter++;
         playerCharacter.UsePotion();
 
-        ShowMessage($"Potion digunakan {potionCounter}/{maxPotionsPerBattle} kali dalam pertempuran ini.");
-        Debug.Log($"Potion digunakan {potionCounter}/{maxPotionsPerBattle} kali dalam pertempuran ini.");
         yield return new WaitForSeconds(1f);
 
         state = BattleState.TUYUL_TURN;
