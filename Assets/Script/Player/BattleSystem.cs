@@ -224,6 +224,22 @@ public class BattleSystem : MonoBehaviour
             yield break;
         }
 
+        yield return new WaitForSeconds(1f);
+
+        if (LongRangeClickSound != null && SFXSource != null)
+        {
+            SFXSource.PlayOneShot(LongRangeClickSound);
+        }
+
+        yield return new WaitForSeconds(0.5f);
+
+        if (LongRangeShootSound != null && SFXSource != null)
+        {
+            SFXSource.PlayOneShot(LongRangeShootSound);
+        }
+
+        yield return new WaitForSeconds(0.5f);
+
         playerCharacter.Inventory.UseItem(new LootBox { Type = LootBox.LootType.Bullet }, 1); // Kurangi peluru
         Debug.Log($"Peluru digunakan. Sisa peluru: {playerCharacter.Inventory.GetItemCount(LootBox.LootType.Bullet)}");
 
@@ -383,6 +399,14 @@ public class BattleSystem : MonoBehaviour
 
     IEnumerator UsePotion()
     {
+        if (PotionSound != null && SFXSource != null)
+        {
+            Debug.Log("Memainkan suara potion...");
+            SFXSource.PlayOneShot(PotionSound);
+            yield return new WaitForSeconds(PotionSound.length);
+            Debug.Log($"Durasi suara: {PotionSound.length} detik.");
+        }
+
         potionCounter++;
         playerCharacter.UsePotion();
 
