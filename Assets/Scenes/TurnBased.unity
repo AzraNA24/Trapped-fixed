@@ -157,7 +157,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -381.99994, y: -1.2799988}
+  m_AnchoredPosition: {x: -382, y: -1.2800293}
   m_SizeDelta: {x: 61805.83, y: 19705.38}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &94201543
@@ -2716,6 +2716,7 @@ GameObject:
   - component: {fileID: 1111409021}
   - component: {fileID: 1111409023}
   - component: {fileID: 1111409022}
+  - component: {fileID: 1111409024}
   m_Layer: 5
   m_Name: Background
   m_TagString: Untagged
@@ -2781,6 +2782,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1111409020}
   m_CullTransparentMesh: 1
+--- !u!95 &1111409024
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1111409020}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 35e7a7d2997a9ee47b539a9521206788, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1198518321
 GameObject:
   m_ObjectHideFlags: 0
@@ -3083,6 +3105,8 @@ MonoBehaviour:
   ChaengYul: {fileID: 2180718504317818291, guid: b12edbdd9d45ba94a8aec92a944afe90, type: 3}
   CheokYul: {fileID: 499742745184139305, guid: a91ceda698c8f0942902d8e29dd63b97, type: 3}
   JaekYul: {fileID: 1250544236808459304, guid: 1dc15051b4637664f8813696dc516f93, type: 3}
+  Squeek: {fileID: 0}
+  Chef: {fileID: 0}
   playerStation: {fileID: 1277883944}
   tuyulStation: {fileID: 1754890248}
   buttonAnimator: {fileID: 221127664}
@@ -3094,6 +3118,7 @@ MonoBehaviour:
   LongRangeShootSound: {fileID: 8300000, guid: 0c7ae7e18cc303f41bf246c6ff75cf56, type: 3}
   SFXSource: {fileID: 1355302182}
   backgroundMusic: {fileID: 1355302182}
+  PosionButton: {fileID: 0}
 --- !u!4 &1355302181
 Transform:
   m_ObjectHideFlags: 0

@@ -13,7 +13,7 @@ public class LootBox : MonoBehaviour
 
     public enum LootType
     {
-        None, MoneyBag, HealthPotion, Gun, Bullet
+        None, MoneyBag, HealthPotion, Gun, Bullet, Token
     }
 
     private void Start()

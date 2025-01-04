@@ -130,6 +130,8 @@ public class Tuyul : MonoBehaviour
     {
         Aventurine,
         MrRizzler,
+        Squeek,
+        Chef,
         RollyPolly,
         ChaengYul,
         CheokYul,

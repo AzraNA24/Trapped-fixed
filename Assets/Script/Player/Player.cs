@@ -110,6 +110,17 @@ public class Player : MonoBehaviour
         Debug.Log("No bullet available!");
         return false;
     }
+        public bool UseToken()
+        {
+            LootBox tokenBox = new LootBox { Type = LootBox.LootType.Token};
+            if (Inventory.UseItem(tokenBox, 1))
+            {
+                Debug.Log("Token digunakan untuk mengaktifkan Potion DoT.");
+                return true;
+            }
+            Debug.Log("Token tidak tersedia!");
+            return false;
+        }
 
     public void ResetInventory()
     {

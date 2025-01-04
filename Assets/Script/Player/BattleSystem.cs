@@ -17,6 +17,8 @@ public class BattleSystem : MonoBehaviour
     public GameObject ChaengYul;
     public GameObject CheokYul;
     public GameObject JaekYul;
+    public GameObject Squeek;
+    public GameObject Chef;
     public Transform playerStation;
     public Transform tuyulStation;
     public Button buttonAnimator;
@@ -32,6 +34,7 @@ public class BattleSystem : MonoBehaviour
     public AudioClip LongRangeShootSound;
     public AudioSource SFXSource;
     public AudioSource backgroundMusic;
+    public GameObject PosionButton;
 
 
     void Start()
@@ -44,7 +47,6 @@ public class BattleSystem : MonoBehaviour
     IEnumerator SetupBattle()
     {
         potionCounter = 0;
-
         // Cari instance Player yang sudah ada
         playerCharacter = FindObjectOfType<Player>();
         GameObject selectedTuyulPrefab = null;
@@ -77,6 +79,14 @@ public class BattleSystem : MonoBehaviour
         else if (PlayerAttack.currentTuyulName == "JaekYul")
         {
             selectedTuyulPrefab = JaekYul;
+        }
+        else if (PlayerAttack.currentTuyulName == "Squeek")
+        {
+            selectedTuyulPrefab = Squeek;
+        }
+        else if (PlayerAttack.currentTuyulName == "Chef")
+        {
+            selectedTuyulPrefab = Chef;
         }
 
         // (harusnya) GameObject playerGO = Instantiate(Player, playerStation);
@@ -116,16 +126,6 @@ public class BattleSystem : MonoBehaviour
         state = BattleState.PLAYER_TURN;
         PlayerTurn();
     }
-
-
-    //void SetupRollyPollyPair()
-    //{
-    //    Rolly rolly = Instantiate(Rolly, rollySpawnPoint).GetComponent<Rolly>();
-    //    Polly polly = Instantiate(Polly, pollySpawnPoint).GetComponent<Polly>();
-
-    //    rolly.partner = polly;
-    //    polly.partner = rolly;
-    //}
 
     void PlayerTurn()
     {
@@ -320,6 +320,12 @@ public class BattleSystem : MonoBehaviour
                     ShowMessage($"{enemyCharacter.Name} telah dihancurkan.");
                     Debug.Log($"{enemyCharacter.Name} telah dihancurkan.");
                 }
+                if (enemyCharacter.Name == "CheokYul")
+                {
+                    PosionButton.gameObject.SetActive(true);
+                    ShowMessage("Kamu mendapatkan Token setelah mengalahkan CheokYul!");
+                    Debug.Log("Token ditambahkan ke inventory.");
+                }
                 
                 // Cek apakah musuh adalah JaekYul
                 if (enemyCharacter.Name == "JaekYul") 
@@ -397,5 +403,43 @@ public class BattleSystem : MonoBehaviour
     void ShowMessage(string message)
     {
         DialogueBattle.Instance.UpdateDialog(message);
+    }
+    public void OnDoTPosionButton()
+    {
+        if (state != BattleState.PLAYER_TURN)
+            return;
+
+        if (playerCharacter.UseToken())
+        {
+            StartCoroutine(ApplyDoTToEnemy());
+        }
+        else
+        {
+            ShowMessage("Kamu tidak memiliki Token untuk menggunakan Potion ini!");
+        }
+    }
+
+    IEnumerator ApplyDoTToEnemy()
+    {
+        int damagePerSecond = 5;
+        int duration = 5;
+        int ticks = duration;
+
+        ShowMessage("Potion DoT digunakan! Musuh menerima damage seiring waktu.");
+
+        for (int i = 0; i < ticks; i++)
+        {
+            if (enemyCharacter.TakeDamage(damagePerSecond, playerCharacter))
+            {
+                state = BattleState.WON;
+                EndBattle();
+                yield break;
+            }
+
+            yield return new WaitForSeconds(1f);
+        }
+
+        state = BattleState.TUYUL_TURN;
+        StartCoroutine(EnemyTurn());
     }
 }

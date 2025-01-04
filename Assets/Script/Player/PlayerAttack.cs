@@ -63,6 +63,12 @@ public class PlayerAttack : MonoBehaviour
             StartCoroutine(PlayAudioAndSwitchScene());
             return;
         }
+        Pool pool = Thing.GetComponent<Pool>();
+        if (objectLayer == "Pool")
+        {
+            Player.Instance.currentHealth = Player.Instance.Health;
+            Debug.Log($"Player health restored to full. Current health: {Player.Instance.currentHealth}");
+        }
 
         LootBox lootBox = Thing.GetComponent<LootBox>();
         if (lootBox != null)

@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Enemy
   - Tuyul
+  - Pool
   layers:
   - Default
   - TransparentFX
@@ -21,7 +22,7 @@ TagManager:
   - 
   - Tuyul
   - Loot
-  - 
+  - Pool
   - 
   - 
   - 

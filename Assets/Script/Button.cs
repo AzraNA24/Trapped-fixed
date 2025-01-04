@@ -31,6 +31,11 @@ public class Button: MonoBehaviour
         TriggerAnimation("ShortRange");
     }
 
+    public void OnPotionButtonpressed()
+    {
+        battle.OnPotionButton();
+    }
+
     private void TriggerAnimation(string animationName)
     {   
         if (animator == null)
