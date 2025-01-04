@@ -334,7 +334,7 @@ public class BattleSystem : MonoBehaviour
 
                 if (enemyCharacter != null)
                 {
-                    Destroy(enemyCharacter.gameObject);
+                    Destroy(enemyCharacter);
                     ShowMessage($"{enemyCharacter.Name} telah dihancurkan.");
                     Debug.Log($"{enemyCharacter.Name} telah dihancurkan.");
                 }
@@ -368,7 +368,7 @@ public class BattleSystem : MonoBehaviour
         }
     }
 
-    public void OnPotionButton()
+public void OnPotionButton()
     {
         if (state != BattleState.PLAYER_TURN)
             return;
@@ -384,11 +384,18 @@ public class BattleSystem : MonoBehaviour
         if (playerCharacter.Inventory.GetItemCount(LootBox.LootType.HealthPotion) > 0)
         {
             potionCounter++;
+
+            if (PotionSound != null && SFXSource != null)
+            {
+                SFXSource.PlayOneShot(PotionSound);
+            }
+
             playerCharacter.UsePotion(); // Menggunakan potion dan mengurangi dari inventory
             ShowMessage($"Potion digunakan. Health sekarang: {playerCharacter.currentHealth}");
             Debug.Log($"Potion digunakan. Health sekarang: {playerCharacter.currentHealth}");
             ShowMessage($"Potion digunakan {potionCounter}/{maxPotionsPerBattle} kali dalam pertempuran ini.");
             Debug.Log($"Potion digunakan {potionCounter}/{maxPotionsPerBattle} kali dalam pertempuran ini.");
+
         
             state = BattleState.TUYUL_TURN;
             StartCoroutine(EnemyTurn());    
@@ -403,14 +410,6 @@ public class BattleSystem : MonoBehaviour
 
     IEnumerator UsePotion()
     {
-        if (PotionSound != null && SFXSource != null)
-        {
-            Debug.Log("Memainkan suara potion...");
-            SFXSource.PlayOneShot(PotionSound);
-            yield return new WaitForSeconds(PotionSound.length);
-            Debug.Log($"Durasi suara: {PotionSound.length} detik.");
-        }
-
         potionCounter++;
         playerCharacter.UsePotion();
 

@@ -130,12 +130,22 @@ public void SwitchMode(PlayerMode mode)
 
     public void CheckAndRemoveDefeatedTuyuls(GameObject tuyul, string tuyulName)
     {
+        // Debugging untuk memeriksa nilai PlayerPrefs yang disimpan
+        Debug.Log($"PlayerPrefs[{tuyulName}_Defeated]: {PlayerPrefs.GetInt($"{tuyulName}_Defeated")}");
+        
         if (PlayerPrefs.HasKey($"{tuyulName}_Defeated") && PlayerPrefs.GetInt($"{tuyulName}_Defeated") == 1)
         {
+            // Hapus Tuyul yang sudah dikalahkan
             Destroy(tuyul);
             Debug.Log($"{tuyulName} sudah dikalahkan dan dihapus dari scene eksplorasi.");
-            Debug.Log($"Checking status for {tuyulName}: Defeated = {PlayerPrefs.HasKey($"{tuyulName}_Defeated") && PlayerPrefs.GetInt($"{tuyulName}_Defeated") == 1}");
-
         }
+        else
+        {
+            // Jika Tuyul belum dikalahkan, log statusnya
+            Debug.Log($"{tuyulName} belum dikalahkan.");
+        }
+
+        // Log pengecekan status Tuyul
+        Debug.Log($"Checking status for {tuyulName}: Defeated = {PlayerPrefs.HasKey($"{tuyulName}_Defeated") && PlayerPrefs.GetInt($"{tuyulName}_Defeated") == 1}");
     }
 }

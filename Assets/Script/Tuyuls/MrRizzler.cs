@@ -49,14 +49,14 @@ public class MrRizzler : Tuyul
         return false;
     }
 
-    public override IEnumerator OfferDeal(Player playerCharacter)
-    {
-        yield return new WaitForSeconds(1f); // Jeda untuk memastikan serangan selesai
-        isOfferingMoney = true;
-        ShowMessage($"{Name} menawarkan uang sebesar {Money} untuk ganti nyawanya. Terima? (1 = Iya, 2 = Tidak)");
-        Debug.Log($"{Name} menawarkan uang sebesar {Money} untuk ganti nyawanya. Terima? (1 = Iya, 2 = Tidak)");
-        yield return StartCoroutine(WaitForPlayerChoice(playerCharacter)); // Tunggu input pemain
-    }
+    // public override IEnumerator OfferDeal(Player playerCharacter)
+    // {
+    //     yield return new WaitForSeconds(1f); // Jeda untuk memastikan serangan selesai
+    //     isOfferingMoney = true;
+    //     ShowMessage($"{Name} menawarkan uang sebesar {Money} untuk ganti nyawanya. Terima? (1 = Iya, 2 = Tidak)");
+    //     Debug.Log($"{Name} menawarkan uang sebesar {Money} untuk ganti nyawanya. Terima? (1 = Iya, 2 = Tidak)");
+    //     yield return StartCoroutine(WaitForPlayerChoice(playerCharacter)); // Tunggu input pemain
+    // }
 
     public override void EnemyAction(Player playerCharacter)
     {

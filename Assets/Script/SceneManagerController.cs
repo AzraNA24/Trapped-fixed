@@ -179,14 +179,14 @@ public class SceneManagerController : MonoBehaviour
                     AudioManager.instance.PlayMusic(explorationMusic);
                 }
 
-             
-
                 // Hapus Tuyul yang sudah dikalahkan
                 GameObject[] tuyuls = GameObject.FindGameObjectsWithTag("Tuyul");
                 foreach (GameObject tuyul in tuyuls)
                 {
                     string tuyulName = tuyul.name;
+                    Debug.Log($"Checking PlayerPrefs for {tuyulName}_Defeated: {PlayerPrefs.HasKey($"{tuyulName}_Defeated")}");
                     FindObjectOfType<PlayerManager>()?.CheckAndRemoveDefeatedTuyuls(tuyul, tuyulName);
+                    
                 }
             };
         }
