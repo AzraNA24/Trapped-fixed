@@ -7,15 +7,13 @@ public class SceneTransition : MonoBehaviour
     public Animator animator; 
     public float transitionDuration = 1f;
         
-    public void TransitionToScene(string sceneName, System.Action preTransitionAction = null)
+    public void TransitionToScene(string sceneName)
     {
-        StartCoroutine(Transition(sceneName, preTransitionAction));
+        StartCoroutine(Transition(sceneName));
     }
 
-    private IEnumerator Transition(string sceneName, System.Action preTransitionAction)
+    private IEnumerator Transition(string sceneName)
     {
-        preTransitionAction?.Invoke();
-
         // Trigger the fade-out animation
         animator.SetTrigger("Fade out");
 
