@@ -22,6 +22,13 @@ public class LootBox : MonoBehaviour
         {
             Debug.LogError("Player reference is missing. Loot cannot be generated.");
         }
+
+        // batas tambah --------------------
+        if (PlayerPrefs.HasKey($"{name}_Looted") && PlayerPrefs.GetInt($"{name}_Looted") == 1)
+        {
+            Destroy(gameObject);
+        }
+        // batas tambah --------------------
     }
 
     // Daftar LootType dan Sprite-nya
@@ -57,6 +64,11 @@ public class LootBox : MonoBehaviour
         currency.AddMoney(money);
         currency.Inventory.AddItem(LootType.HealthPotion, potion);
         currency.Inventory.AddItem(LootType.Bullet, bullet);
+
+        // batas tambah --------------------
+        PlayerPrefs.SetInt($"{name}_Looted", 1);
+        PlayerPrefs.Save();
+        // batas tambah --------------------
 
         Destroy(gameObject);
     }

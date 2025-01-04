@@ -6,7 +6,7 @@ public class SceneTransition : MonoBehaviour
 {
     public Animator animator; 
     public float transitionDuration = 1f;
-    
+        
     public void TransitionToScene(string sceneName)
     {
         StartCoroutine(Transition(sceneName));
