@@ -7,6 +7,7 @@ public struct LootTypeSprite
     public LootBox.LootType Type;
     public Sprite Icon;
 }
+
 public class LootBox : MonoBehaviour
 {
     public LootType Type;
@@ -46,6 +47,7 @@ public class LootBox : MonoBehaviour
         }
         return null;
     }
+    
     public void GenerateLoot()
     {
         Player currency = Player.Instance;

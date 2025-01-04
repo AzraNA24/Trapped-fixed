@@ -3,6 +3,13 @@ using UnityEngine;
 
 public class CheokYul : Tuyul
 {
+    public AudioSource audioSource; 
+    public AudioClip tpbpSound; 
+    public AudioClip ketimpukSound;
+    public AudioClip flySound; 
+    public AudioClip democracySound;
+    public AudioClip poisonSound; 
+
     public int DebuffRoundsLeft = 0;
     private bool isFlying = false; // Status untuk passive skill
     private int poisonDuration = 3; // Durasi poison effect (3 giliran)
@@ -20,6 +27,7 @@ public class CheokYul : Tuyul
     {
         DialogueBattle.Instance.UpdateDialog(message);
     }
+
     public override bool TakeDamage(int damage, Player playerCharacter)
     {
         currentHealth -= damage;
@@ -85,17 +93,21 @@ public class CheokYul : Tuyul
             if (playerCharacter.DeductMoney(stolenAmount))
             {
                 TuyulAnim.SetTrigger("TPBP");
+                yield return new WaitForSeconds(0.5f);
+                audioSource.PlayOneShot(tpbpSound);
+
                 ShowMessage($"{Name} menggunakan jurus rahasia: 'Tangan Panjang, Badan Pendek'. Kamu kehilangan uang sebesar {stolenAmount}!");
                 Debug.Log($"{Name} menggunakan jurus rahasia: 'Tangan Panjang, Badan Pendek'. Kamu kehilangan uang sebesar {stolenAmount}!");
                 yield return new WaitForSeconds(1f);
             }
         }
 
-        // Passive Talent: The Flying Horror
+        // Passive Talent: The Flying Horror 
         if (currentHealth <= maxHealth / 2 && !isFlying)
         {
             isFlying = true;
-            // tambahin kode buat animasi dia terbang
+            yield return new WaitForSeconds(0.75f);
+            audioSource.PlayOneShot(flySound);
 
             TuyulAnim.SetTrigger("Passive");
             ShowMessage($"{Name} masuk ke mode 'The Flying Horror'!");
@@ -123,6 +135,9 @@ public class CheokYul : Tuyul
 
         int roachesCount = Random.Range(2, 9); // Memanggil 2-8 kecoak kecil
         TuyulAnim.SetTrigger("Democracy");
+        yield return new WaitForSeconds(1f);
+        audioSource.PlayOneShot(democracySound);
+
         ShowMessage($"{Name} memanggil {roachesCount} kecoak kecil untuk menyerang!");
         Debug.Log($"{Name} memanggil {roachesCount} kecoak kecil untuk menyerang!");
 
@@ -139,6 +154,13 @@ public class CheokYul : Tuyul
     {
         yield return new WaitForSeconds(1f);
         TuyulAnim.SetTrigger("Monster");
+        yield return new WaitForSeconds(1f);
+        audioSource.PlayOneShot(poisonSound);
+        yield return new WaitForSeconds(0.5f);
+        audioSource.PlayOneShot(poisonSound);
+        yield return new WaitForSeconds(0.5f);
+        audioSource.PlayOneShot(poisonSound);
+
         ShowMessage($"{Name} menggunakan jurus 'Monster Lurks Beneath The Shadow of The Dawn'! Pemain terkena efek poison selama {poisonDuration} giliran.");
         Debug.Log($"{Name} menggunakan jurus 'Monster Lurks Beneath The Shadow of The Dawn'! Pemain terkena efek poison selama {poisonDuration} giliran.");
         playerCharacter.StartCoroutine(ApplyPoison(playerCharacter));
@@ -164,6 +186,9 @@ public class CheokYul : Tuyul
     private IEnumerator ExecuteNormalAttack(Player playerCharacter)
     {
         TuyulAnim.SetTrigger("Throw");
+        yield return new WaitForSeconds(1f);
+        audioSource.PlayOneShot(ketimpukSound);
+
         yield return new WaitForSeconds(1f);
         playerCharacter.TakeDamage(AttackPower);
         ShowMessage($"{Name} mengeluarkan jurus 'Ketimpuk Batu' dan memberikan {AttackPower} damage! Sisa HP: {playerCharacter.currentHealth}");

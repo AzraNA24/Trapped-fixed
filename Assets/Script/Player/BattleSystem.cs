@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public enum BattleState { START, PLAYER_TURN, TUYUL_TURN, WON, LOST }
+
 public class BattleSystem : MonoBehaviour
 {
     public BattleState state;
@@ -32,7 +33,6 @@ public class BattleSystem : MonoBehaviour
     public AudioClip LongRangeShootSound;
     public AudioSource SFXSource;
     public AudioSource backgroundMusic;
-
 
     void Start()
     {
@@ -116,7 +116,6 @@ public class BattleSystem : MonoBehaviour
         state = BattleState.PLAYER_TURN;
         PlayerTurn();
     }
-
 
     //void SetupRollyPollyPair()
     //{
@@ -314,7 +313,6 @@ public class BattleSystem : MonoBehaviour
         }
     }
 
-
     public void EndBattle()
     {
         if (state == BattleState.WON || state == BattleState.LOST)
@@ -368,7 +366,7 @@ public class BattleSystem : MonoBehaviour
         }
     }
 
-public void OnPotionButton()
+    public void OnPotionButton()
     {
         if (state != BattleState.PLAYER_TURN)
             return;

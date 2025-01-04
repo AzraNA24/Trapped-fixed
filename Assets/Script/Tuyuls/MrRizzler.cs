@@ -3,6 +3,11 @@ using UnityEngine;
 
 public class MrRizzler : Tuyul
 {
+    public AudioSource audioSource; 
+    public AudioClip tpbpSound; 
+    public AudioClip ketimpukSound;
+    public AudioClip seduceSound;
+
     public int DebuffRoundsLeft = 0;
 
     public MrRizzler()
@@ -84,6 +89,9 @@ public class MrRizzler : Tuyul
             if (playerCharacter.DeductMoney(stolenAmount))
             {
                 TuyulAnim.SetTrigger("TPBP");
+                yield return new WaitForSeconds(0.5f);
+                audioSource.PlayOneShot(tpbpSound);
+
                 ShowMessage($"{Name} menggunakan jurus rahasia: 'Tangan Panjang, Badan Pendek'. Kamu kehilangan uang sebesar {stolenAmount}!");
                 Debug.Log($"{Name} menggunakan jurus rahasia: 'Tangan Panjang, Badan Pendek'. Kamu kehilangan uang sebesar {stolenAmount}!");
                 yield return new WaitForSeconds(1f);
@@ -105,6 +113,8 @@ public class MrRizzler : Tuyul
     public IEnumerator UseSeduceYouToDeath(Player playerCharacter)
     {
         TuyulAnim.SetTrigger("Seduce");
+        yield return new WaitForSeconds(1f);
+        audioSource.PlayOneShot(seduceSound);
         yield return new WaitForSeconds(1f);
 
         DebuffRoundsLeft = 3;
@@ -134,6 +144,9 @@ public class MrRizzler : Tuyul
     private IEnumerator ExecuteNormalAttack(Player playerCharacter)
     {
         TuyulAnim.SetTrigger("Throw");
+        yield return new WaitForSeconds(1f);
+        audioSource.PlayOneShot(ketimpukSound);
+
         yield return new WaitForSeconds(1f);
         playerCharacter.TakeDamage(AttackPower);
         ShowMessage($"{Name} mengeluarkan jurus 'Ketimpuk Batu' dan memberikan {AttackPower} damage! Sisa HP: {playerCharacter.currentHealth}");

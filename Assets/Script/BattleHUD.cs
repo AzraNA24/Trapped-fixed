@@ -6,7 +6,6 @@ using UnityEngine.UI;
 
 public class BattleHUD : MonoBehaviour
 {
-
     public TextMeshProUGUI nameText;
     public Slider hpSlider;
     public TextMeshProUGUI hpText;

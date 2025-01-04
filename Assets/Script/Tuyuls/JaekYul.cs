@@ -3,6 +3,14 @@ using System.Collections;
 
 public class JaekYul : Tuyul
 {
+    public AudioSource audioSource; 
+    public AudioClip tpbpSound; 
+    public AudioClip ketimpukSound;
+    public AudioClip gatsbySound;
+    public AudioClip democracySound;
+    public AudioClip poisonSound;
+    public AudioClip seduceSound;
+    
     public int DebuffRoundsLeft = 0;
     private GameObject currentFormObject;
     private int poisonDuration = 3;
@@ -91,6 +99,9 @@ public class JaekYul : Tuyul
             if (playerCharacter.DeductMoney(stolenAmount))
             {
                 TuyulAnim.SetTrigger("TPBP");
+                yield return new WaitForSeconds(0.5f);
+                audioSource.PlayOneShot(tpbpSound);
+
                 ShowMessage($"{Name} menggunakan jurus rahasia: 'Tangan Panjang, Badan Pendek'. Kamu kehilangan uang sebesar {stolenAmount}!");
                 Debug.Log($"{Name} menggunakan jurus rahasia: 'Tangan Panjang, Badan Pendek'. Kamu kehilangan uang sebesar {stolenAmount}!");
                 yield return new WaitForSeconds(1f);
@@ -98,7 +109,7 @@ public class JaekYul : Tuyul
         }
 
         // Special skill: dapat berubah menjadi Tuyul lain
-        if (Random.value < 0.3f) // 30% chance
+        if (Random.value < 0.3f) // 30% chance      
         {
             TransformToRandomTuyul();
             yield return StartCoroutine(UseCurrentFormSpecialSkill(playerCharacter));
@@ -155,6 +166,9 @@ public class JaekYul : Tuyul
     {
         TuyulAnim.SetTrigger("Throw");
         yield return new WaitForSeconds(1f);
+        audioSource.PlayOneShot(ketimpukSound);
+
+        yield return new WaitForSeconds(1f);
         playerCharacter.TakeDamage(AttackPower);
         ShowMessage($"{Name} mengeluarkan jurus 'Ketimpuk Batu' dan memberikan {AttackPower} damage! Sisa HP: {playerCharacter.currentHealth}");
         Debug.Log($"{Name} mengeluarkan jurus 'Ketimpuk Batu' dan memberikan {AttackPower} damage! Sisa HP: {playerCharacter.currentHealth}");
@@ -190,9 +204,12 @@ public class JaekYul : Tuyul
             Debug.Log($"{Name} dalam bentuk {currentForm.Name} tidak memiliki special skill untuk digunakan!");
         }
     }
+
     public IEnumerator UseTheGreatGatsby(Player playerCharacter)
     {
         TuyulAnim.SetTrigger("Aven");
+        yield return new WaitForSeconds(1.2f);
+        audioSource.PlayOneShot(gatsbySound);
         int Ultimate = AttackPower + AttackPower / 2;
         yield return new WaitForSeconds(1f);
 
@@ -200,9 +217,11 @@ public class JaekYul : Tuyul
         ShowMessage($"{Name} memberikan {Ultimate} damage tambahan dengan jurus 'The Great Gatsby'! Sisa HP: {playerCharacter.currentHealth}");
         Debug.Log($"{Name} memberikan {AttackPower * 1.5} damage tambahan dengan jurus 'The Great Gatsby'! Sisa HP: {playerCharacter.currentHealth}");
     }
+
     public IEnumerator UseSeduceYouToDeath(Player playerCharacter)
     {
         TuyulAnim.SetTrigger("Rizz");
+        audioSource.PlayOneShot(seduceSound);
         yield return new WaitForSeconds(1f);
 
         DebuffRoundsLeft = 3;
@@ -217,12 +236,16 @@ public class JaekYul : Tuyul
         ShowMessage($"{Name} menggunakan jurus spesial 'Seduce You To Death'! Efek health potion pemain berkurang dan critical chance turun menjadi {playerCharacter.criticalChance * 100}%.");
         Debug.Log($"{Name} menggunakan jurus spesial 'Seduce You To Death'! Efek health potion pemain berkurang dan critical chance turun menjadi {playerCharacter.criticalChance * 100}%.");
     }
+
     public IEnumerator UseTheDemocracy(Player playerCharacter)
     {
         yield return new WaitForSeconds(1f);
 
         int roachesCount = Random.Range(2, 9); // Memanggil 2-8 kecoak kecil
         TuyulAnim.SetTrigger("CkyLDemo");
+        yield return new WaitForSeconds(1f);
+        audioSource.PlayOneShot(democracySound);
+
         ShowMessage($"{Name} memanggil {roachesCount} kecoak kecil untuk menyerang!");
         Debug.Log($"{Name} memanggil {roachesCount} kecoak kecil untuk menyerang!");
 
@@ -234,10 +257,14 @@ public class JaekYul : Tuyul
             Debug.Log($"Seekor kecoak menyerang dan memberikan {roachDamage} damage! Sisa HP pemain: {playerCharacter.currentHealth}");
         }
     }
+
     public IEnumerator UsePoison(Player playerCharacter)
     {
         yield return new WaitForSeconds(1f);
         TuyulAnim.SetTrigger("CkyLShadow");
+        yield return new WaitForSeconds(1f);
+        audioSource.PlayOneShot(poisonSound);
+
         ShowMessage($"{Name} menggunakan jurus 'Monster Lurks Beneath The Shadow of The Dawn'! Pemain terkena efek poison selama {poisonDuration} giliran.");
         Debug.Log($"{Name} menggunakan jurus 'Monster Lurks Beneath The Shadow of The Dawn'! Pemain terkena efek poison selama {poisonDuration} giliran.");
         playerCharacter.StartCoroutine(ApplyPoison(playerCharacter));

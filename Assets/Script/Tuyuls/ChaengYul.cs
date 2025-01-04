@@ -3,6 +3,12 @@ using UnityEngine;
 
 public class ChaengYul : Tuyul
 {
+    public AudioSource audioSource; 
+    public AudioClip tpbpSound; 
+    public AudioClip ketimpukSound;
+    public AudioClip graveSound;
+    public AudioClip pocongSound;
+
     public int DebuffRoundsLeft = 0;
     public Animator StoneThrow;
     public Renderer Stone;
@@ -94,6 +100,9 @@ public class ChaengYul : Tuyul
             if (playerCharacter.DeductMoney(stolenAmount))
             {
                 TuyulAnim.SetTrigger("TPBP");
+                yield return new WaitForSeconds(0.5f);
+                audioSource.PlayOneShot(tpbpSound);
+
                 ShowMessage($"{Name} menggunakan jurus rahasia: 'Tangan Panjang, Badan Pendek'. Kamu kehilangan uang sebesar {stolenAmount}!");
                 Debug.Log($"{Name} menggunakan jurus rahasia: 'Tangan Panjang, Badan Pendek'. Kamu kehilangan uang sebesar {stolenAmount}!");
                 yield return new WaitForSeconds(1f);
@@ -133,12 +142,18 @@ public class ChaengYul : Tuyul
     public IEnumerator UseBeyondTheGrave(Player playerCharacter)
     {
         TuyulAnim.SetTrigger("Behind");
+        yield return new WaitForSeconds(1f);
+        audioSource.PlayOneShot(graveSound);
+        yield return new WaitForSeconds(2.25f);
+        audioSource.PlayOneShot(pocongSound);
+
         int Ultimate = AttackPower * 2;
         yield return new WaitForSeconds(2f);
 
         if (random.NextDouble() < 0.2)
         {
             playerCharacter.TakeDamage(100);
+        
             ShowMessage("ChaengYul menyerang dengan jurus 'Scare You To Death' dan memberikan 100 damage!");
             Debug.Log("Scare You To Death");
         }
@@ -156,10 +171,13 @@ public class ChaengYul : Tuyul
 
         StartCoroutine(ExecuteNormalAttack(playerCharacter));
     }
+
     public IEnumerator ExecuteNormalAttack(Player playerCharacter)
     {
         Stone.enabled = true;
         TuyulAnim.SetTrigger("OnThrow");
+        yield return new WaitForSeconds(1f);
+        audioSource.PlayOneShot(ketimpukSound);
 
         ShowMessage($"{Name} mengeluarkan jurus 'Ketimpuk Batu' dan memberikan {AttackPower} damage! Sisa HP: {playerCharacter.currentHealth}");
         Debug.Log($"{Name} mengeluarkan jurus 'Ketimpuk Batu' dan memberikan {AttackPower} damage! Sisa HP: {playerCharacter.currentHealth}");

@@ -86,6 +86,7 @@ public class Player : MonoBehaviour
     {
         return Inventory.GetItemCount(LootBox.LootType.Bullet) > 0;
     }
+    
     public bool UsePotion()
     {
         LootBox healthPotionBox = new LootBox { Type = LootBox.LootType.HealthPotion };

@@ -3,6 +3,11 @@ using UnityEngine;
 
 public class RollyPolly : Tuyul
 {
+    public AudioSource audioSource; 
+    public AudioClip tpbpSound; 
+    public AudioClip ketimpukSound;
+    public AudioClip teamworkSound;
+
     public int DebuffRoundsLeft = 0;
     public GameObject Rolly;
     private Animator rollyAnimator;
@@ -24,10 +29,12 @@ public class RollyPolly : Tuyul
         Money = 30;
         Type = TuyulType.RollyPolly;
     }
+
     void ShowMessage(string message)
     {
         DialogueBattle.Instance.UpdateDialog(message);
     }
+
     public override bool TakeDamage(int damage, Player playerCharacter)
     {
         currentHealth -= damage;
@@ -84,6 +91,9 @@ public class RollyPolly : Tuyul
             if (playerCharacter.DeductMoney(stolenAmount))
             {
                 TuyulAnim.SetTrigger("TPBP");
+                yield return new WaitForSeconds(0.5f);
+                audioSource.PlayOneShot(tpbpSound);
+
                 ShowMessage($"{Name} menggunakan jurus rahasia: 'Tangan Panjang, Badan Pendek'. Kamu kehilangan uang sebesar {stolenAmount}!");
                 Debug.Log($"{Name} menggunakan jurus rahasia: 'Tangan Panjang, Badan Pendek'. Kamu kehilangan uang sebesar {stolenAmount}!");
                 yield return new WaitForSeconds(1f);
@@ -117,13 +127,15 @@ public class RollyPolly : Tuyul
 
         // Jalankan animasi "Ulti"
         rollyAnimator.SetTrigger("Ulti");
+        yield return new WaitForSeconds(0.25f);
+        audioSource.PlayOneShot(teamworkSound);
+
         ShowMessage("Rolly mengeluarkan jurus : The Power of Imagination!");
         yield return new WaitForSeconds(rollyAnimator.GetCurrentAnimatorStateInfo(0).length); // Tunggu animasi selesai
         playerCharacter.TakeDamage(2*AttackPower);
         Rolly.SetActive(false);
     }
     
-
     public override void NormalAttack(Player playerCharacter)
     {
         StartCoroutine(ExecuteNormalAttack(playerCharacter));
@@ -133,6 +145,9 @@ public class RollyPolly : Tuyul
     {
         playerCharacter.TakeDamage(AttackPower);
         TuyulAnim.SetTrigger("Throws");
+        yield return new WaitForSeconds(1f);
+        audioSource.PlayOneShot(ketimpukSound);
+
         ShowMessage($"{Name} mengeluarkan jurus 'Ketimpuk Batu' dan memberikan {AttackPower} damage! Sisa HP: {playerCharacter.currentHealth}");
         Debug.Log($"{Name} mengeluarkan jurus 'Ketimpuk Batu' dan memberikan {AttackPower} damage! Sisa HP: {playerCharacter.currentHealth}");
 

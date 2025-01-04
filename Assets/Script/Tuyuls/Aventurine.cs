@@ -3,6 +3,11 @@ using UnityEngine;
 
 public class Aventurine : Tuyul
 {
+    public AudioSource audioSource; 
+    public AudioClip tpbpSound; 
+    public AudioClip ketimpukSound;
+    public AudioClip gatsbySound;
+
     public int DebuffRoundsLeft = 0;
     private bool canFUA = false;
 
@@ -14,14 +19,15 @@ public class Aventurine : Tuyul
         Money = 30;
         Type = TuyulType.Aventurine;
     }
+
     void ShowMessage(string message)
     {
         DialogueBattle.Instance.UpdateDialog(message);
     }
+
     public override bool TakeDamage(int damage, Player playerCharacter)
     {
         currentHealth -= damage;
-
         FindObjectOfType<BattleHUD>().SetHP(currentHealth);
 
         ShowMessage($"{Name} menerima {damage} damage! Sisa HP: {currentHealth}");
@@ -74,6 +80,9 @@ public class Aventurine : Tuyul
             if (playerCharacter.DeductMoney(stolenAmount))
             {
                 TuyulAnim.SetTrigger("TPBP");
+                yield return new WaitForSeconds(0.5f);
+                audioSource.PlayOneShot(tpbpSound);
+
                 ShowMessage($"{Name} menggunakan jurus rahasia: 'Tangan Panjang, Badan Pendek'. Kamu kehilangan uang sebesar {stolenAmount}!");
                 Debug.Log($"{Name} menggunakan jurus rahasia: 'Tangan Panjang, Badan Pendek'. Kamu kehilangan uang sebesar {stolenAmount}!");
                 yield return new WaitForSeconds(1f);
@@ -93,6 +102,9 @@ public class Aventurine : Tuyul
     public IEnumerator UseTheGreatGatsby(Player playerCharacter)
     {
         TuyulAnim.SetTrigger("Ulti");
+        yield return new WaitForSeconds(1.2f);
+        audioSource.PlayOneShot(gatsbySound);
+
         int Ultimate = AttackPower + AttackPower / 2;
         yield return new WaitForSeconds(1f);
 
@@ -111,6 +123,9 @@ public class Aventurine : Tuyul
     {
         playerCharacter.TakeDamage(AttackPower);
         TuyulAnim.SetTrigger("Throws");
+        yield return new WaitForSeconds(1f);
+        audioSource.PlayOneShot(ketimpukSound);
+
         ShowMessage($"{Name} mengeluarkan jurus 'Ketimpuk Batu' dan memberikan {AttackPower} damage! Sisa HP: {playerCharacter.currentHealth}");
         Debug.Log($"{Name} mengeluarkan jurus 'Ketimpuk Batu' dan memberikan {AttackPower} damage! Sisa HP: {playerCharacter.currentHealth}");
 

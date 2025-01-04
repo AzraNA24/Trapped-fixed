@@ -20,6 +20,7 @@ public class CodexUI : MonoBehaviour
         public bool isUnlocked;
 
     }
+    
     public TuyulCharacter[] tuyulCodex = new TuyulCharacter[]
     {
         new TuyulCharacter {

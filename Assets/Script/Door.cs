@@ -63,7 +63,7 @@ public class Door : MonoBehaviour
                 Debug.Log("Switching to Boss Room by default");
                 SwitchToRoom(bossRoom);
             }
-            else if (roomCount >= 6 && Random.value <= 0.4f)
+            else if (roomCount >= 8 && Random.value <= 0.4f)
             {
                 isBossRoomTriggered = true;
                 Debug.Log("Switching to Boss Room by probability.");
@@ -91,14 +91,14 @@ public class Door : MonoBehaviour
 
     private bool ShouldEnterMiniBossRoom()
     {
-        // 30% chance after 3 rooms
-        return roomCount >= 4 && Random.value <= 0.3f;
+        // 50% chance after 3 rooms
+        return roomCount >= 4 && Random.value <= 0.5f;
     }
 
     private bool ShouldEnterHealRoom()
     {
-        // 30% chance after 4 rooms
-        return roomCount >= 5 && Random.value <= 0.3f;
+        // 40% chance after 4 rooms
+        return roomCount >= 5 && Random.value <= 0.4f;
     }
 
     private void SwitchToRoom(string roomName)
@@ -264,6 +264,5 @@ public class Door : MonoBehaviour
         {
             Debug.LogError("Door Animator is null!");
         }
-    }
-    
+    } 
 }

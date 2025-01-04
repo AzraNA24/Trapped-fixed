@@ -104,6 +104,7 @@ MonoBehaviour:
   - Room9
   - Room10
   miniBossRooms:
+  - MiniBoss1
   - MiniBoss2
   bossRoom: BossRoom
   healRoom: Heal

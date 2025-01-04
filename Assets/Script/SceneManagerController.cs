@@ -120,7 +120,6 @@ public class SceneManagerController : MonoBehaviour
         return currentMode;
     }
 
-
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         SceneManager.sceneLoaded -= OnSceneLoaded;
