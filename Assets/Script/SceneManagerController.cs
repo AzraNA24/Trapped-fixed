@@ -195,8 +195,15 @@ public class SceneManagerController : MonoBehaviour
     public void StartNewGame()
     {
         Player.Instance.ResetInventory();
+        ResetLootStatus();  // tambah
         Player.Instance.currentHealth = Player.Instance.Health; 
         Player.Instance.Money = 100; 
         SceneManager.LoadScene("MainMenu"); 
+    }
+
+    private void ResetLootStatus()
+    {
+        PlayerPrefs.DeleteAll();
+        Debug.Log("Loot status direset.");
     }
 }
