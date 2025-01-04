@@ -18,6 +18,7 @@ public class CurrencyManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
+    
     public void AddMoney(int amount)
     {
         if (amount > 0)

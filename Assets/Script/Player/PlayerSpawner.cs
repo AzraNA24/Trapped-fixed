@@ -34,6 +34,8 @@ public class PlayerSpawner : MonoBehaviour
             ? SceneManagerController.Instance.GetCurrentGameMode() 
             : SceneManagerController.GameMode.Exploration; // Default ke Exploration jika null
 
+            Debug.Log($"ada di mode {currentMode}");
+
         // Pilih SpawnPoint berdasarkan mode
         string spawnPointName = currentMode == SceneManagerController.GameMode.Exploration ? "SpawnPoint" : "PlayerSpawnPoint";
 

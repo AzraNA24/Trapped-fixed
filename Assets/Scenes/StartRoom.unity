@@ -215,6 +215,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1195421759263100731, guid: 0e73ea6757575b14b86fbf571650966b, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1991079933}
+    - targetCorrespondingSourceObject: {fileID: 1195421759263100731, guid: 0e73ea6757575b14b86fbf571650966b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1991079944}
   m_SourcePrefab: {fileID: 100100000, guid: 0e73ea6757575b14b86fbf571650966b, type: 3}
 --- !u!114 &98127123 stripped
 MonoBehaviour:
@@ -8932,6 +8935,24 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1991079944
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1991079922}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 152155de68215624dbbaec1aba825907, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentMode: 0
+  explorationPlayerPrefab: {fileID: 1195421759263100731, guid: 0e73ea6757575b14b86fbf571650966b, type: 3}
+  turnBasedPlayerPrefab: {fileID: 1195421759263100731, guid: 0e73ea6757575b14b86fbf571650966b, type: 3}
+  respawnPosition: {x: 0, y: 0, z: 0}
+  Camera: {fileID: 945277345}
+  explorationStartPosition: {x: 0, y: 0}
 --- !u!1 &2043671099
 GameObject:
   m_ObjectHideFlags: 0

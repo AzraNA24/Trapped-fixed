@@ -7,6 +7,7 @@ public struct LootTypeSprite
     public LootBox.LootType Type;
     public Sprite Icon;
 }
+
 public class LootBox : MonoBehaviour
 {
     public LootType Type;
@@ -22,6 +23,13 @@ public class LootBox : MonoBehaviour
         {
             Debug.LogError("Player reference is missing. Loot cannot be generated.");
         }
+
+        // batas tambah --------------------
+        if (PlayerPrefs.HasKey($"{name}_Looted") && PlayerPrefs.GetInt($"{name}_Looted") == 1)
+        {
+            Destroy(gameObject);
+        }
+        // batas tambah --------------------
     }
 
     // Daftar LootType dan Sprite-nya
@@ -39,6 +47,7 @@ public class LootBox : MonoBehaviour
         }
         return null;
     }
+    
     public void GenerateLoot()
     {
         Player currency = Player.Instance;
@@ -57,6 +66,11 @@ public class LootBox : MonoBehaviour
         currency.AddMoney(money);
         currency.Inventory.AddItem(LootType.HealthPotion, potion);
         currency.Inventory.AddItem(LootType.Bullet, bullet);
+
+        // batas tambah --------------------
+        PlayerPrefs.SetInt($"{name}_Looted", 1);
+        PlayerPrefs.Save();
+        // batas tambah --------------------
 
         Destroy(gameObject);
     }

@@ -35,6 +35,7 @@ public class InventoryItem : MonoBehaviour
     {
         gameObject.SetActive(false);
     }
+    
     public bool AddItem(LootBox.LootType itemType, int amount)
     {
         foreach (Slots slots in slot)

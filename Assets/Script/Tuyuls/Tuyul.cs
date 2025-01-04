@@ -101,8 +101,8 @@ public class Tuyul : MonoBehaviour
 
     private void EndBattleEarly()
     {
-        ShowMessage("Pertarungan diakhiri karena pemain menerima tawaran Tuyul.");
-        Debug.Log("Pertarungan diakhiri karena pemain menerima tawaran Tuyul.");
+        ShowMessage("Pertarungan selesai karena pemain menerima tawaran Tuyul.");
+        Debug.Log("Pertarungan selesai karena pemain menerima tawaran Tuyul.");
         
         PlayerManager playerManager = FindObjectOfType<PlayerManager>();
         if (playerManager != null)

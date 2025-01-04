@@ -335,9 +335,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 144703324488774886, guid: b646cc674ed713c4bad8532357d36cd5, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2230084780681459113, guid: b646cc674ed713c4bad8532357d36cd5, type: 3}
       propertyPath: m_Name
       value: RollyPolly
+      objectReference: {fileID: 0}
+    - target: {fileID: 2230084780681459113, guid: b646cc674ed713c4bad8532357d36cd5, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 7804752389268769356, guid: b646cc674ed713c4bad8532357d36cd5, type: 3}
       propertyPath: m_LocalScale.x

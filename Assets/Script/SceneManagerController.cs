@@ -64,6 +64,7 @@ public class SceneManagerController : MonoBehaviour
                 if (animator != null)
                 {
                     animator.SetBool("TurnBased", true); // Aktifkan animasi Turn-Based
+                    Debug.Log($"Scene sekarang: {sceneName}");
                 }
             }
 
@@ -119,7 +120,6 @@ public class SceneManagerController : MonoBehaviour
         return currentMode;
     }
 
-
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         SceneManager.sceneLoaded -= OnSceneLoaded;
@@ -168,6 +168,7 @@ public class SceneManagerController : MonoBehaviour
             //SceneManager.LoadScene(lastSceneName);
             SceneManager.sceneLoaded += (scene, mode) =>
             {
+                
                 // Pulihkan posisi Player
                 FindObjectOfType<PlayerManager>()?.RestoreExplorationStartPosition();
 
@@ -182,7 +183,9 @@ public class SceneManagerController : MonoBehaviour
                 foreach (GameObject tuyul in tuyuls)
                 {
                     string tuyulName = tuyul.name;
+                    Debug.Log($"Checking PlayerPrefs for {tuyulName}_Defeated: {PlayerPrefs.HasKey($"{tuyulName}_Defeated")}");
                     FindObjectOfType<PlayerManager>()?.CheckAndRemoveDefeatedTuyuls(tuyul, tuyulName);
+                    
                 }
             };
         }

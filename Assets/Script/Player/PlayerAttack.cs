@@ -31,30 +31,21 @@ public class PlayerAttack : MonoBehaviour
     }
 
     void Attack()
-{
-    float direction = transform.localScale.x;
-    animator.SetFloat("Horizontal", direction);
-    animator.SetTrigger("Attack");
-
-    Collider2D[] hitThing = Physics2D.OverlapCircleAll(AttackPoint.position, AttackRange, Layer);
-
-    foreach (Collider2D Thing in hitThing)
     {
-        string objectName = Thing.gameObject.name;
-        string objectLayer = LayerMask.LayerToName(Thing.gameObject.layer);
+        float direction = transform.localScale.x;
+        animator.SetFloat("Horizontal", direction);
+        animator.SetTrigger("Attack");
 
-        Debug.Log($"Detected: {Thing.gameObject.name}");
+        Collider2D[] hitThing = Physics2D.OverlapCircleAll(AttackPoint.position, AttackRange, Layer);
 
-        if (Thing.isTrigger)
+        foreach (Collider2D Thing in hitThing)
         {
-            Debug.Log($"Trigger detected: {Thing.gameObject.name}");
-        }
+            string objectName = Thing.gameObject.name;
+            string objectLayer = LayerMask.LayerToName(Thing.gameObject.layer);
 
-        if (objectLayer == "Tuyul")
-        {
-            currentTuyulName = Thing.gameObject.name;
-            isTriggered = true;
+            Debug.Log($"Detected: {Thing.gameObject.name}");
 
+<<<<<<< HEAD
             // if (codexUI == null)
             // {
             //     return;
@@ -69,15 +60,34 @@ public class PlayerAttack : MonoBehaviour
             Player.Instance.currentHealth = Player.Instance.Health;
             Debug.Log($"Player health restored to full. Current health: {Player.Instance.currentHealth}");
         }
+=======
+            if (Thing.isTrigger)
+            {
+                Debug.Log($"Trigger detected: {Thing.gameObject.name}");
+            }
+>>>>>>> 2504baa8254ecb2f914281e76b46740906883c10
 
-        LootBox lootBox = Thing.GetComponent<LootBox>();
-        if (lootBox != null)
-        {
-            lootBox.GenerateLoot();
+            if (objectLayer == "Tuyul")
+            {
+                currentTuyulName = Thing.gameObject.name;
+                isTriggered = true;
+
+                // if (codexUI == null)
+                // {
+                //     return;
+                // }
+                Debug.Log($"Tuyul detected: {currentTuyulName}! Switching to TurnBased scene after audio...");
+                StartCoroutine(PlayAudioAndSwitchScene());
+                return;
+            }
+
+            LootBox lootBox = Thing.GetComponent<LootBox>();
+            if (lootBox != null)
+            {
+                lootBox.GenerateLoot();
+            }
         }
     }
-}
-
 
     IEnumerator PlayAudioAndSwitchScene()
     {

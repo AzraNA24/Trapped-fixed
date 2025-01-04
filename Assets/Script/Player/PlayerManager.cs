@@ -37,36 +37,41 @@ public class PlayerManager : MonoBehaviour
         SwitchMode(PlayerMode.Exploration);
     }
 
-public void SwitchMode(PlayerMode mode)
-{    
-    if (mode == PlayerMode.TurnBased)
-    {
-        PlayerMovement movement = GetComponent<PlayerMovement>();
-        PlayerAttack attack = GetComponent<PlayerAttack>();
-
-        if (movement != null) movement.enabled = false;
-        if (attack != null) attack.enabled = false;
-
-        Animator animator = GetComponent<Animator>();
-        if (animator != null)
+    public void SwitchMode(PlayerMode mode)
+    {    
+        if (mode == PlayerMode.TurnBased)
         {
-            animator.SetBool("TurnBased", true);
+            PlayerMovement movement = GetComponent<PlayerMovement>();
+            PlayerAttack attack = GetComponent<PlayerAttack>();
+
+            if (movement != null) movement.enabled = false;
+            if (attack != null) attack.enabled = false;
+
+            Animator animator = GetComponent<Animator>();
+            if (animator != null)
+            {
+                animator.SetBool("TurnBased", true);
+                Debug.Log("Player berada dalam mode Turn-Based.");
+            }
         }
-    }
-    else if (mode == PlayerMode.Exploration)
-    {
-        PlayerMovement movement = GetComponent<PlayerMovement>();
-        PlayerAttack attack = GetComponent<PlayerAttack>();
-
-        if (movement != null) movement.enabled = true;
-        if (attack != null) attack.enabled = true;
-
-        Animator animator = GetComponent<Animator>();
-        if (animator != null)
+        else if (mode == PlayerMode.Exploration)
         {
-            animator.ResetTrigger("TurnBased");
+            PlayerMovement movement = GetComponent<PlayerMovement>();
+            PlayerAttack attack = GetComponent<PlayerAttack>();
+
+            if (movement != null) movement.enabled = true;
+            if (attack != null) attack.enabled = true;
+
+            Animator animator = GetComponent<Animator>();
+            
+            if (animator != null)
+            {
+                animator.SetBool("TurnBased", false);
+                Debug.Log("Player berada dalam mode Eksplorasi.");
+
+            }
         }
-    }
+
         currentMode = mode;
 
         if (Camera != null && activePlayer != null) //(Camera != null)
@@ -99,6 +104,7 @@ public void SwitchMode(PlayerMode mode)
         float z = PlayerPrefs.GetFloat("PlayerLastPosZ", transform.position.z);
         activePlayer.transform.position = new Vector3(x, y, z);
     }
+    
     public void SavePlayerPosition(Vector3 position)
     {
         PlayerPrefs.SetFloat("PlayerLastPosX", position.x);
@@ -124,12 +130,24 @@ public void SwitchMode(PlayerMode mode)
         }
     }
 
-    public void CheckAndRemoveDefeatedTuyuls(GameObject tuyulObject, string tuyulName)
+    public void CheckAndRemoveDefeatedTuyuls(GameObject tuyul, string tuyulName)
     {
+        // Debugging untuk memeriksa nilai PlayerPrefs yang disimpan
+        Debug.Log($"PlayerPrefs[{tuyulName}_Defeated]: {PlayerPrefs.GetInt($"{tuyulName}_Defeated")}");
+        
         if (PlayerPrefs.HasKey($"{tuyulName}_Defeated") && PlayerPrefs.GetInt($"{tuyulName}_Defeated") == 1)
         {
-            Destroy(tuyulObject);
+            // Hapus Tuyul yang sudah dikalahkan
+            Destroy(tuyul);
             Debug.Log($"{tuyulName} sudah dikalahkan dan dihapus dari scene eksplorasi.");
         }
+        else
+        {
+            // Jika Tuyul belum dikalahkan, log statusnya
+            Debug.Log($"{tuyulName} belum dikalahkan.");
+        }
+
+        // Log pengecekan status Tuyul
+        Debug.Log($"Checking status for {tuyulName}: Defeated = {PlayerPrefs.HasKey($"{tuyulName}_Defeated") && PlayerPrefs.GetInt($"{tuyulName}_Defeated") == 1}");
     }
 }

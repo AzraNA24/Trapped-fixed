@@ -79,7 +79,5 @@ public class AudioManager : MonoBehaviour
                 Debug.Log($"Active AudioSource: {audio.clip.name} on GameObject: {audio.gameObject.name}");
             }
         }
-    }
-    
+    } 
 }
-

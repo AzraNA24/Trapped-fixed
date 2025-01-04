@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public enum BattleState { START, PLAYER_TURN, TUYUL_TURN, WON, LOST }
+
 public class BattleSystem : MonoBehaviour
 {
     public BattleState state;
@@ -35,7 +36,6 @@ public class BattleSystem : MonoBehaviour
     public AudioSource SFXSource;
     public AudioSource backgroundMusic;
     public GameObject PosionButton;
-
 
     void Start()
     {
@@ -127,6 +127,18 @@ public class BattleSystem : MonoBehaviour
         PlayerTurn();
     }
 
+<<<<<<< HEAD
+=======
+    //void SetupRollyPollyPair()
+    //{
+    //    Rolly rolly = Instantiate(Rolly, rollySpawnPoint).GetComponent<Rolly>();
+    //    Polly polly = Instantiate(Polly, pollySpawnPoint).GetComponent<Polly>();
+
+    //    rolly.partner = polly;
+    //    polly.partner = rolly;
+    //}
+
+>>>>>>> 2504baa8254ecb2f914281e76b46740906883c10
     void PlayerTurn()
     {
         // Terapkan efek poison hanya untuk CheokYul
@@ -224,6 +236,22 @@ public class BattleSystem : MonoBehaviour
             yield break;
         }
 
+        yield return new WaitForSeconds(1f);
+
+        if (LongRangeClickSound != null && SFXSource != null)
+        {
+            SFXSource.PlayOneShot(LongRangeClickSound);
+        }
+
+        yield return new WaitForSeconds(0.5f);
+
+        if (LongRangeShootSound != null && SFXSource != null)
+        {
+            SFXSource.PlayOneShot(LongRangeShootSound);
+        }
+
+        yield return new WaitForSeconds(0.5f);
+
         playerCharacter.Inventory.UseItem(new LootBox { Type = LootBox.LootType.Bullet }, 1); // Kurangi peluru
         Debug.Log($"Peluru digunakan. Sisa peluru: {playerCharacter.Inventory.GetItemCount(LootBox.LootType.Bullet)}");
 
@@ -298,7 +326,6 @@ public class BattleSystem : MonoBehaviour
         }
     }
 
-
     public void EndBattle()
     {
         if (state == BattleState.WON || state == BattleState.LOST)
@@ -313,10 +340,12 @@ public class BattleSystem : MonoBehaviour
 
                 PlayerPrefs.SetInt($"{enemyCharacter.Name}_Defeated", 1);
                 PlayerPrefs.Save();
+                Debug.Log($"Is {enemyCharacter.Name}_Defeated: {PlayerPrefs.GetInt($"{enemyCharacter.Name}_Defeated", 0)}");
+
 
                 if (enemyCharacter != null)
                 {
-                    Destroy(enemyCharacter.gameObject);
+                    Destroy(enemyCharacter);
                     ShowMessage($"{enemyCharacter.Name} telah dihancurkan.");
                     Debug.Log($"{enemyCharacter.Name} telah dihancurkan.");
                 }
@@ -372,9 +401,18 @@ public class BattleSystem : MonoBehaviour
         if (playerCharacter.Inventory.GetItemCount(LootBox.LootType.HealthPotion) > 0)
         {
             potionCounter++;
+
+            if (PotionSound != null && SFXSource != null)
+            {
+                SFXSource.PlayOneShot(PotionSound);
+            }
+
             playerCharacter.UsePotion(); // Menggunakan potion dan mengurangi dari inventory
             ShowMessage($"Potion digunakan. Health sekarang: {playerCharacter.currentHealth}");
             Debug.Log($"Potion digunakan. Health sekarang: {playerCharacter.currentHealth}");
+            ShowMessage($"Potion digunakan {potionCounter}/{maxPotionsPerBattle} kali dalam pertempuran ini.");
+            Debug.Log($"Potion digunakan {potionCounter}/{maxPotionsPerBattle} kali dalam pertempuran ini.");
+
         
             state = BattleState.TUYUL_TURN;
             StartCoroutine(EnemyTurn());    
@@ -392,8 +430,6 @@ public class BattleSystem : MonoBehaviour
         potionCounter++;
         playerCharacter.UsePotion();
 
-        ShowMessage($"Potion digunakan {potionCounter}/{maxPotionsPerBattle} kali dalam pertempuran ini.");
-        Debug.Log($"Potion digunakan {potionCounter}/{maxPotionsPerBattle} kali dalam pertempuran ini.");
         yield return new WaitForSeconds(1f);
 
         state = BattleState.TUYUL_TURN;

@@ -19,6 +19,7 @@ public class CameraController : MonoBehaviour
     //         return;
     //     }
     // } 
+    
     private void Start()
     {
         // Temukan Cinemachine Virtual Camera di scene

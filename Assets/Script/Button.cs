@@ -13,6 +13,7 @@ public class Button: MonoBehaviour
         }
         animator = FindObjectOfType<Player>()?.GetComponent<Animator>();
     }
+
     public void OnDrinkPotionButtonPressed()
     {
         battle.OnPotionButton();
@@ -54,7 +55,6 @@ public class Button: MonoBehaviour
         animator.SetBool(animationName, true);
         StartCoroutine(ReturnToStanceAfterAnimation(animationName));
     }
-
 
     private System.Collections.IEnumerator ReturnToStanceAfterAnimation(string animationName)
     {

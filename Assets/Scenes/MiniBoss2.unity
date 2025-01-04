@@ -296,6 +296,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CheokYul
       objectReference: {fileID: 0}
+    - target: {fileID: 499742745184139305, guid: a91ceda698c8f0942902d8e29dd63b97, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 1568877711402906055, guid: a91ceda698c8f0942902d8e29dd63b97, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.36

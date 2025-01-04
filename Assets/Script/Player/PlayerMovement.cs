@@ -18,47 +18,46 @@ public class PlayerMovement : MonoBehaviour
     
     void Update()
     {
-    movement.x = Input.GetAxisRaw("Horizontal");
-    movement.y = Input.GetAxisRaw("Vertical");
-    
-    if (movement.sqrMagnitude > 0)
-    {
-        lastMovement = movement; // Dia harus nyimpen arah terakhir, kalau enggak, default ke kiri
-    }
+        movement.x = Input.GetAxisRaw("Horizontal");
+        movement.y = Input.GetAxisRaw("Vertical");
+        
+        if (movement.sqrMagnitude > 0)
+        {
+            lastMovement = movement; // Dia harus nyimpen arah terakhir, kalau enggak, default ke kiri
+        }
 
-    animator.SetFloat("Horizontal", lastMovement.x);
-    animator.SetFloat("Vertical", lastMovement.y);      
+        animator.SetFloat("Horizontal", lastMovement.x);
+        animator.SetFloat("Vertical", lastMovement.y);      
 
-    bool isMoving = movement.sqrMagnitude > 0;                                                                                                           
-    animator.SetBool("isMoving", isMoving);
+        bool isMoving = movement.sqrMagnitude > 0;                                                                                                           
+        animator.SetBool("isMoving", isMoving);
 
-    if (isMoving)
-    {
-        idleTimer = 0f;
-        PlayFootstepSound();
-    }
-    else
-    {
-        StopFootstepSound();
-        idleTimer += Time.deltaTime;
-    }
+        if (isMoving)
+        {
+            idleTimer = 0f;
+            PlayFootstepSound();
+        }
+        else
+        {
+            StopFootstepSound();
+            idleTimer += Time.deltaTime;
+        }
 
-    if (idleTimer > idleThreshold)
-    {
-        animator.SetBool("isIdle", true);
-    }
-    else
-    {
-        animator.SetBool("isIdle", false);
-    }
+        if (idleTimer > idleThreshold)
+        {
+            animator.SetBool("isIdle", true);
+        }
+        else
+        {
+            animator.SetBool("isIdle", false);
+        }
 
-    // if (Input.GetMouseButtonDown(0) && !isAttacking)
-    // {
-    //     animator.SetFloat("Horizontal", movement.x);
-    //     animator.SetFloat("Vertical", movement.y);
-    //     // StartCoroutine(PerformAttack());
-    // }
-
+        // if (Input.GetMouseButtonDown(0) && !isAttacking)
+        // {
+        //     animator.SetFloat("Horizontal", movement.x);
+        //     animator.SetFloat("Vertical", movement.y);
+        //     // StartCoroutine(PerformAttack());
+        // }
     }
 
     void FixedUpdate()
