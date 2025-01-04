@@ -313,6 +313,8 @@ public class BattleSystem : MonoBehaviour
 
                 PlayerPrefs.SetInt($"{enemyCharacter.Name}_Defeated", 1);
                 PlayerPrefs.Save();
+                Debug.Log($"Is {enemyCharacter.Name}_Defeated: {PlayerPrefs.GetInt($"{enemyCharacter.Name}_Defeated", 0)}");
+
 
                 if (enemyCharacter != null)
                 {

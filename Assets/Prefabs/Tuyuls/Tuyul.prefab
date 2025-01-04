@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 543716926525303897}
   m_Layer: 12
   m_Name: Tuyul
-  m_TagString: Untagged
+  m_TagString: Tuyul
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

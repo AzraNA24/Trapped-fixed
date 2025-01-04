@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2426216827640317301}
   - component: {fileID: 575108832824356297}
   - component: {fileID: 4893312756015670168}
-  - component: {fileID: 7916545060702532754}
+  - component: {fileID: 971885144998586555}
   m_Layer: 12
   m_Name: CheokYul
   m_TagString: Tuyul
@@ -128,13 +128,15 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!136 &7916545060702532754
-CapsuleCollider:
+--- !u!61 &971885144998586555
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 499742745184139305}
+  m_Enabled: 1
+  m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -143,11 +145,31 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
   m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.2714218, y: -0.3822093}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 6, y: 8}
+    newSize: {x: 6, y: 8}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
   serializedVersion: 2
-  m_Radius: 1.0972886
-  m_Height: 4.9329453
-  m_Direction: 1
-  m_Center: {x: 0.28540662, y: -0.22152679, z: 0}
+  m_Size: {x: 3.6051037, y: 4.842622}
+  m_EdgeRadius: 0

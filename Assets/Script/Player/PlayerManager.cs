@@ -128,18 +128,14 @@ public void SwitchMode(PlayerMode mode)
         }
     }
 
-    public void CheckAndRemoveDefeatedTuyuls(GameObject tuyulObject, string tuyulName)
+    public void CheckAndRemoveDefeatedTuyuls(GameObject tuyul, string tuyulName)
     {
         if (PlayerPrefs.HasKey($"{tuyulName}_Defeated") && PlayerPrefs.GetInt($"{tuyulName}_Defeated") == 1)
         {
-            Animator animator = tuyulObject.GetComponent<Animator>();
-            if (animator != null)
-            {
-                animator.enabled = false;
-                Debug.Log($"Animator pada {tuyulName} dinonaktifkan sebelum dihapus.");
-            }
-            Destroy(tuyulObject);
+            Destroy(tuyul);
             Debug.Log($"{tuyulName} sudah dikalahkan dan dihapus dari scene eksplorasi.");
+            Debug.Log($"Checking status for {tuyulName}: Defeated = {PlayerPrefs.HasKey($"{tuyulName}_Defeated") && PlayerPrefs.GetInt($"{tuyulName}_Defeated") == 1}");
+
         }
     }
 }
