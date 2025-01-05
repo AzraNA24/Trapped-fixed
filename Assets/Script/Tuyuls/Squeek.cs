@@ -109,7 +109,7 @@ public class Squeek : Tuyul
 
     private IEnumerator ExecuteNormalAttack(Player playerCharacter)
     {
-        TuyulAnim.SetTrigger("Throw");
+        TuyulAnim.SetTrigger("Throws");
         yield return new WaitForSeconds(1f);
         playerCharacter.TakeDamage(AttackPower);
         ShowMessage($"{Name} mengeluarkan jurus 'Ketimpuk Batu' dan memberikan {AttackPower} damage! Sisa HP: {playerCharacter.currentHealth}");

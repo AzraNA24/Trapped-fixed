@@ -45,27 +45,10 @@ public class PlayerAttack : MonoBehaviour
 
             Debug.Log($"Detected: {Thing.gameObject.name}");
 
-<<<<<<< HEAD
-            // if (codexUI == null)
-            // {
-            //     return;
-            // }
-            Debug.Log($"Tuyul detected: {currentTuyulName}! Switching to TurnBased scene after audio...");
-            StartCoroutine(PlayAudioAndSwitchScene());
-            return;
-        }
-        Pool pool = Thing.GetComponent<Pool>();
-        if (objectLayer == "Pool")
-        {
-            Player.Instance.currentHealth = Player.Instance.Health;
-            Debug.Log($"Player health restored to full. Current health: {Player.Instance.currentHealth}");
-        }
-=======
             if (Thing.isTrigger)
             {
                 Debug.Log($"Trigger detected: {Thing.gameObject.name}");
             }
->>>>>>> 2504baa8254ecb2f914281e76b46740906883c10
 
             if (objectLayer == "Tuyul")
             {
@@ -81,6 +64,12 @@ public class PlayerAttack : MonoBehaviour
                 return;
             }
 
+            Pool pool = Thing.GetComponent<Pool>();
+            if (objectLayer == "Pool")
+            {
+                Player.Instance.currentHealth = Player.Instance.Health;
+                Debug.Log($"Player health restored to full. Current health: {Player.Instance.currentHealth}");
+            }
             LootBox lootBox = Thing.GetComponent<LootBox>();
             if (lootBox != null)
             {

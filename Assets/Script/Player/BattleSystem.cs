@@ -127,18 +127,7 @@ public class BattleSystem : MonoBehaviour
         PlayerTurn();
     }
 
-<<<<<<< HEAD
-=======
-    //void SetupRollyPollyPair()
-    //{
-    //    Rolly rolly = Instantiate(Rolly, rollySpawnPoint).GetComponent<Rolly>();
-    //    Polly polly = Instantiate(Polly, pollySpawnPoint).GetComponent<Polly>();
 
-    //    rolly.partner = polly;
-    //    polly.partner = rolly;
-    //}
-
->>>>>>> 2504baa8254ecb2f914281e76b46740906883c10
     void PlayerTurn()
     {
         // Terapkan efek poison hanya untuk CheokYul
