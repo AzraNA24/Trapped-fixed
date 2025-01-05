@@ -80,11 +80,11 @@ public class Aventurine : Tuyul
             if (playerCharacter.DeductMoney(stolenAmount))
             {
                 TuyulAnim.SetTrigger("TPBP");
-                yield return new WaitForSeconds(0.5f);
-                audioSource.PlayOneShot(tpbpSound);
-
                 ShowMessage($"{Name} menggunakan jurus rahasia: 'Tangan Panjang, Badan Pendek'. Kamu kehilangan uang sebesar {stolenAmount}!");
                 Debug.Log($"{Name} menggunakan jurus rahasia: 'Tangan Panjang, Badan Pendek'. Kamu kehilangan uang sebesar {stolenAmount}!");
+                
+                yield return new WaitForSeconds(0.5f);
+                audioSource.PlayOneShot(tpbpSound);
                 yield return new WaitForSeconds(1f);
             }
         }
@@ -123,12 +123,11 @@ public class Aventurine : Tuyul
     {
         playerCharacter.TakeDamage(AttackPower);
         TuyulAnim.SetTrigger("Throws");
-        yield return new WaitForSeconds(1f);
-        audioSource.PlayOneShot(ketimpukSound);
-
         ShowMessage($"{Name} mengeluarkan jurus 'Ketimpuk Batu' dan memberikan {AttackPower} damage! Sisa HP: {playerCharacter.currentHealth}");
         Debug.Log($"{Name} mengeluarkan jurus 'Ketimpuk Batu' dan memberikan {AttackPower} damage! Sisa HP: {playerCharacter.currentHealth}");
 
+        yield return new WaitForSeconds(1f);
+        audioSource.PlayOneShot(ketimpukSound);
         yield return new WaitForSeconds(1f); // Jeda untuk animasi
     }
 

@@ -75,11 +75,11 @@ public class Door : MonoBehaviour
                 string miniBoss = GetRandomRoom(miniBossRooms);
                 SwitchToRoom(miniBoss);
             }
-            else if (ShouldEnterHealRoom())
-            {
-                Debug.Log("Switching to Heal Room.");
-                SwitchToRoom(healRoom);
-            }
+            // else if (ShouldEnterHealRoom())
+            // {
+            //     Debug.Log("Switching to Heal Room.");
+            //     SwitchToRoom(healRoom);
+            // }
             else
             {
                 Debug.Log("Switching to Normal Room.");

@@ -50,7 +50,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TuyulAnim: {fileID: -6327863598716802768}
-  Name: Mr. Rizzler
+  Name: Mr.Rizzler
   maxHealth: 50
   currentHealth: 50
   AttackPower: 10

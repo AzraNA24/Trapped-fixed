@@ -146,7 +146,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TuyulAnim: {fileID: 4252358578297210380}
-  Name: Squeek
+  Name: Chef
   maxHealth: 50
   currentHealth: 50
   AttackPower: 20
@@ -154,7 +154,6 @@ MonoBehaviour:
   isOfferingMoney: 0
   audioSource: {fileID: 6068221117557518396}
   ketimpukSound: {fileID: 8300000, guid: 97c6d28cd4b1ced478dd661c074e51b8, type: 3}
-  woofSound: {fileID: 8300000, guid: 7d51bd361da5a3548885c148048dd824, type: 3}
   DebuffRoundsLeft: 0
 --- !u!95 &4252358578297210380
 Animator:
