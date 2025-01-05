@@ -56,5 +56,5 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "Survive or Become Tuyul.sln"
+    "dotnet.defaultSolution": "Trapped-fixed.sln"
 }

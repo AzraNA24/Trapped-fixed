@@ -181,8 +181,13 @@ public class SceneManagerController : MonoBehaviour
                 // Hapus Tuyul yang sudah dikalahkan
                 GameObject[] tuyuls = GameObject.FindGameObjectsWithTag("Tuyul");
                 foreach (GameObject tuyul in tuyuls)
-                {
-                    string tuyulName = tuyul.name;
+                {                    
+                    //string tuyulName = tuyul.name;
+
+
+                    string tuyulName = tuyul.name.Replace("(Clone)", "").Trim();
+                    
+                    
                     Debug.Log($"Checking PlayerPrefs for {tuyulName}_Defeated: {PlayerPrefs.HasKey($"{tuyulName}_Defeated")}");
                     FindObjectOfType<PlayerManager>()?.CheckAndRemoveDefeatedTuyuls(tuyul, tuyulName);
                     

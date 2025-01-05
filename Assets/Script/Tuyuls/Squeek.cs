@@ -3,6 +3,9 @@ using UnityEngine;
 
 public class Squeek : Tuyul
 {
+    public AudioSource audioSource; 
+    public AudioClip ketimpukSound;
+    public AudioClip woofSound;
     public int DebuffRoundsLeft = 0;
 
     public Squeek()
@@ -78,7 +81,7 @@ public class Squeek : Tuyul
             Debug.Log($"{Name} terus memengaruhi critical chance pemain! Ronde tersisa: {DebuffRoundsLeft}");
         }
 
-        // Special Skill: Seduce You To Death (20% chance)
+        // Special Skill: Woof (20% chance)
         if (random.NextDouble() < 0.2 && DebuffRoundsLeft == 0)
         {
             yield return StartCoroutine(UseWoof(playerCharacter));
@@ -93,6 +96,8 @@ public class Squeek : Tuyul
     public IEnumerator UseWoof(Player playerCharacter)
     {
         TuyulAnim.SetTrigger("Woof");
+        yield return new WaitForSeconds(1f);
+        audioSource.PlayOneShot(woofSound);
         yield return new WaitForSeconds(1f);
 
         DebuffRoundsLeft = 3;
@@ -110,7 +115,10 @@ public class Squeek : Tuyul
     private IEnumerator ExecuteNormalAttack(Player playerCharacter)
     {
         TuyulAnim.SetTrigger("Throws");
+        yield return new WaitForSeconds(0.8f);
+        audioSource.PlayOneShot(ketimpukSound);
         yield return new WaitForSeconds(1f);
+
         playerCharacter.TakeDamage(AttackPower);
         ShowMessage($"{Name} mengeluarkan jurus 'Ketimpuk Batu' dan memberikan {AttackPower} damage! Sisa HP: {playerCharacter.currentHealth}");
         Debug.Log($"{Name} mengeluarkan jurus 'Ketimpuk Batu' dan memberikan {AttackPower} damage! Sisa HP: {playerCharacter.currentHealth}");

@@ -3,11 +3,13 @@ using UnityEngine;
 
 public class Chef : Tuyul
 {
+    public AudioSource audioSource; 
+    public AudioClip ketimpukSound;
     public int DebuffRoundsLeft = 0;
 
     public Chef()
     {
-        Name = "Squeek";
+        Name = "Chef";
         maxHealth = 50;
         AttackPower = 20;
         Money = 30;
@@ -77,7 +79,10 @@ public class Chef : Tuyul
     private IEnumerator ExecuteNormalAttack(Player playerCharacter)
     {
         TuyulAnim.SetTrigger("Throws");
+        yield return new WaitForSeconds(0.8f);
+        audioSource.PlayOneShot(ketimpukSound);
         yield return new WaitForSeconds(1f);
+
         playerCharacter.TakeDamage(AttackPower);
         ShowMessage($"{Name} mengeluarkan jurus 'Ketimpuk Batu' dan memberikan {AttackPower} damage! Sisa HP: {playerCharacter.currentHealth}");
         Debug.Log($"{Name} mengeluarkan jurus 'Ketimpuk Batu' dan memberikan {AttackPower} damage! Sisa HP: {playerCharacter.currentHealth}");
